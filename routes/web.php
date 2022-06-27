@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HrdController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\DirekturController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +36,24 @@ Route::group(['middleware' => ['CekLoginLagi']], function () {
 
 
 
-Route::group(['middleware' => ['ceklogin','CekRole:hrd']], function () {
+Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     //dashboard
-    Route::get('/home', [HrdController::class, 'index']);
+    Route::get('/hrd/home', [HrdController::class, 'index']);
+
+});
+
+Route::group(['middleware' => ['CekRole:karyawan']], function () {
+
+    //dashboard
+    Route::get('/karyawan/home', [KaryawanController::class, 'index']);
+
+});
+
+Route::group(['middleware' => ['CekRole:direktur']], function () {
+
+    //dashboard
+    Route::get('/direktur/home', [DirekturController::class, 'index']);
 
 });
 

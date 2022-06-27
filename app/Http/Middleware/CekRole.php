@@ -15,12 +15,19 @@ class CekRole
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next,...$jabatan)
+    public function handle(Request $request, Closure $next,$jabatan)
     {
-        if(!in_Array($request->user()->jabatan,$jabatan)){
-            return redirect('/home');
+
+
+
+        if($request->user() && $request->user()->jabatan == $jabatan){
+            return $next($request);
+
+
         }
 
-        return $next($request);
+
+        return redirect('/');
+
     }
 }

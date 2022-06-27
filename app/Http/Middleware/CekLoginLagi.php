@@ -20,9 +20,21 @@ class CekLoginLagi
 
         $cek = Auth::check();
 
-        if($cek) {
-            return redirect('/home');
+        if(!$cek) {
+            return $next($request);
+
         }
-        return $next($request);
+
+        if (auth()->user()->jabatan == 'hrd') {
+            return redirect('hrd/home');
+        }else if (auth()->user()->jabatan == 'karyawan') {
+            return redirect('karyawan/home');
+        }else if(auth()->user()->jabatan == 'direktur'){
+            return redirect('direktur/home');
+        }
+
+        return redirect('/');
+
+
     }
 }

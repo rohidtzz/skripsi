@@ -21,15 +21,21 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $auths = Auth::attempt(['no_identitas' => $request->no_identitas, 'password' => $request->password]);
+        $auths = Auth::attempt(['no_identitas' => $request->no_identitas, 'password' => $request->password],true);
 
         if($auths){
-            return redirect('/home');
-        } else {
 
-
-             return redirect('/');
+            if (auth()->user()->jabatan == 'hrd') {
+                return redirect('hrd/home');
+            }else if (auth()->user()->jabatan == 'karyawan') {
+                return redirect('karyawan/home');
+            }else if(auth()->user()->jabatan == 'direktur'){
+                return redirect('direktur/home');
+            }
+            return redirect('/');
         }
+
+        return redirect('/');
 
 
 

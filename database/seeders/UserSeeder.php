@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
 
         User::create([
-            'no_identitas' => '24445567',
+            'no_identitas' => '111111111',
             'password' => bcrypt('karyawan'),
             'name' => 'karyawan',
             'email' => 'rohid@gmail.com',
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'no_identitas' => '123456789',
+            'no_identitas' => '222222222',
             'password' => bcrypt('hrd'),
             'name' => 'hrd',
             'email' => 'hrd@gmail.com',
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'no_identitas' => '457334324',
+            'no_identitas' => '333333333',
             'password' => bcrypt('direktur'),
             'name' => 'direktur',
             'email' => 'direk@gmail.com',
