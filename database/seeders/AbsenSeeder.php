@@ -56,7 +56,7 @@ class AbsenSeeder extends Seeder
         ]);
 
         Absen::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'keterangan' => 'masuk',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:10:00',
@@ -64,7 +64,7 @@ class AbsenSeeder extends Seeder
         ]);
 
         Absen::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'keterangan' => 'masuk',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:15:00',
@@ -72,7 +72,7 @@ class AbsenSeeder extends Seeder
         ]);
 
         Absen::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'keterangan' => 'alpha',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:10:00',
@@ -80,7 +80,7 @@ class AbsenSeeder extends Seeder
         ]);
 
         Absen::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'keterangan' => 'telat',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:10:00',
@@ -88,7 +88,7 @@ class AbsenSeeder extends Seeder
         ]);
 
         Absen::create([
-            'user_id' => 2,
+            'user_id' => 4,
             'keterangan' => 'sakit',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:10:00',
