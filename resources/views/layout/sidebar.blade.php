@@ -452,7 +452,7 @@
                 {{url('hrd/dashborad')}}
 
 
-          @endif" class="nav-link active">
+          @endif" class="nav-link {{ Request::is('karyawan/dashboard') ? 'active' : '' }} {{ Request::is('direktur/dashboard') ? 'active' : '' }} {{ Request::is('hrd/dashboard') ? 'active' : '' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -468,8 +468,8 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="{{ route('ShowAbsen') }}" class="nav-link">
+          <li class="nav-item ">
+            <a href="{{ route('ShowAbsen') }}" class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user-clock"></i>
               <p>
                 Absensi
