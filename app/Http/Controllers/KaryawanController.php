@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Absen;
+use App\Models\User;
+
 class KaryawanController extends Controller
 {
     /**
@@ -13,8 +16,58 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        return view('karyawan.karyawan');
+
+
+
     }
+
+    public function dashboard()
+    {
+
+        return view('karyawan.karyawan');
+
+    }
+
+    public function Showabsen(){
+        $id = auth()->user()->id;
+
+        $daftarabsen = User::find($id)->getabsen;
+
+
+
+
+        // $carimasuk = User::find($id )->getabsen;
+
+        // $c = count($carimasuk);
+
+
+        $daftarabse = Absen::where('keterangan','masuk')->get();
+
+        $usere = User::find($id)->getabsen;
+
+        $cek = Absen::where('keterangan','like',"%".'masuk'."%")->paginate();
+
+        $c = $usere;
+
+
+
+
+
+
+        // $carialpha = Absen::where('keterangan','alpha')->count();
+
+        // $caritelat = Absen::where('keterangan','telat')->count();
+
+        // $carisakit = Absen::where('keterangan','sakit')->count();
+
+
+        // return dd($cari);
+
+         return view('karyawan.showabsen',compact('daftarabsen','c'));
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HrdController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DirekturController;
+use App\Http\Controllers\AbsenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\DirekturController;
 */
 
 
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => ['CekLoginLagi']], function () {
@@ -46,7 +47,10 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 Route::group(['middleware' => ['CekRole:karyawan']], function () {
 
     //dashboard
-    Route::get('/karyawan/home', [KaryawanController::class, 'index']);
+    Route::get('/karyawan/home', [AbsenController::class, 'index']);
+    Route::get('/karyawan/dashboard', [KaryawanController::class, 'dashboard'])->name('dashboard');
+    Route::get('/karyawan/LihatAbsen', [KaryawanController::class, 'showabsen'])->name('ShowAbsen');
+
 
 });
 
@@ -56,6 +60,13 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     Route::get('/direktur/home', [DirekturController::class, 'index']);
 
 });
+
+Route::group(['middleware' => [config('ipaddress:ip_address')]], function() {
+
+});
+
+Route::post('/absen/checkout', [AbsenController::class, 'checkOut'])->name('checkout');
+Route::post('/absen/checkin', [AbsenController::class, 'checkIn'])->name('checkin');
 
 
 

@@ -450,7 +450,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{ route('ShowAbsen') }}" class="nav-link">
               <i class="nav-icon fas fa-user-clock"></i>
               <p>
                 Absensi

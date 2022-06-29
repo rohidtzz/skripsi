@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'ceklogin' => \App\Http\Middleware\CekLoginMiddleware::class,
         'CekRole' => \App\Http\Middleware\CekRole::class,
         'CekLoginLagi' => \App\Http\Middleware\CekLoginLagi::class,
+        'ipcheck' => \App\Http\Middleware\IpMiddleware::class,
     ];
 }

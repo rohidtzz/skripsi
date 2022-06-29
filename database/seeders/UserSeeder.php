@@ -64,5 +64,21 @@ class UserSeeder extends Seeder
             'waktu_aktif' => date('d/m/y'),
         ]);
 
+        User::create([
+            'no_identitas' => '444444444',
+            'password' => bcrypt('karyawan'),
+            'name' => 'sumasih',
+            'email' => 'djsfhn@gmail.com',
+            'jabatan' => 'karyawan',
+            'gender' => 'pria',
+            'alamat' => 'ini diisi dengan alamat',
+            'nik' => '348996123',
+            'npwp' => '01986544213',
+            'no_hp' => '12495454234',
+            'status' => 'kawin',
+            'no_backup' => '234234',
+            'waktu_aktif' => date('d/m/y'),
+        ]);
+
     }
 }

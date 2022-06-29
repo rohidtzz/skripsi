@@ -54,4 +54,18 @@ class User extends Authenticatable
     ];
 
 
+
+    // public function getabsn()
+    // {
+    //     return $this->hasMany(Absen::class,'user_id' );
+    // }
+
+    public function getabsen()
+    {
+        return $this->hasMany(Absen::class,'user_id');
+    }
+
+    protected $table = 'users';
+
+
 }
