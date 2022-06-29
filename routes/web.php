@@ -40,7 +40,7 @@ Route::group(['middleware' => ['CekLoginLagi']], function () {
 Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     //dashboard
-    Route::get('/hrd/home', [HrdController::class, 'index']);
+    Route::get('/hrd/dashboard', [HrdController::class, 'index']);
 
 });
 
@@ -57,7 +57,7 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
 Route::group(['middleware' => ['CekRole:direktur']], function () {
 
     //dashboard
-    Route::get('/direktur/home', [DirekturController::class, 'index']);
+    Route::get('/direktur/dashboard', [DirekturController::class, 'index']);
 
 });
 

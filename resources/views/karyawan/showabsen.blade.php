@@ -9,11 +9,9 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3> @foreach ($c as $k)
-            {{$k->keterangan}}
-          @endforeach</h3>
+          <h3>{{$JumlahHadir}}</h3>
 
-          <p>Jumlah Absen</p>
+          <p>Jumlah Hadir</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
@@ -26,9 +24,9 @@
       <!-- small box -->
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>12</h3>
+          <h3>{{$JumlahAlpha}}</h3>
 
-          <p>Bounce Rate</p>
+          <p>Jumlah Alpha</p>
         </div>
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
@@ -41,9 +39,9 @@
       <!-- small box -->
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>44</h3>
+          <h3>{{$JumlahTelat}}</h3>
 
-          <p>User Registrations</p>
+          <p>Jumlah Telat</p>
         </div>
         <div class="icon">
           <i class="ion ion-person-add"></i>
@@ -56,9 +54,9 @@
       <!-- small box -->
       <div class="small-box bg-danger">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{$JumlahSakit}}</h3>
 
-          <p>Unique Visitors</p>
+          <p>Jumlah Sakit</p>
         </div>
         <div class="icon">
           <i class="ion ion-pie-graph"></i>

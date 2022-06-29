@@ -18,7 +18,7 @@
         </div>
         @elseif (auth()->user()->status_pekerjaan == 'masuk')
 
-        @if (date('h:i:s') >= '16:30:00' && date('h:i:s') <= '17:00:00')
+        @if (date('h:i:s') >= '16:30:00' && date('h:i:s') <= '17:00:00' && date('A') == 'AM' && date('A') == 'PM')
         <div class="text-center">
         <p>Silahkan Check-out</p>
 
@@ -37,8 +37,9 @@
             @else
 
             <div class="text-center">
-                @if (date('h:i:s') >= '09:00:00' && date('h:i:s') <= '17:00:00')
-                    <p>Silahkan Check-in</p>
+                <p style="font-size: 20px; font-family: arial;" id="jam"></p>
+                @if (date('h:i:s') >= '09:00:00' && date('h:i:s') <= '17:00:00' && date('A') == 'AM' && date('A') == 'PM')
+                    <p>Silahkan Check-in {{ date('h:i:s A')  }}</p>
 
                     <form action="{{ route('checkin') }}" method="post">
                         <div class="btn-group">

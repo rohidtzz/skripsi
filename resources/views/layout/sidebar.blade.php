@@ -440,6 +440,25 @@
               </p>
             </a>
           </li> --}}
+
+          <a href=" @if (auth()->user()->jabatan == 'karyawan')
+                {{url('karyawan/dashboard')}}
+
+                @elseif (auth()->user()->jabatan == 'direktur')
+                {{url('direktur/dashboard')}}
+
+                @else
+
+                {{url('hrd/dashborad')}}
+
+
+          @endif" class="nav-link active">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Dashboard
+            </p>
+          </a>
+
           <li class="nav-item">
             <a href="pages/gallery.html" class="nav-link">
               <i class="nav-icon fas fa-wallet"></i>

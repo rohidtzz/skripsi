@@ -35,35 +35,20 @@ class KaryawanController extends Controller
 
 
 
+        $JumlahHadir = Absen::where('keterangan', 'masuk')->get('keterangan')->count();
 
-        // $carimasuk = User::find($id )->getabsen;
+        $JumlahAlpha = Absen::where('keterangan', 'alpha')->get('keterangan')->count();
 
-        // $c = count($carimasuk);
+        $JumlahTelat = Absen::where('keterangan', 'Telat')->get('keterangan')->count();
 
-
-        $daftarabse = Absen::where('keterangan','masuk')->get();
-
-        $usere = User::find($id)->getabsen;
-
-        $cek = Absen::where('keterangan','like',"%".'masuk'."%")->paginate();
-
-        $c = $usere;
+        $JumlahSakit = Absen::where('keterangan', 'Sakit')->get('keterangan')->count();
 
 
 
 
 
 
-        // $carialpha = Absen::where('keterangan','alpha')->count();
-
-        // $caritelat = Absen::where('keterangan','telat')->count();
-
-        // $carisakit = Absen::where('keterangan','sakit')->count();
-
-
-        // return dd($cari);
-
-         return view('karyawan.showabsen',compact('daftarabsen','c'));
+        return view('karyawan.showabsen',compact('daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
 
     }
 

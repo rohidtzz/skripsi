@@ -26,11 +26,11 @@ class CekLoginLagi
         }
 
         if (auth()->user()->jabatan == 'hrd') {
-            return redirect('hrd/home');
+            return redirect('hrd/dashboard');
         }else if (auth()->user()->jabatan == 'karyawan') {
             return redirect('karyawan/home');
         }else if(auth()->user()->jabatan == 'direktur'){
-            return redirect('direktur/home');
+            return redirect('direktur/dashboard');
         }
 
         return redirect('/');
