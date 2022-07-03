@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+use App\Models\Absen;
+
 class DirekturController extends Controller
 {
     /**
@@ -14,6 +17,38 @@ class DirekturController extends Controller
     public function index()
     {
         return view('direktur.direktur');
+    }
+
+    public function lihatabsen()
+    {
+
+
+        $id = auth()->user()->id;
+
+        // $daftarabsen = Absen::all();
+
+        $daftarabsen =  Absen::all();
+
+
+        $nama = User::find(1)->getabsen;
+
+        $JumlahHadir = Absen::all()->count('keterangan', 'masuk');
+
+        // $JumlahHadir = Absen::where('user_id',$id)->get('keterangan')->count();
+
+        $JumlahAlpha = User::find($id)->getabsen()->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = User::find($id)->getabsen()->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = User::find($id)->getabsen()->where('keterangan', 'sakit')->count();
+
+
+
+
+
+
+        return view('direktur.showabsen',compact('nama','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
+
     }
 
     /**

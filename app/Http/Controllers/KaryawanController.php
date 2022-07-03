@@ -33,15 +33,15 @@ class KaryawanController extends Controller
 
         $daftarabsen = User::find($id)->getabsen;
 
+        $JumlahHadir = User::find($id)->getabsen()->where('keterangan', 'masuk')->count();
 
+        // $JumlahHadir = Absen::where('user_id',$id)->get('keterangan')->count();
 
-        $JumlahHadir = Absen::where('keterangan', 'masuk')->get('keterangan')->count();
+        $JumlahAlpha = User::find($id)->getabsen()->where('keterangan', 'alpha')->count();
 
-        $JumlahAlpha = Absen::where('keterangan', 'alpha')->get('keterangan')->count();
+        $JumlahTelat = User::find($id)->getabsen()->where('keterangan', 'telat')->count();
 
-        $JumlahTelat = Absen::where('keterangan', 'Telat')->get('keterangan')->count();
-
-        $JumlahSakit = Absen::where('keterangan', 'Sakit')->get('keterangan')->count();
+        $JumlahSakit = User::find($id)->getabsen()->where('keterangan', 'sakit')->count();
 
 
 

@@ -30,10 +30,21 @@ class Absen extends Model
         return $this->belongsTo(User::class,'id');
     }
 
+    public function name()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
+
+
     // public function getuser()
     // {
     //     return $this->hasMany(User::class,'id' );
     // }
+
+
 
     protected $table = 'absens';
 

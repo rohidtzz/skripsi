@@ -65,7 +65,21 @@ class User extends Authenticatable
         return $this->hasMany(Absen::class,'user_id');
     }
 
+    public function getam()
+    {
+        return $this->hasMany(Absen::class,'id','user_id');
+    }
+
+
+
+    public function getmasuk()
+    {
+        return $this->hasMany(Absen::class,'keterangan');
+    }
+
     protected $table = 'users';
+
+
 
 
 }

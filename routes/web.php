@@ -42,6 +42,9 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     //dashboard
     Route::get('/hrd/dashboard', [HrdController::class, 'index']);
 
+    //absen
+    Route::get('/hrd/lihatabsen', [HrdController::class, 'lihatabsen']);
+
 });
 
 Route::group(['middleware' => ['CekRole:karyawan']], function () {
@@ -58,6 +61,9 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
 
     //dashboard
     Route::get('/direktur/dashboard', [DirekturController::class, 'index']);
+
+    //absen
+    Route::get('/direktur/lihatabsen', [DirekturController::class, 'lihatabsen']);
 
 });
 

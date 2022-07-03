@@ -1,13 +1,24 @@
 @extends('layout.depan')
 
 @section('content')
+
+    {{-- @if (auth()->user()->getabsen()->where('tanggal','2022/01/23')->first() != date('y/m/d') )
+    <p style="font-size: 20px; font-family: arial;" id="jam"></p>
+    <div class="text-center">
+        <p>Anda sudah absen hari ini </p>
+    </div>
+    @endif --}}
+
+
     @if ($holiday)
+    <p style="font-size: 20px; font-family: arial;" id="jam"></p>
         <div class="text-center">
             <p>Absen Libur Hari Libur Nasional </p>
         </div>
     @else
         @if (date('l') == "Saturday" || date('l') == "Sunday")
             <div class="text-center">
+                <p style="font-size: 20px; font-family: arial;" id="jam"></p>
                 <p>Absen Libur</p>
             </div>
         @else
@@ -18,7 +29,7 @@
         </div>
         @elseif (auth()->user()->status_pekerjaan == 'masuk')
 
-        @if (date('h:i:s') >= '16:30:00' && date('h:i:s') <= '17:00:00' && date('A') == 'AM' && date('A') == 'PM')
+        @if (date('H:i:s') >= '16:30:00' && date('H:i:s') <= '17:00:00' )
         <div class="text-center">
         <p>Silahkan Check-out</p>
 
@@ -38,8 +49,10 @@
 
             <div class="text-center">
                 <p style="font-size: 20px; font-family: arial;" id="jam"></p>
-                @if (date('h:i:s') >= '09:00:00' && date('h:i:s') <= '17:00:00' && date('A') == 'AM' && date('A') == 'PM')
-                    <p>Silahkan Check-in {{ date('h:i:s A')  }}</p>
+
+                @if (date('H:i:s') >= '09:00:00' && date('H:i:s') <= '17:00:00')
+
+                    <p>Silahkan Check-in </p>
 
                     <form action="{{ route('checkin') }}" method="post">
                         <div class="btn-group">
@@ -59,6 +72,7 @@
                     </form>
 
                 @else
+                <p style="font-size: 20px; font-family: arial;" id="jam"></p>
                     <p>Check-in Belum Tersedia</p>
                 @endif
                 </div>
@@ -66,6 +80,7 @@
             @endif
 
         @endif
+
 
 
 

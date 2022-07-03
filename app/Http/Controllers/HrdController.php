@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Absen;
 
 class HrdController extends Controller
 {
@@ -20,10 +21,47 @@ class HrdController extends Controller
     public function index()
     {
 
-
-
         return view('hrd.hrd');
     }
+
+    public function lihatabsen()
+    {
+
+
+        $id = auth()->user()->id;
+
+        // $daftarabsen = Absen::all();
+
+        // $daftarabsen =  Absen::with('nama')->paginate(4);
+
+        // $daftarabsen =  Absen::with('nama')->paginate(4);
+
+        $daftarabsen = Absen::all();
+
+
+        $nama = Absen::with('name')->get('user_id');
+
+        $JumlahHadir = Absen::all()->count('keterangan', 'masuk');
+
+        // $JumlahHadir = Absen::where('user_id',$id)->get('keterangan')->count();
+
+        $JumlahAlpha = User::find($id)->getabsen()->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = User::find($id)->getabsen()->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = User::find($id)->getabsen()->where('keterangan', 'sakit')->count();
+
+
+
+
+
+
+        return view('hrd.showabsen',compact('nama','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
+
+
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

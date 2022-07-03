@@ -447,9 +447,12 @@
                 @elseif (auth()->user()->jabatan == 'direktur')
                 {{url('direktur/dashboard')}}
 
+                @elseif (auth()->user()->jabatan == 'hrd')
+                {{url('hrd/dashboard')}}
+
                 @else
 
-                {{url('hrd/dashborad')}}
+                {{-- {{url('hrd/dashborad')}} --}}
 
 
           @endif" class="nav-link {{ Request::is('karyawan/dashboard') ? 'active' : '' }} {{ Request::is('direktur/dashboard') ? 'active' : '' }} {{ Request::is('hrd/dashboard') ? 'active' : '' }}">
@@ -469,7 +472,16 @@
           </li>
 
           <li class="nav-item ">
-            <a href="{{ route('ShowAbsen') }}" class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}">
+            <a href="@if (auth()->user()->jabatan == 'karyawan')
+                {{url('karyawan/LihatAbsen')}}
+
+                @elseif (auth()->user()->jabatan == 'direktur')
+                {{url('direktur/lihatabsen')}}
+
+                @elseif (auth()->user()->jabatan == 'hrd')
+                {{url('hrd/lihatabsen')}}
+
+                @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user-clock"></i>
               <p>
                 Absensi

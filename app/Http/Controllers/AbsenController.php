@@ -51,6 +51,7 @@ class AbsenController extends Controller
 
     public function checkIn(Request $request)
     {
+        $id = auth()->user()->id;
 
 
 
@@ -60,36 +61,50 @@ class AbsenController extends Controller
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 
-        if(date('h:i:s') >= '09:00:00' && date('h:i:s') <= '09:30:00' && date('A') == 'AM' && date('A') == 'PM'){
+        $cek = Absen::where('tanggal', strtotime(date('y/m/d')));
+
+        $ceki = User::find($id)->getabsen ;
+
+
+
+
+
+        if($ceki){
+             return redirect()->back()->with('error','anda sudah absen');
+
+            // dd($cek);
+        }
+
+        if(date('H:i:s') >= '09:00:00' && date('H:i:s') <= '17:00:00' ){
             Absen::create([
                 'user_id' => $request->user_id,
                 'keterangan' => $request->keterangan,
                 'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('h:i:s'),
+                'jam_masuk' => date('H:i:s'),
                 'jam_keluar' => null,
             ]);
 
             return redirect()->back()->with('success','Check-in berhasil');
         }
 
-        if(date('h:i:s') >= '09:30:00' && date('h:i:s') <= '10:00:00' && date('A') == 'AM' && date('A') == 'PM'){
+        if(date('H:i:s') >= '09:30:00' && date('H:i:s') <= '10:00:00'){
             Absen::create([
                 'user_id' => $request->user_id,
                 'keterangan' => 'Telat',
                 'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('h:i:s'),
+                'jam_masuk' => date('H:i:s'),
                 'jam_keluar' => null,
             ]);
 
             return redirect()->back()->with('success','Check-in tapi anda telat');
         }
 
-        if(date('h:i:s') >= '10:00:00' && date('h:i:s') <= '16:30:00' && date('A') == 'AM' && date('A') == 'PM'){
+        if(date('H:i:s') >= '10:00:00' && date('H:i:s') <= '16:30:00'){
             Absen::create([
                 'user_id' => $request->user_id,
                 'keterangan' => 'Alpha',
                 'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('h:i:s'),
+                'jam_masuk' => date('H:i:s'),
                 'jam_keluar' => null,
             ]);
 
@@ -101,13 +116,13 @@ class AbsenController extends Controller
     public function checkOut(Request $request)
     {
 
-        if (date('l') == 'Saturday' || date('l') == 'Sunday') {
+        if (date('l') == 'Saturday' || date('l') == 'Wednesday') {
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 
         Absen::find($request->user_id)
         ->update{[
-            'jam_keluar' => date('h:i:s'),
+            'jam_keluar' => date('H:i:s'),
         ]};
 
 
