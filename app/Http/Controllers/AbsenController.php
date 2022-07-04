@@ -116,7 +116,7 @@ class AbsenController extends Controller
     public function checkOut(Request $request)
     {
 
-        if (date('l') == 'Saturday' || date('l') == 'Wednesday') {
+        if (date('l') == 'Saturday' || date('l') == 'Sunday') {
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 

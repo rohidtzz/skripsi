@@ -11,7 +11,7 @@
         <div class="inner">
           <h3>{{$JumlahHadir}}</h3>
 
-          <p>Jumlah Hadir</p>
+          <p>Jumlah Masuk</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
@@ -72,6 +72,7 @@
     <div class="card">
         <div class="card-header">
             <h3>Data Absen</h3>
+            <h5>jumlah Absen: {{$JumlahAbsen}}</h5>
         </div>
 
         <div class="card-body">
@@ -83,6 +84,7 @@
                     <th>Tanggal</th>
                     <th>Jam Masuk</th>
                     <th>Jam Keluar</th>
+                    <th>Opsi</th>
                   </tr>
                   {{-- @foreach ($nama as $a)
                   <tr>
@@ -91,11 +93,13 @@
 
                   @foreach ($daftarabsen as $u )
                   <tr>
-                  <td>{{ $u->user_id}}</td>
+                  <td>{{ App\Models\User::where('id', $u->user_id)->get('name')[0]['name']}}</td>
                     <td>{{ $u->keterangan }}</td>
                     <td>{{ $u->tanggal}}</td>
                     <td>{{ $u->jam_masuk }} </td>
                     <td>{{ $u->jam_keluar }}</td>
+                    <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
+                        <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
                   </tr>
                 @endforeach
             </table>

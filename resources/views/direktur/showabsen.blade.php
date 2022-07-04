@@ -91,7 +91,7 @@
 
                   @foreach ($daftarabsen as $u )
                   <tr>
-                  <td>{{ $u->user_id}}</td>
+                  <td>{{ App\Models\User::where('id', $u->user_id)->get('name')[0]['name']}}</td>
                     <td>{{ $u->keterangan }}</td>
                     <td>{{ $u->tanggal}}</td>
                     <td>{{ $u->jam_masuk }} </td>

@@ -39,24 +39,30 @@ class HrdController extends Controller
         $daftarabsen = Absen::all();
 
 
-        $nama = Absen::with('name')->get('user_id');
+        // $nama = User::with('getam')->get()->where('id', 'asd');
 
-        $JumlahHadir = Absen::all()->count('keterangan', 'masuk');
+
+        // dd($nama);
+
+
+        $JumlahHadir = Absen::where('keterangan', 'masuk')->count();
 
         // $JumlahHadir = Absen::where('user_id',$id)->get('keterangan')->count();
 
-        $JumlahAlpha = User::find($id)->getabsen()->where('keterangan', 'alpha')->count();
+        $JumlahAlpha = Absen::where('keterangan', 'alpha')->count();
 
-        $JumlahTelat = User::find($id)->getabsen()->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('keterangan', 'telat')->count();
 
-        $JumlahSakit = User::find($id)->getabsen()->where('keterangan', 'sakit')->count();
+        $JumlahSakit = Absen::where('keterangan', 'sakit')->count();
 
-
-
-
+        $JumlahAbsen = Absen::all()->count();
 
 
-        return view('hrd.showabsen',compact('nama','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
+
+
+
+
+        return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
 
 
     }
@@ -74,14 +80,16 @@ class HrdController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * .
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+
+
+
     }
 
     /**
@@ -103,7 +111,19 @@ class HrdController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $data = Absen::where('id',$id)->get();
+
+        if(!$data || $data == null){
+            return redirect('/hrd/lihatabsen');
+        }
+
+
+        // return view('hrd/edit')->with(['data' => $data]);
+
+        return view('hrd/edit', compact('data'));
+
+
     }
 
     /**
@@ -115,7 +135,23 @@ class HrdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $idabsen = Absen::find($id);
+
+        if(!$idabsen && $idabsen == null){
+
+            return redirect('hrd/absen/lihatabsen');
+
+        }
+
+        Absen::where('id',$id)->update([
+            'keterangan' => $request->keterangan,
+            'tanggal' => $request->tanggal,
+            'jam_masuk' => $request->jam_masuk,
+            'jam_keluar' => $request->jam_keluar
+        ]);
+
+        return redirect('hrd/lihatabsen');
+
     }
 
     /**
@@ -126,6 +162,17 @@ class HrdController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $absen = Absen::find($id);
+
+        if(!$absen && $absen || null){
+            return redirect('/hrd/lihatabsen');
+        }
+
+        $cobadestroy = Absen::find($id)->delete();
+
+        if($cobadestroy){
+            return redirect('/hrd/lihatabsen');
+        }
+
     }
 }

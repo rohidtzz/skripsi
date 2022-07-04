@@ -30,7 +30,7 @@ class DirekturController extends Controller
         $daftarabsen =  Absen::all();
 
 
-        $nama = User::find(1)->getabsen;
+        // $nama = User::find(1)->getabsen;
 
         $JumlahHadir = Absen::all()->count('keterangan', 'masuk');
 
@@ -47,7 +47,7 @@ class DirekturController extends Controller
 
 
 
-        return view('direktur.showabsen',compact('nama','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
+        return view('direktur.showabsen',compact('daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
 
     }
 

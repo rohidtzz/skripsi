@@ -30,9 +30,18 @@ class Absen extends Model
         return $this->belongsTo(User::class,'id');
     }
 
-    public function name()
+    public function namu()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'id');
+    }
+
+    public function namuu(){
+        return $this->name()->select('id','name');
+    }
+
+    public function wali()
+    {
+        return $this->hasOne(User::class,'id');
     }
 
 

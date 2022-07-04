@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function getam()
     {
-        return $this->hasMany(Absen::class,'id','user_id');
+        return $this->hasOne(Absen::class,'user_id');
     }
 
 
@@ -78,6 +78,7 @@ class User extends Authenticatable
     }
 
     protected $table = 'users';
+
 
 
 
