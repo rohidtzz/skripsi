@@ -72,7 +72,17 @@
                     </li> --}}
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="{{ route('dashboard') }}">
+                        <a class="nav-link nav-link-icon" href="
+                        @if(auth()->user()->jabatan == 'karyawan')
+                            {{url('karyawan/dashboard')}}
+
+                            @elseif (auth()->user()->jabatan == 'direktur')
+                            {{url('direktur/dashboard')}}
+
+                            @elseif (auth()->user()->jabatan == 'hrd')
+                            {{url('hrd/dashboard')}}
+
+                            @else @endif">
                             <i class="ni ni-single-02"></i>
                             <span class="nav-link-inner--text">Profile</span>
                         </a>

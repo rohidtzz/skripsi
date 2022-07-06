@@ -22,7 +22,7 @@ class AbsenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexkaryawan()
     {
         // $status = Absen::whereUserId(auth()->user()->id)->whereTanggal(date('y/m/d'))->first();
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
@@ -43,6 +43,60 @@ class AbsenController extends Controller
             }
         }
         return view('karyawan.absen', compact('libur','holiday'));
+
+        // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
+
+        //  return dd($holiday);
+    }
+
+    public function indexhrd()
+    {
+        // $status = Absen::whereUserId(auth()->user()->id)->whereTanggal(date('y/m/d'))->first();
+        // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
+        $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
+        $kalender = file_get_contents($url);
+        $kalender = json_decode($kalender, true);
+        $libur = false;
+        $holiday = null;
+        if ($kalender['data'] != false) {
+            if ($kalender['data']['holiday']) {
+                foreach ($kalender['data']['holiday'] as $key => $value) {
+                    if ($value == date('Y/m/d')) {
+                        $holiday = $value['holiday'];
+                        $libur = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return view('hrd.absen', compact('libur','holiday'));
+
+        // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
+
+        //  return dd($holiday);
+    }
+
+    public function indexdirektur()
+    {
+        // $status = Absen::whereUserId(auth()->user()->id)->whereTanggal(date('y/m/d'))->first();
+        // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
+        $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
+        $kalender = file_get_contents($url);
+        $kalender = json_decode($kalender, true);
+        $libur = false;
+        $holiday = null;
+        if ($kalender['data'] != false) {
+            if ($kalender['data']['holiday']) {
+                foreach ($kalender['data']['holiday'] as $key => $value) {
+                    if ($value == date('Y/m/d')) {
+                        $holiday = $value['holiday'];
+                        $libur = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return view('direktur.absen', compact('libur','holiday'));
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 

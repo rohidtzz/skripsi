@@ -26,11 +26,11 @@ class AuthController extends Controller
         if($auths){
 
             if (auth()->user()->jabatan == 'hrd') {
-                return redirect('hrd/dashboard');
+                return redirect('hrd/home');
             }else if (auth()->user()->jabatan == 'karyawan') {
                 return redirect('karyawan/home');
             }else if(auth()->user()->jabatan == 'direktur'){
-                return redirect('direktur/dashboard');
+                return redirect('direktur/home');
             }
             return redirect('/');
         }

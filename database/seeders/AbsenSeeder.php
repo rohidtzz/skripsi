@@ -94,5 +94,87 @@ class AbsenSeeder extends Seeder
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
+
+        Absen::create([
+            'user_id' => 2,
+            'keterangan' => 'masuk',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:15:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 2,
+            'keterangan' => 'alpha',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 2,
+            'keterangan' => 'telat',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 2,
+            'keterangan' => 'sakit',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 2,
+            'keterangan' => 'masuk',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:15:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 3,
+            'keterangan' => 'alpha',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 3,
+            'keterangan' => 'telat',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 3,
+            'keterangan' => 'sakit',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 3,
+            'keterangan' => 'masuk',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:15:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+        Absen::create([
+            'user_id' => 3,
+            'keterangan' => 'alpha',
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => '09:10:00',
+            'jam_keluar' => '16:45:00'
+        ]);
+
+
     }
 }

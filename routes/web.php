@@ -43,6 +43,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/dashboard', [HrdController::class, 'index']);
 
     //absen
+    Route::get('/hrd/home', [AbsenController::class, 'indexhrd']);
+
     Route::get('/hrd/lihatabsen', [HrdController::class, 'lihatabsen']);
 
     Route::get('/hrd/absen/edit/{id}', [HrdController::class, 'edit']);
@@ -54,7 +56,7 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 Route::group(['middleware' => ['CekRole:karyawan']], function () {
 
     //dashboard
-    Route::get('/karyawan/home', [AbsenController::class, 'index']);
+    Route::get('/karyawan/home', [AbsenController::class, 'indexkaryawan']);
     Route::get('/karyawan/dashboard', [KaryawanController::class, 'dashboard'])->name('dashboard');
     Route::get('/karyawan/LihatAbsen', [KaryawanController::class, 'showabsen'])->name('ShowAbsen');
 
@@ -67,6 +69,8 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     Route::get('/direktur/dashboard', [DirekturController::class, 'index']);
 
     //absen
+    Route::get('/direktur/home', [AbsenController::class, 'indexdirektur']);
+
     Route::get('/direktur/lihatabsen', [DirekturController::class, 'lihatabsen']);
 
 });
