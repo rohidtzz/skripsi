@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\SettingJam;
+
 class CekLoginLagi
 {
     /**
@@ -24,6 +26,7 @@ class CekLoginLagi
             return $next($request);
 
         }
+
 
         if (auth()->user()->jabatan == 'hrd') {
             return redirect('hrd/home');

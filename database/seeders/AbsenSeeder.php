@@ -25,7 +25,7 @@ class AbsenSeeder extends Seeder
 
         Absen::create([
             'user_id' => 1,
-            'keterangan' => 'masuk',
+            'keterangan' => 'izin',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:40:00'
@@ -65,7 +65,7 @@ class AbsenSeeder extends Seeder
 
         Absen::create([
             'user_id' => 4,
-            'keterangan' => 'masuk',
+            'keterangan' => 'izin',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:45:00'
@@ -129,7 +129,7 @@ class AbsenSeeder extends Seeder
 
         Absen::create([
             'user_id' => 2,
-            'keterangan' => 'masuk',
+            'keterangan' => 'izin',
             'tanggal' => date('y/m/d'),
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:45:00'

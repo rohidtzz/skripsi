@@ -47,6 +47,13 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::get('/hrd/lihatabsen', [HrdController::class, 'lihatabsen']);
 
+    Route::get('/hrd/lihatabsen/masuk', [HrdController::class, 'lihatabsenmasuk']);
+
+    Route::get('/hrd/lihatabsen/telat', [HrdController::class, 'lihatabsentelat']);
+    Route::get('/hrd/lihatabsen/alpha', [HrdController::class, 'lihatabsenalpha']);
+    Route::get('/hrd/lihatabsen/sakit', [HrdController::class, 'lihatabsensakit']);
+    Route::get('/hrd/lihatabsen/izin', [HrdController::class, 'lihatabsenizin']);
+
     Route::get('/hrd/absen/edit/{id}', [HrdController::class, 'edit']);
     Route::post('/hrd/absen/update/{id}', [HrdController::class, 'update']);
     Route::get('/hrd/absen/destroy/{id}', [HrdController::class, 'destroy']);

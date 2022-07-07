@@ -88,7 +88,7 @@
         <div class="card-header">
             <h3>Data Absen</h3>
             <h5>jumlah Absen: {{$JumlahAbsen}}</h5>
-            <form action="/hrd/lihatabsen/" method="get">
+            <form action="/hrd/lihatabsen/izin" method="get">
                 @csrf
 
                 <input name="tanggalinput" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
@@ -105,11 +105,14 @@
             <table class="table table-striped">
 
                 <tr>
+                    <th>id</th>
                     <th>name</th>
+                    <th>jabatan</th>
                     <th>keterangan</th>
                     <th>Tanggal</th>
                     <th>Jam Masuk</th>
                     <th>Jam Keluar</th>
+                    <th>Jam Kehadiran Rata-Rata</th>
                     <th>Opsi</th>
                   </tr>
                   {{-- @foreach ($nama as $a)
@@ -119,11 +122,14 @@
 
                   @foreach ($daftarabsen as $u )
                   <tr>
-                  <td>{{ App\Models\User::where('id', $u->user_id)->get('name')[0]['name']}}</td>
+                    <td>{{ App\Models\User::find($u->user_id)->no_identitas}}</td>
+                  <td>{{ App\Models\User::find($u->user_id)->name}}</td>
+                  <td>{{ App\Models\Posisi::find($u->user_id)->name  }}</td>
                     <td>{{ $u->keterangan }}</td>
                     <td>{{ $u->tanggal}}</td>
                     <td>{{ $u->jam_masuk }} </td>
                     <td>{{ $u->jam_keluar }}</td>
+                    <td>12 menit</td>
                     <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
                         <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
                   </tr>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Absen;
+use App\Models\SettingJam;
 use Illuminate\Support\Str;
 
 
@@ -115,21 +116,13 @@ class AbsenController extends Controller
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 
-        $cek = Absen::where('tanggal', strtotime(date('y/m/d')));
-
-        $ceki = User::find($id)->getabsen ;
-
+        $JamMasuk = SettingJam::where('id', 1)->get('jam_masuk');
+        $JamKeluar = SettingJam::where('id', 1)->get('jam_keluar');
 
 
 
 
-        if($ceki){
-             return redirect()->back()->with('error','anda sudah absen');
-
-            // dd($cek);
-        }
-
-        if(date('H:i:s') >= '09:00:00' && date('H:i:s') <= '17:00:00' ){
+        if($JamMasuk >= date('H:i:s') && date('H:i:s') <= $JamKeluar ){
             Absen::create([
                 'user_id' => $request->user_id,
                 'keterangan' => $request->keterangan,

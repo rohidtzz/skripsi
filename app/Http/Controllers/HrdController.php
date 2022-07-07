@@ -9,26 +9,60 @@ use App\Models\Absen;
 class HrdController extends Controller
 {
 
-
-
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
         return view('hrd.hrd');
     }
 
-    public function lihatabsen()
+    public function lihatabsen(request $request)
     {
 
+        if($request->tanggalinput){
+            // Absen::where('tnaggal', $request->tanggalinput);
+
+            $id = auth()->user()->id;
+
+        $daftarabsen = Absen::all()->where('tanggal',$request->tanggalinput);
+
+        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+        };
 
         $id = auth()->user()->id;
+
+
+
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->get();
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+
+        // $id = auth()->user()->id;
 
         // $daftarabsen = Absen::all();
 
@@ -36,7 +70,7 @@ class HrdController extends Controller
 
         // $daftarabsen =  Absen::with('nama')->paginate(4);
 
-        $daftarabsen = Absen::all();
+        // $daftarabsen = Absen::all();
 
 
         // $nama = User::with('getam')->get()->where('id', 'asd');
@@ -45,70 +79,287 @@ class HrdController extends Controller
         // dd($nama);
 
 
-        $JumlahHadir = Absen::where('keterangan', 'masuk')->count();
+        // $JumlahHadir = Absen::where('keterangan', 'masuk')->count();
 
         // $JumlahHadir = Absen::where('user_id',$id)->get('keterangan')->count();
 
-        $JumlahAlpha = Absen::where('keterangan', 'alpha')->count();
+        // $JumlahAlpha = Absen::where('keterangan', 'alpha')->count();
 
-        $JumlahTelat = Absen::where('keterangan', 'telat')->count();
+        // $JumlahTelat = Absen::where('keterangan', 'telat')->count();
 
-        $JumlahSakit = Absen::where('keterangan', 'sakit')->count();
+        // $JumlahSakit = Absen::where('keterangan', 'sakit')->count();
+
+        // $JumlahIzin = Absen::where('keterangan', 'izin')->count();
+
+        // $JumlahAbsen = Absen::all()->count();
+
+
+
+
+
+
+        // return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+
+    }
+
+    public function lihatabsenmasuk(Request $request)
+    {
+
+        if($request->tanggalinput){
+            // Absen::where('tnaggal', $request->tanggalinput);
+
+            $id = auth()->user()->id;
+
+        $daftarabsen = Absen::where('keterangan', 'masuk')->where('tanggal',$request->tanggalinput)->get();
+        // $daftar = Absen::where('keterangan', 'masuk');
+
+        //  dd($daftarabsen);
+
+        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
+        return view('hrd.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+        };
+
+        $id = auth()->user()->id;
 
 
 
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','masuk')->get();
 
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
 
-        return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit'));
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
 
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * .
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function lihatabsentelat(Request $request)
     {
 
+        if($request->tanggalinput){
+            // Absen::where('tnaggal', $request->tanggalinput);
 
+            $id = auth()->user()->id;
+
+        $daftarabsen = Absen::where('keterangan', 'telat')->where('tanggal',$request->tanggalinput)->get();
+        // $daftar = Absen::where('keterangan', 'masuk');
+
+        //  dd($daftarabsen);
+
+        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+        };
+
+        $id = auth()->user()->id;
+
+
+
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','telat')->get();
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+
+    public function lihatabsensakit(Request $request)
     {
-        //
+
+        if($request->tanggalinput){
+            // Absen::where('tnaggal', $request->tanggalinput);
+
+            $id = auth()->user()->id;
+
+        $daftarabsen = Absen::where('keterangan', 'sakit')->where('tanggal',$request->tanggalinput)->get();
+        // $daftar = Absen::where('keterangan', 'masuk');
+
+        //  dd($daftarabsen);
+
+        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+        };
+
+        $id = auth()->user()->id;
+
+
+
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','sakit')->get();
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function lihatabsenalpha(Request $request)
+    {
+
+        if($request->tanggalinput){
+            // Absen::where('tnaggal', $request->tanggalinput);
+
+            $id = auth()->user()->id;
+
+        $daftarabsen = Absen::where('keterangan', 'alpha')->where('tanggal',$request->tanggalinput)->get();
+        // $daftar = Absen::where('keterangan', 'masuk');
+
+        //  dd($daftarabsen);
+
+        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+        };
+
+        $id = auth()->user()->id;
+
+
+
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','alpha')->get();
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+    }
+
+    public function lihatabsenizin(Request $request)
+    {
+
+        if($request->tanggalinput){
+            // Absen::where('tnaggal', $request->tanggalinput);
+
+            $id = auth()->user()->id;
+
+        $daftarabsen = Absen::where('keterangan', 'izin')->where('tanggal',$request->tanggalinput)->get();
+        // $daftar = Absen::where('keterangan', 'masuk');
+
+        //  dd($daftarabsen);
+
+        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+        };
+
+        $id = auth()->user()->id;
+
+
+
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','izin')->get();
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
+
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+        $JumlahAbsen = Absen::all()->count();
+
+        return view('hrd.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+    }
+
     public function edit($id)
     {
 
@@ -126,13 +377,6 @@ class HrdController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $idabsen = Absen::find($id);
@@ -154,12 +398,6 @@ class HrdController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $absen = Absen::find($id);
