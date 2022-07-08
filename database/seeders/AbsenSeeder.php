@@ -18,7 +18,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 1,
             'keterangan' => 'masuk',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -26,7 +26,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 1,
             'keterangan' => 'izin',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:40:00'
         ]);
@@ -34,7 +34,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 1,
             'keterangan' => 'alpha',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -42,7 +42,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 1,
             'keterangan' => 'telat',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -50,7 +50,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 1,
             'keterangan' => 'sakit',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -58,7 +58,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 4,
             'keterangan' => 'masuk',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -66,7 +66,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 4,
             'keterangan' => 'izin',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -74,7 +74,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 4,
             'keterangan' => 'alpha',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -82,7 +82,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 4,
             'keterangan' => 'telat',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -90,7 +90,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 4,
             'keterangan' => 'sakit',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -98,7 +98,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 2,
             'keterangan' => 'masuk',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -106,7 +106,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 2,
             'keterangan' => 'alpha',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -114,7 +114,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 2,
             'keterangan' => 'telat',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -122,7 +122,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 2,
             'keterangan' => 'sakit',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -130,7 +130,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 2,
             'keterangan' => 'izin',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -138,7 +138,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 3,
             'keterangan' => 'alpha',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -146,7 +146,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 3,
             'keterangan' => 'telat',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -154,7 +154,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 3,
             'keterangan' => 'sakit',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -162,7 +162,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 3,
             'keterangan' => 'masuk',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:15:00',
             'jam_keluar' => '16:45:00'
         ]);
@@ -170,7 +170,7 @@ class AbsenSeeder extends Seeder
         Absen::create([
             'user_id' => 3,
             'keterangan' => 'alpha',
-            'tanggal' => date('y/m/d'),
+            'tanggal' => '2022/07/08',
             'jam_masuk' => '09:10:00',
             'jam_keluar' => '16:45:00'
         ]);

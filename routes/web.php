@@ -6,6 +6,7 @@ use App\Http\Controllers\HrdController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DirekturController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,11 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/absen/edit/{id}', [HrdController::class, 'edit']);
     Route::post('/hrd/absen/update/{id}', [HrdController::class, 'update']);
     Route::get('/hrd/absen/destroy/{id}', [HrdController::class, 'destroy']);
+
+
+    //setting
+    Route::get('/hrd/settings/jamkerja', [SettingController::class, 'jamkerja']);
+    Route::post('/hrd/settings/jamkerja/update', [SettingController::class, 'jamkerjaupdate']);
 
 });
 

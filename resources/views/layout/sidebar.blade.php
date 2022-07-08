@@ -513,9 +513,37 @@
               <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p></p>
+                  <p>pengajuan</p>
                 </a>
               </li>
+
+            </ul>
+          </li>
+
+          <li class="nav-item {{Request::is('hrd/settings/jamkerja') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Settings
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link ">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Akun</p>
+                </a>
+              </li>
+              @if (Auth()->user()->jabatan == 'hrd')
+              <li class="nav-item">
+                <a href="{{ url('/hrd/settings/jamkerja') }}" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}">
+                  <i class="far {{Request::is('hrd/settings/jamkerja') ? 'fa-dot-circle' : 'fa-circle'}}  nav-icon"></i>
+                  <p>Jam Kerja</p>
+                </a>
+              </li>
+              @endif
+
 
             </ul>
           </li>

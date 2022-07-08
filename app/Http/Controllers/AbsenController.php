@@ -43,7 +43,18 @@ class AbsenController extends Controller
                 }
             }
         }
-        return view('karyawan.absen', compact('libur','holiday'));
+
+        $jammasuk= SettingJam::find(1)->jam_masuk;
+        $jamkeluar= SettingJam::find(1)->jam_keluar;
+
+        // dd($jammasuk);
+
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+
+        return view('karyawan.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -70,6 +81,10 @@ class AbsenController extends Controller
                 }
             }
         }
+
+        $jammasuk= SettingJam::find(1)->jam_masuk;
+        $jamkeluar= SettingJam::find(1)->jam_keluar;
+
         return view('hrd.absen', compact('libur','holiday'));
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
@@ -97,7 +112,11 @@ class AbsenController extends Controller
                 }
             }
         }
-        return view('direktur.absen', compact('libur','holiday'));
+
+        $jammasuk= SettingJam::find(1)->jam_masuk;
+        $jamkeluar= SettingJam::find(1)->jam_keluar;
+
+        return view('direktur.absen', compact('jammasuk','jamkeluar','libur','holiday'));
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -116,25 +135,38 @@ class AbsenController extends Controller
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 
-        $JamMasuk = SettingJam::where('id', 1)->get('jam_masuk');
-        $JamKeluar = SettingJam::where('id', 1)->get('jam_keluar');
+        // $JamMasuk = SettingJam::where('id', 1)->get('jam_masuk');
+        // $JamKeluar = SettingJam::where('id', 1)->get('jam_keluar');
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
+
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
+
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
+
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+        // $datm=date_create($jamkeluar);
+        // date_add($datm,date_interval_create_from_date_string("-10 minutes"));
+        // $jamkeluarkurang10 = date_format($datm,"H:i:s");
 
 
+        $wow = Absen::where('tanggal' , date('Y/m/d'))->where('user_id', $id);
 
-
-        if($JamMasuk >= date('H:i:s') && date('H:i:s') <= $JamKeluar ){
-            Absen::create([
-                'user_id' => $request->user_id,
-                'keterangan' => $request->keterangan,
-                'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('H:i:s'),
-                'jam_keluar' => null,
-            ]);
-
-            return redirect()->back()->with('success','Check-in berhasil');
+        if($wow){
+            return redirect()->back()->with('error','anda sudah cek in');
         }
 
-        if(date('H:i:s') >= '09:30:00' && date('H:i:s') <= '10:00:00'){
+
+
+
+        if(date('H:i:s') >= $jammasuklebih5 && date('H:i:s') <= $jammasuklebih10){
             Absen::create([
                 'user_id' => $request->user_id,
                 'keterangan' => 'Telat',
@@ -146,7 +178,7 @@ class AbsenController extends Controller
             return redirect()->back()->with('success','Check-in tapi anda telat');
         }
 
-        if(date('H:i:s') >= '10:00:00' && date('H:i:s') <= '16:30:00'){
+        if(date('H:i:s') >= $jammasuklebih10 && date('H:i:s') <= $jamkeluarkurang5){
             Absen::create([
                 'user_id' => $request->user_id,
                 'keterangan' => 'Alpha',
@@ -158,6 +190,18 @@ class AbsenController extends Controller
             return redirect()->back()->with('error','anda alpha');
         }
 
+        if(date('H:i:s')  >=  $jammasuk && date('H:i:s') <= $jamkeluar ){
+            Absen::create([
+                'user_id' => $request->user_id,
+                'keterangan' => $request->keterangan,
+                'tanggal' => date('y/m/d'),
+                'jam_masuk' => date('H:i:s'),
+                'jam_keluar' => null,
+            ]);
+
+            return redirect()->back()->with('success','Check-in berhasil');
+        }
+
     }
 
     public function checkOut(Request $request)
@@ -167,16 +211,20 @@ class AbsenController extends Controller
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 
-        Absen::find($request->user_id)
-        ->update{[
+        $cek = Absen::where('tanggal', date('Y/m/d'));
+
+
+
+        Absen::where('tanggal', date('Y/m/d'))->where('user_id',$request->user_id)
+        ->update([
             'jam_keluar' => date('H:i:s'),
-        ]};
+        ]);
 
 
 
         // $data['jam_keluar'] = date('H:i:s');
         // $kehadiran->update($data);
-        // return redirect()->back()->with('success', 'Check-out berhasil');
+        return redirect()->back()->with('success', 'Check-out berhasil');
     }
 
     /**

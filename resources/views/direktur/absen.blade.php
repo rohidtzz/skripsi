@@ -29,7 +29,7 @@
         </div>
         @elseif (auth()->user()->status_pekerjaan == 'masuk')
 
-        @if (date('H:i:s') >= App\Models\SettingJam::where('id', 1)->get('jam_keluar') && date('H:i:s') <= '17:00:00' )
+        @if (date('H:i:s') >= $jamkeluarkurang5  && date('H:i:s') <=  $jamkeluar )
         <div class="text-center">
         <p>Silahkan Check-out</p>
 
@@ -50,7 +50,7 @@
             <div class="text-center">
                 <p style="font-size: 20px; font-family: arial;" id="jam"></p>
 
-                @if (date('H:i:s')  >= App\Models\SettingJam::where('id', 1)->get('jam_masuk')  && date('H:i:s') <= App\Models\SettingJam::where('id', 1)->get('jam_keluar') )
+                @if (date('H:i:s')  >= $jammasuk  && date('H:i:s') <= $jamkeluar )
 
                     <p>Silahkan Check-in </p>
 

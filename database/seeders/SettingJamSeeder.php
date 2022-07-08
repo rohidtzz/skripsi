@@ -18,7 +18,7 @@ class SettingJamSeeder extends Seeder
         SettingJam::create([
             'user_id' => 2,
             'jam_masuk' => '09:00:00',
-            'jam_keluar' => '16:30:00'
+            'jam_keluar' => '17:00:00'
 
         ]);
     }
