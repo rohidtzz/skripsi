@@ -85,7 +85,11 @@ class AbsenController extends Controller
         $jammasuk= SettingJam::find(1)->jam_masuk;
         $jamkeluar= SettingJam::find(1)->jam_keluar;
 
-        return view('hrd.absen', compact('libur','holiday'));
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+        return view('hrd.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -116,7 +120,11 @@ class AbsenController extends Controller
         $jammasuk= SettingJam::find(1)->jam_masuk;
         $jamkeluar= SettingJam::find(1)->jam_keluar;
 
-        return view('direktur.absen', compact('jammasuk','jamkeluar','libur','holiday'));
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+        return view('direktur.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
