@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AbsenSeeder::class,
             PosisiSeeder::class,
             SettingJamSeeder::class,
+            PengajuanSeeder::class,
         ]);
 
     }

@@ -489,8 +489,8 @@
             </a>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item {{Request::is('karyawan/pengajuan') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Pengajuan
@@ -498,24 +498,24 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pengajuan Lembur</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pengajuan Cuti</p>
+                <a href="{{ url('karyawan/pengajuan') }}" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}">
+                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                  <p>Pengajuan</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>pengajuan</p>
                 </a>
-              </li>
+              </li> --}}
 
             </ul>
           </li>
@@ -531,14 +531,14 @@
             <ul class="nav nav-treeview ">
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link ">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-circle nav-icon"></i>
                   <p>Akun</p>
                 </a>
               </li>
               @if (Auth()->user()->jabatan == 'hrd')
               <li class="nav-item">
                 <a href="{{ url('/hrd/settings/jamkerja') }}" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}">
-                  <i class="far {{Request::is('hrd/settings/jamkerja') ? 'fa-dot-circle' : 'fa-circle'}}  nav-icon"></i>
+                  <i class="fas {{Request::is('hrd/settings/jamkerja') ? 'fa-dot-circle' : 'fa-circle'}}  nav-icon"></i>
                   <p>Jam Kerja</p>
                 </a>
               </li>

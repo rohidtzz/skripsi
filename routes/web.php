@@ -7,6 +7,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DirekturController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\PengajuanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,10 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
     Route::get('/karyawan/home', [AbsenController::class, 'indexkaryawan']);
     Route::get('/karyawan/dashboard', [KaryawanController::class, 'dashboard'])->name('dashboard');
     Route::get('/karyawan/LihatAbsen', [KaryawanController::class, 'showabsen'])->name('ShowAbsen');
+    Route::get('/karyawan/pengajuan', [PengajuanController::class, 'pengajuan']);
+    Route::post('/karyawan/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
+
+
 
 
 });
