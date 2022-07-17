@@ -9,6 +9,10 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PengajuanController;
 
+use App\Imports\SiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Controllers\Controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +54,6 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/lihatabsen', [HrdController::class, 'lihatabsen']);
 
     Route::get('/hrd/lihatabsen/masuk', [HrdController::class, 'lihatabsenmasuk']);
-
     Route::get('/hrd/lihatabsen/telat', [HrdController::class, 'lihatabsentelat']);
     Route::get('/hrd/lihatabsen/alpha', [HrdController::class, 'lihatabsenalpha']);
     Route::get('/hrd/lihatabsen/sakit', [HrdController::class, 'lihatabsensakit']);
@@ -65,6 +68,12 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/settings/jamkerja', [SettingController::class, 'jamkerja']);
     Route::post('/hrd/settings/jamkerja/update', [SettingController::class, 'jamkerjaupdate']);
 
+    //tambahuser
+    Route::get('/hrd/tambahuser', [HrdController::class, 'tambahuser']);
+    Route::post('/hrd/tambahuser/post', [HrdController::class, 'tambahuserpost']);
+    Route::post('/user/import_excel', [HrdController::class, 'import_excel']);
+
+
 });
 
 Route::group(['middleware' => ['CekRole:karyawan']], function () {
@@ -72,9 +81,18 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
     //dashboard
     Route::get('/karyawan/home', [AbsenController::class, 'indexkaryawan']);
     Route::get('/karyawan/dashboard', [KaryawanController::class, 'dashboard'])->name('dashboard');
-    Route::get('/karyawan/LihatAbsen', [KaryawanController::class, 'showabsen'])->name('ShowAbsen');
+
     Route::get('/karyawan/pengajuan', [PengajuanController::class, 'pengajuan']);
     Route::post('/karyawan/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
+
+    Route::get('/karyawan/LihatAbsen', [KaryawanController::class, 'showabsen'])->name('ShowAbsen');
+
+    Route::get('/karyawan/lihatabsen/masuk', [KaryawanController::class, 'lihatabsenmasuk']);
+    Route::get('/karyawan/lihatabsen/telat', [KaryawanController::class, 'lihatabsentelat']);
+    Route::get('/karyawan/lihatabsen/alpha', [KaryawanController::class, 'lihatabsenalpha']);
+    Route::get('/karyawan/lihatabsen/sakit', [KaryawanController::class, 'lihatabsensakit']);
+    Route::get('/karyawan/lihatabsen/izin', [KaryawanController::class, 'lihatabsenizin']);
+
 
 
 
@@ -91,6 +109,14 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
 
     Route::get('/direktur/lihatabsen', [DirekturController::class, 'lihatabsen']);
 
+    Route::get('/direktur/lihatabsen/masuk', [DirekturController::class, 'lihatabsenmasuk']);
+    Route::get('/direktur/lihatabsen/telat', [DirekturController::class, 'lihatabsentelat']);
+    Route::get('/direktur/lihatabsen/alpha', [DirekturController::class, 'lihatabsenalpha']);
+    Route::get('/direktur/lihatabsen/sakit', [DirekturController::class, 'lihatabsensakit']);
+    Route::get('/direktur/lihatabsen/izin', [DirekturController::class, 'lihatabsenizin']);
+
+    Route::get('/direktur/settings/jamkerja', [SettingController::class, 'jamkerja']);
+
 });
 
 Route::group(['middleware' => [config('ipaddress:ip_address')]], function() {
@@ -102,3 +128,6 @@ Route::post('/absen/checkin', [AbsenController::class, 'checkIn'])->name('checki
 
 
 
+Route::fallback(function(){
+    return back();
+});

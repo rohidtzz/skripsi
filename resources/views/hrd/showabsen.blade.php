@@ -91,7 +91,14 @@
             <form action="/hrd/lihatabsen/" method="get">
                 @csrf
 
-                <input name="tanggalinput" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
+                {{-- @if (!$mulai && !$selesai)
+                <input name="mulai" type="date" id="myDate" value="{{$mulai}}"/>
+                <input name="selesai" type="date" id="myDate" value="{{$selesai}}"/>
+
+                @else --}}
+                <input name="mulai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
+                <input name="selesai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
+                {{-- @endif --}}
                 <button class="btn btn-secondary" type="submit">submit </button>
             </form>
 
@@ -105,28 +112,35 @@
             <table class="table table-striped">
 
                 <tr>
-                    <th>name</th>
-                    <th>keterangan</th>
-                    <th>Tanggal</th>
-                    <th>Jam Masuk</th>
-                    <th>Jam Keluar</th>
-                    <th>Opsi</th>
-                  </tr>
-                  {{-- @foreach ($nama as $a)
-                  <tr>
-                    <td>{{ $a->nama->name}}</td>
-                  @endforeach --}}
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>jabatan</th>
+                        <th>keterangan</th>
+                        <th>Tanggal</th>
+                        <th>Jam Masuk</th>
+                        <th>Jam Keluar</th>
+                        {{-- <th>Jam Kehadiran Rata-Rata</th> --}}
+                        <th>Opsi</th>
+                      </tr>
+                      {{-- @foreach ($nama as $a)
+                      <tr>
+                        <td>{{ $a->nama->name}}</td>
+                      @endforeach --}}
 
-                  @foreach ($daftarabsen as $u )
-                  <tr>
-                  <td>{{ App\Models\User::where('id', $u->user_id)->get('name')[0]['name']}}</td>
-                    <td>{{ $u->keterangan }}</td>
-                    <td>{{ $u->tanggal}}</td>
-                    <td>{{ $u->jam_masuk }} </td>
-                    <td>{{ $u->jam_keluar }}</td>
-                    <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
-                        <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
-                  </tr>
+                      @foreach ($daftarabsen as $u )
+                      <tr>
+                        <td>{{ App\Models\User::find($u->user_id)->no_identitas}}</td>
+                      <td>{{ App\Models\User::find($u->user_id)->name}}</td>
+                      <td>{{ App\Models\Posisi::find($u->user_id)->name  }}</td>
+                        <td>{{ $u->keterangan }}</td>
+                        <td>{{ $u->tanggal}}</td>
+                        <td>{{ $u->jam_masuk }} </td>
+                        <td>{{ $u->jam_keluar }}</td>
+                        {{-- <td>12 menit</td> --}}
+                        <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
+                            <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
+                      </tr>
                 @endforeach
             </table>
         </div>

@@ -16,7 +16,7 @@
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
-        <a href="{{ url('hrd/lihatabsen/masuk') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ url('direktur/lihatabsen/masuk') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -31,7 +31,7 @@
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
         </div>
-        <a href="{{ url('hrd/lihatabsen/telat') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ url('direktur/lihatabsen/telat') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -46,7 +46,7 @@
         <div class="icon">
           <i class="ion ion-person-add"></i>
         </div>
-        <a href="{{ url('hrd/lihatabsen/sakit') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ url('direktur/lihatabsen/sakit') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -61,7 +61,7 @@
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
         </div>
-        <a href="{{ url('hrd/lihatabsen/alpha') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ url('direktur/lihatabsen/alpha') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -77,7 +77,7 @@
           <div class="icon">
             <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="{{ url('hrd/lihatabsen/izin') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="{{ url('direktur/lihatabsen/izin') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </div>
   </div>
@@ -88,8 +88,9 @@
         <div class="card-header">
             <h3>Data Absen</h3>
             <h5>jumlah Absen: {{$JumlahAbsen}}</h5>
-            <form action="/hrd/lihatabsen/masuk" method="get">
+            <form action="/direktur/lihatabsen/telat" method="get">
                 @csrf
+
                 {{-- @if (!$mulai && !$selesai)
                 <input name="mulai" type="date" id="myDate" value="{{$mulai}}"/>
                 <input name="selesai" type="date" id="myDate" value="{{$selesai}}"/>
@@ -98,8 +99,6 @@
                 <input name="mulai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
                 <input name="selesai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
                 {{-- @endif --}}
-
-
                 <button class="btn btn-secondary" type="submit">submit </button>
             </form>
 
@@ -121,7 +120,7 @@
                     <th>Jam Masuk</th>
                     <th>Jam Keluar</th>
                     {{-- <th>Jam Kehadiran Rata-Rata</th> --}}
-                    <th>Opsi</th>
+                    {{-- <th>Opsi</th> --}}
                   </tr>
                   {{-- @foreach ($nama as $a)
                   <tr>
@@ -138,8 +137,8 @@
                     <td>{{ $u->jam_masuk }} </td>
                     <td>{{ $u->jam_keluar }}</td>
                     {{-- <td>12 menit</td> --}}
-                    <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
-                        <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
+                    {{-- <td><a href="/direktur/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
+                        <a href="/direktur/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td> --}}
                   </tr>
                 @endforeach
             </table>

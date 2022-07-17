@@ -22,6 +22,7 @@ class CreateAbsensTable extends Migration
             $table->time('jam_keluar')->nullable();
 
 
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }

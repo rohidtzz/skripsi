@@ -91,7 +91,14 @@
             <form action="/hrd/lihatabsen/alpha" method="get">
                 @csrf
 
-                <input name="tanggalinput" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
+                {{-- @if (!$mulai && !$selesai)
+                <input name="mulai" type="date" id="myDate" value="{{$mulai}}"/>
+                <input name="selesai" type="date" id="myDate" value="{{$selesai}}"/>
+
+                @else --}}
+                <input name="mulai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
+                <input name="selesai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
+                {{-- @endif --}}
                 <button class="btn btn-secondary" type="submit">submit </button>
             </form>
 
@@ -112,7 +119,7 @@
                     <th>Tanggal</th>
                     <th>Jam Masuk</th>
                     <th>Jam Keluar</th>
-                    <th>Jam Kehadiran Rata-Rata</th>
+                    {{-- <th>Jam Kehadiran Rata-Rata</th> --}}
                     <th>Opsi</th>
                   </tr>
                   {{-- @foreach ($nama as $a)
@@ -129,7 +136,7 @@
                     <td>{{ $u->tanggal}}</td>
                     <td>{{ $u->jam_masuk }} </td>
                     <td>{{ $u->jam_keluar }}</td>
-                    <td>12 menit</td>
+                    {{-- <td>12 menit</td> --}}
                     <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
                         <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
                   </tr>

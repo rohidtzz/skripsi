@@ -27,34 +27,35 @@ class AbsenController extends Controller
     {
         // $status = Absen::whereUserId(auth()->user()->id)->whereTanggal(date('y/m/d'))->first();
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
-        $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
-        $kalender = file_get_contents($url);
-        $kalender = json_decode($kalender, true);
-        $libur = false;
-        $holiday = null;
-        if ($kalender['data'] != false) {
-            if ($kalender['data']['holiday']) {
-                foreach ($kalender['data']['holiday'] as $key => $value) {
-                    if ($value == date('Y/m/d')) {
-                        $holiday = $value['holiday'];
-                        $libur = true;
-                        break;
-                    }
-                }
-            }
-        }
+        // $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
+        // $kalender = file_get_contents($url);
+        // $kalender = json_decode($kalender, true);
+        // $libur = false;
+        // $holiday = null;
+        // if ($kalender['data'] != false) {
+        //     if ($kalender['data']['holiday']) {
+        //         foreach ($kalender['data']['holiday'] as $key => $value) {
+        //             if ($value == date('Y/m/d')) {
+        //                 $holiday = $value['holiday'];
+        //                 $libur = true;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
 
-        $jammasuk= SettingJam::find(1)->jam_masuk;
-        $jamkeluar= SettingJam::find(1)->jam_keluar;
+        // $jammasuk= SettingJam::find(1)->jam_masuk;
+        // $jamkeluar= SettingJam::find(1)->jam_keluar;
 
-        // dd($jammasuk);
+        // // dd($jammasuk);
 
-        $dati=date_create($jamkeluar);
-        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
-        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+        // $dati=date_create($jamkeluar);
+        // date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        // $jamkeluarkurang5 = date_format($dati,"H:i:s");
+        // return view('karyawan.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
 
-        return view('karyawan.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
+        return view('karyawan.absen', );
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -65,31 +66,33 @@ class AbsenController extends Controller
     {
         // $status = Absen::whereUserId(auth()->user()->id)->whereTanggal(date('y/m/d'))->first();
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
-        $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
-        $kalender = file_get_contents($url);
-        $kalender = json_decode($kalender, true);
-        $libur = false;
-        $holiday = null;
-        if ($kalender['data'] != false) {
-            if ($kalender['data']['holiday']) {
-                foreach ($kalender['data']['holiday'] as $key => $value) {
-                    if ($value == date('Y/m/d')) {
-                        $holiday = $value['holiday'];
-                        $libur = true;
-                        break;
-                    }
-                }
-            }
-        }
+        // $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
+        // $kalender = file_get_contents($url);
+        // $kalender = json_decode($kalender, true);
+        // $libur = false;
+        // $holiday = null;
+        // if ($kalender['data'] != false) {
+        //     if ($kalender['data']['holiday']) {
+        //         foreach ($kalender['data']['holiday'] as $key => $value) {
+        //             if ($value == date('Y/m/d')) {
+        //                 $holiday = $value['holiday'];
+        //                 $libur = true;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
 
-        $jammasuk= SettingJam::find(1)->jam_masuk;
-        $jamkeluar= SettingJam::find(1)->jam_keluar;
+        // $jammasuk= SettingJam::find(1)->jam_masuk;
+        // $jamkeluar= SettingJam::find(1)->jam_keluar;
 
-        $dati=date_create($jamkeluar);
-        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
-        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+        // $dati=date_create($jamkeluar);
+        // date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        // $jamkeluarkurang5 = date_format($dati,"H:i:s");
+        // return view('hrd.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
-        return view('hrd.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
+
+        return view('hrd.absen');
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -100,31 +103,32 @@ class AbsenController extends Controller
     {
         // $status = Absen::whereUserId(auth()->user()->id)->whereTanggal(date('y/m/d'))->first();
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
-        $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
-        $kalender = file_get_contents($url);
-        $kalender = json_decode($kalender, true);
-        $libur = false;
-        $holiday = null;
-        if ($kalender['data'] != false) {
-            if ($kalender['data']['holiday']) {
-                foreach ($kalender['data']['holiday'] as $key => $value) {
-                    if ($value == date('Y/m/d')) {
-                        $holiday = $value['holiday'];
-                        $libur = true;
-                        break;
-                    }
-                }
-            }
-        }
+        // $url = 'https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022';
+        // $kalender = file_get_contents($url);
+        // $kalender = json_decode($kalender, true);
+        // $libur = false;
+        // $holiday = null;
+        // if ($kalender['data'] != false) {
+        //     if ($kalender['data']['holiday']) {
+        //         foreach ($kalender['data']['holiday'] as $key => $value) {
+        //             if ($value == date('Y/m/d')) {
+        //                 $holiday = $value['holiday'];
+        //                 $libur = true;
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
 
-        $jammasuk= SettingJam::find(1)->jam_masuk;
-        $jamkeluar= SettingJam::find(1)->jam_keluar;
+        // $jammasuk= SettingJam::find(1)->jam_masuk;
+        // $jamkeluar= SettingJam::find(1)->jam_keluar;
 
-        $dati=date_create($jamkeluar);
-        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
-        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+        // $dati=date_create($jamkeluar);
+        // date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        // $jamkeluarkurang5 = date_format($dati,"H:i:s");
+        // return view('direktur.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
-        return view('direktur.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
+        return view('direktur.absen');
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -165,50 +169,22 @@ class AbsenController extends Controller
         // $jamkeluarkurang10 = date_format($datm,"H:i:s");
 
 
-        $wow = Absen::where('tanggal' , date('Y/m/d'))->where('user_id', $id);
+        $wow = Absen::where('tanggal' , date('Y/m/d'))->where('user_id', $id)->first();
 
-        if($wow){
+        if($wow != null){
             return redirect()->back()->with('error','anda sudah cek in');
         }
 
+        Absen::create([
+            'user_id' => $request->user_id,
+            'keterangan' => $request->keterangan,
+            'tanggal' => date('y/m/d'),
+            'jam_masuk' => date('H:i:s'),
+            'jam_keluar' => null,
+        ]);
 
+        return redirect()->back()->with('success','Check-in anda success');
 
-
-        if(date('H:i:s') >= $jammasuklebih5 && date('H:i:s') <= $jammasuklebih10){
-            Absen::create([
-                'user_id' => $request->user_id,
-                'keterangan' => 'Telat',
-                'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('H:i:s'),
-                'jam_keluar' => null,
-            ]);
-
-            return redirect()->back()->with('success','Check-in tapi anda telat');
-        }
-
-        if(date('H:i:s') >= $jammasuklebih10 && date('H:i:s') <= $jamkeluarkurang5){
-            Absen::create([
-                'user_id' => $request->user_id,
-                'keterangan' => 'Alpha',
-                'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('H:i:s'),
-                'jam_keluar' => null,
-            ]);
-
-            return redirect()->back()->with('error','anda alpha');
-        }
-
-        if(date('H:i:s')  >=  $jammasuk && date('H:i:s') <= $jamkeluar ){
-            Absen::create([
-                'user_id' => $request->user_id,
-                'keterangan' => $request->keterangan,
-                'tanggal' => date('y/m/d'),
-                'jam_masuk' => date('H:i:s'),
-                'jam_keluar' => null,
-            ]);
-
-            return redirect()->back()->with('success','Check-in berhasil');
-        }
 
     }
 
@@ -219,7 +195,11 @@ class AbsenController extends Controller
             return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
         }
 
-        $cek = Absen::where('tanggal', date('Y/m/d'));
+        $cek = Absen::where('tanggal', date('Y/m/d'))->where('user_id',$request->user_id)->first();
+
+        if($cek == null){
+            return redirect()->back()->with('error', 'Check-out gagal');
+        }
 
 
 

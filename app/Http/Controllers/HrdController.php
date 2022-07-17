@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Absen;
 
+use App\Models\SettingJam;
+
+use App\Imports\UserImport;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Http\Controllers\Session;
+
 class HrdController extends Controller
 {
 
@@ -18,40 +25,52 @@ class HrdController extends Controller
     public function lihatabsen(request $request)
     {
 
-        if($request->tanggalinput){
-            // Absen::where('tnaggal', $request->tanggalinput);
+        $mulai = $request->mulai;
+        $selesai = $request->selesai;
 
-            $id = auth()->user()->id;
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-        $daftarabsen = Absen::all()->where('tanggal',$request->tanggalinput);
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
 
-        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
 
-        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
-        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
 
-        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+        if($mulai && $selesai){
 
-        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+        $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->orderBy('tanggal','desc')->get();
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahTelat = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
-
-        };
-
-        $id = auth()->user()->id;
-
+        }
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->get();
 
-        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
-        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
 
-        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
 
         $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
 
@@ -105,44 +124,52 @@ class HrdController extends Controller
 
     public function lihatabsenmasuk(Request $request)
     {
+        $mulai = $request->mulai;
+        $selesai = $request->selesai;
 
-        if($request->tanggalinput){
-            // Absen::where('tnaggal', $request->tanggalinput);
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-            $id = auth()->user()->id;
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
 
-        $daftarabsen = Absen::where('keterangan', 'masuk')->where('tanggal',$request->tanggalinput)->get();
-        // $daftar = Absen::where('keterangan', 'masuk');
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
 
-        //  dd($daftarabsen);
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
-        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
 
-        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+        if($mulai && $selesai){
 
-        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+        $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->orderBy('tanggal','desc')->get();
 
-        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
+        $JumlahHadir = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
-        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+        $JumlahAlpha = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahTelat = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
-
-        };
-
-        $id = auth()->user()->id;
+        }
 
 
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->get();
 
-        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','masuk')->get();
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
-        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
 
-        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
-
-        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
 
         $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
 
@@ -151,49 +178,58 @@ class HrdController extends Controller
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
-
     }
 
     public function lihatabsentelat(Request $request)
     {
+        $mulai = $request->mulai;
+        $selesai = $request->selesai;
 
-        if($request->tanggalinput){
-            // Absen::where('tnaggal', $request->tanggalinput);
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-            $id = auth()->user()->id;
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
 
-        $daftarabsen = Absen::where('keterangan', 'telat')->where('tanggal',$request->tanggalinput)->get();
-        // $daftar = Absen::where('keterangan', 'masuk');
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
 
-        //  dd($daftarabsen);
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
-        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
 
-        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
+        if($mulai && $selesai){
 
-        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
 
-        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
 
-        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+        $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->orderBy('tanggal','desc')->get();
+
+        $JumlahHadir = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahTelat = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
-
-        };
-
-        $id = auth()->user()->id;
+        }
 
 
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->orderBy('tanggal','desc')->get();
 
-        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','telat')->get();
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
-        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
 
-        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
-
-        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
 
         $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
 
@@ -210,43 +246,53 @@ class HrdController extends Controller
     public function lihatabsensakit(Request $request)
     {
 
-        if($request->tanggalinput){
-            // Absen::where('tnaggal', $request->tanggalinput);
+        $mulai = $request->mulai;
+        $selesai = $request->selesai;
 
-            $id = auth()->user()->id;
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-        $daftarabsen = Absen::where('keterangan', 'sakit')->where('tanggal',$request->tanggalinput)->get();
-        // $daftar = Absen::where('keterangan', 'masuk');
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
 
-        //  dd($daftarabsen);
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
 
-        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
-        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
 
-        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+        if($mulai && $selesai){
 
-        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
 
-        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->get();
+
+        $JumlahHadir = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahTelat = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        }
 
-        };
+        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan', 'sakit')->get();
 
-        $id = auth()->user()->id;
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
 
-
-        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','sakit')->get();
-
-        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
-
-        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
-
-        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
 
         $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
 
@@ -261,43 +307,53 @@ class HrdController extends Controller
     public function lihatabsenalpha(Request $request)
     {
 
-        if($request->tanggalinput){
-            // Absen::where('tnaggal', $request->tanggalinput);
+        $mulai = $request->mulai;
+        $selesai = $request->selesai;
 
-            $id = auth()->user()->id;
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-        $daftarabsen = Absen::where('keterangan', 'alpha')->where('tanggal',$request->tanggalinput)->get();
-        // $daftar = Absen::where('keterangan', 'masuk');
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
 
-        //  dd($daftarabsen);
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
 
-        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
-        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
 
-        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+        if($mulai && $selesai){
 
-        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
 
-        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->get();
+
+        $JumlahHadir = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahTelat = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        }
 
-        };
+        $daftarabsen = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->get();
 
-        $id = auth()->user()->id;
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
 
-
-        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','alpha')->get();
-
-        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
-
-        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
-
-        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
 
         $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
 
@@ -312,43 +368,53 @@ class HrdController extends Controller
     public function lihatabsenizin(Request $request)
     {
 
-        if($request->tanggalinput){
-            // Absen::where('tnaggal', $request->tanggalinput);
+        $mulai = $request->mulai;
+        $selesai = $request->selesai;
 
-            $id = auth()->user()->id;
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-        $daftarabsen = Absen::where('keterangan', 'izin')->where('tanggal',$request->tanggalinput)->get();
-        // $daftar = Absen::where('keterangan', 'masuk');
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
 
-        //  dd($daftarabsen);
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
 
-        $JumlahHadir = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'masuk')->count();
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
-        $JumlahAlpha = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'alpha')->count();
 
-        $JumlahTelat = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'telat')->count();
+        if($mulai && $selesai){
 
-        $JumlahSakit = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'sakit')->count();
 
-        $JumlahIzin = Absen::where('tanggal',$request->tanggalinput)->where('keterangan', 'izin')->count();
+
+        $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->where('keterangan', 'izin')->get();
+
+        $JumlahHadir = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahTelat = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->where('keterangan', 'izin')->count();
 
         $JumlahAbsen = Absen::all()->count();
 
         return view('hrd.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        }
 
-        };
+        $daftarabsen = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->get();
 
-        $id = auth()->user()->id;
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->count();
 
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
 
-
-        $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan','izin')->get();
-
-        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'masuk')->count();
-
-        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'alpha')->count();
-
-        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'telat')->count();
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
 
         $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
 
@@ -413,4 +479,74 @@ class HrdController extends Controller
         }
 
     }
+
+
+    public function tambahuser(Request $request)
+    {
+        return view('hrd.tambahuser');
+    }
+
+    public function tambahuserpost(Request $request)
+    {
+
+        if($request == null){
+            return redirect()->back();
+        }
+
+        $tambah = User::create([
+            'no_identitas' => $request->id_identitas,
+            'password' => bcrypt($request->password),
+            'name' => $request->name,
+            'email' => $request->email,
+            'jabatan' => $request->jabatan,
+            'gender' => $request->gender,
+            'alamat' => $request->alamat,
+            'nik' => $request->nik,
+            'npwp' => $request->npwp,
+            'no_hp' => $request->no_hp,
+            'status' => $request->status,
+            'no_backup' => $request->no_backup,
+            'waktu_aktif' => date('Y/m/d'),
+            'status_pekerjaan' => 'masuk',
+        ]);
+
+        if(!$tambah){
+            return redirect()->back();
+        }
+        return redirect()->back();
+
+
+
+
+
+    }
+
+    public function import_excel(Request $request)
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+
+		// menangkap file excel
+		$file = $request->file('file');
+
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa',$nama_file);
+
+		// import data
+		$im = Excel::import(new UserImport, public_path('/file_siswa/'.$nama_file));
+
+        if(!$im){
+            return redirect('/hrd/tambahuser');
+        }
+		// notifikasi dengan session
+		// Session::flash('sukses','Data Siswa Berhasil Diimport!');
+
+		// alihkan halaman kembali
+		return redirect('/hrd/tambahuser');
+	}
 }

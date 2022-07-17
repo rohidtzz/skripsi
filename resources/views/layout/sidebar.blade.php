@@ -481,7 +481,9 @@
                 @elseif (auth()->user()->jabatan == 'hrd')
                 {{url('hrd/lihatabsen')}}
 
-                @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen') ? 'active' : '' }}">
+                @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/izin') ? 'active' : '' }}
+                {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
+                {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user-clock"></i>
               <p>
                 Absensi
@@ -520,8 +522,8 @@
             </ul>
           </li>
 
-          <li class="nav-item {{Request::is('hrd/settings/jamkerja') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}">
+          <li class="nav-item {{Request::is('hrd/settings/jamkerja') ? 'menu-open' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings
@@ -529,16 +531,22 @@
               </p>
             </a>
             <ul class="nav nav-treeview ">
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link ">
                   <i class="fas fa-circle nav-icon"></i>
                   <p>Akun</p>
                 </a>
-              </li>
-              @if (Auth()->user()->jabatan == 'hrd')
+              </li> --}}
+              @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
               <li class="nav-item">
-                <a href="{{ url('/hrd/settings/jamkerja') }}" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}">
-                  <i class="fas {{Request::is('hrd/settings/jamkerja') ? 'fa-dot-circle' : 'fa-circle'}}  nav-icon"></i>
+                <a href="@if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/settings/jamkerja') }}
+                @else
+                {{ url('direktur/settings/jamkerja') }}
+                @endif
+
+                " class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}} {{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
+                  <i class="fas {{Request::is('hrd/settings/jamkerja') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/settings/jamkerja') ? 'fa-dot-circle' : 'fa-dot-circle'}}  nav-icon"></i>
                   <p>Jam Kerja</p>
                 </a>
               </li>
@@ -547,6 +555,17 @@
 
             </ul>
           </li>
+
+          @if (Auth()->user()->jabatan == 'hrd')
+          <li class="nav-item ">
+            <a href="/hrd/tambahuser" class="nav-link {{ Request::is('hrd/tambahuser') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-clock"></i>
+              <p>
+                Tambah User
+              </p>
+            </a>
+          </li>
+          @endif
 
           <li class="nav-item">
             <a href="{{ url('logout') }}" class="nav-link ">

@@ -18,6 +18,15 @@ class SettingController extends Controller
 
     }
 
+    // public function jamkerjadirektur(Request $request)
+    // {
+
+    //     $data = SettingJam::all();
+
+    //     return View('setting.index', compact('data'));
+
+    // }
+
     public function jamkerjaupdate(Request $request)
     {
 
