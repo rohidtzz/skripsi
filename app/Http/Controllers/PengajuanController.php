@@ -12,9 +12,26 @@ class PengajuanController extends Controller
 
     public function pengajuan()
     {
-        $all = Pengajuan::all();
 
-        return view('karyawan.pengajuan', compact('all'));
+
+        if(auth()->user()->jabatan == 'karyawan'){
+            $id = auth()->user()->id;
+
+            $all = Pengajuan::where('user_id', $id)->get();
+            return view('karyawan.pengajuan', compact('all'));
+        }
+
+        if(auth()->user()->jabatan == 'hrd'){
+            $all = Pengajuan::all();
+            return view('hrd.pengajuan', compact('all'));
+        }
+
+        if(auth()->user()->jabatan == 'direktur'){
+            $all = Pengajuan::all();
+            return view('direktur.pengajuan', compact('all'));
+        }
+
+
     }
 
     public function pengajuanpost(Request $request)
@@ -61,6 +78,36 @@ class PengajuanController extends Controller
 
 
         // return view('karyawan.cuti');
+    }
+
+    public function pengajuanedit(Request $request, $id)
+    {
+        $data = Pengajuan::find($id);
+
+        return view('hrd.pengajuanedit', compact('data'));
+    }
+
+    public function pengajuaneditpost(Request $request,$id)
+    {
+
+        $idd = Pengajuan::find($id);
+
+        if(!$idd && $idd == null){
+
+            return redirect('hrd/pengajuan');
+
+        }
+
+        Pengajuan::where('id',$id)->update([
+            'keterangan' => $request->keterangan,
+            'tanggal' => $request->tanggal,
+            'mulai' => $request->mulai,
+            'selesai' => $request->selesai,
+            'status' => $request->status
+        ]);
+
+        return redirect('hrd/pengajuan');
+
     }
 
 

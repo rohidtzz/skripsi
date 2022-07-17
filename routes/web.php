@@ -63,6 +63,15 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::post('/hrd/absen/update/{id}', [HrdController::class, 'update']);
     Route::get('/hrd/absen/destroy/{id}', [HrdController::class, 'destroy']);
 
+    //pengajuan
+    Route::get('/hrd/pengajuan', [PengajuanController::class, 'pengajuan']);
+    Route::post('/hrd/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
+
+    Route::get('/hrd/pengajuan/edit/{id}', [PengajuanController::class, 'pengajuanedit']);
+    Route::get('/hrd/pengajuan/edit/post/{id}', [PengajuanController::class, 'pengajuaneditpost']);
+
+    Route::get('/hrd/pengajuan/destroy/{id}', [PengajuanController::class, 'pengajuan']);
+
 
     //setting
     Route::get('/hrd/settings/jamkerja', [SettingController::class, 'jamkerja']);
@@ -117,11 +126,15 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
 
     Route::get('/direktur/settings/jamkerja', [SettingController::class, 'jamkerja']);
 
+    //pengajuan
+    Route::get('/direktur/pengajuan', [PengajuanController::class, 'pengajuan']);
+    Route::post('/direktur/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
+
 });
 
-Route::group(['middleware' => [config('ipaddress:ip_address')]], function() {
+// Route::group(['middleware' => [config('ipaddress:ip_address')]], function() {
 
-});
+// });
 
 Route::post('/absen/checkout', [AbsenController::class, 'checkOut'])->name('checkout');
 Route::post('/absen/checkin', [AbsenController::class, 'checkIn'])->name('checkin');

@@ -481,7 +481,7 @@
                 @elseif (auth()->user()->jabatan == 'hrd')
                 {{url('hrd/lihatabsen')}}
 
-                @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/LihatAbsen/izin') ? 'active' : '' }}
+                @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user-clock"></i>
@@ -507,8 +507,16 @@
                 </a>
               </li> --}}
               <li class="nav-item">
-                <a href="{{ url('karyawan/pengajuan') }}" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}">
-                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/pengajuan') }}
+                @elseif (Auth()->user()->jabatan == 'karyawan')
+                {{ url('karyawan/pengajuan') }}
+                @else
+                {{ url('direktur/pengajuan') }}
+                @endif
+                " class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}} {{Request::is('hrd/pengajuan') ? 'active' : ''}} {{Request::is('direktur/pengajuan') ? 'active' : ''}}">
+                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Pengajuan</p>
                 </a>
               </li>

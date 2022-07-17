@@ -63,21 +63,26 @@
                     <table class="table table-striped">
 
                         <tr>
+                            <th>id</th>
                             <th>nama</th>
                             <th>keterangan</th>
                             <th>Tanggal</th>
                             <th>Mulai</th>
                             <th>Selesai</th>
                             <th>status</th>
+                            <th>opsi</th>
                           </tr>
                           @foreach ($all as $u )
                           <tr>
-                            <td>{{ auth()->user()->name }}</td>
+                            <td>{{App\Models\User::find($u->user_id)->no_identitas}}</td>
+                            <td>{{ App\Models\User::find($u->user_id)->name }}</td>
                             <td>{{ $u->keterangan }}</td>
                             <td>{{ $u->tanggal}}</td>
                             <td>{{ $u->mulai }} </td>
                             <td>{{ $u->selesai }}</td>
                             <td>{{ $u->status}}</td>
+                            <td><a href="/hrd/pengajuan/edit/{{$u->id}}" class="btn btn-info">Edit</a>
+                                <a href="/hrd/pengajuan/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
                           </tr>
                         @endforeach
                     </table>
