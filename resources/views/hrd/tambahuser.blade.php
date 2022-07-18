@@ -131,7 +131,8 @@
 
     <br><br>
     <button type="submit" class="btn btn-success">Submit</button>
-    <a href="/hrd/lihatabsen" class="btn btn-danger">back</a>
+    <button type="reset" class="btn btn-danger">Reset</button>
+    {{-- <a href="/hrd/dashboard" class="btn btn-danger">reset</a> --}}
 
 
 

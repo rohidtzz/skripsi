@@ -17,6 +17,7 @@ class CreatePengajuansTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->enum('keterangan',['Sakit','Cuti','izin']);
+            $table->text('alasan');
             $table->date('tanggal');
             $table->date('mulai')->nullable();
             $table->date('selesai')->nullable();

@@ -144,7 +144,7 @@ class AbsenController extends Controller
 
 
         if (date('l') == 'Saturday' || date('l') == 'Sunday') {
-            return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
+            return redirect()->back()->with('errors', 'hari libur tidak bisa Check In');
         }
 
         // $JamMasuk = SettingJam::where('id', 1)->get('jam_masuk');
@@ -172,7 +172,7 @@ class AbsenController extends Controller
         $wow = Absen::where('tanggal' , date('Y/m/d'))->where('user_id', $id)->first();
 
         if($wow != null){
-            return redirect()->back()->with('error','anda sudah cek in');
+            return redirect()->back()->with('errors', 'Anda Sudah Check In Hari Ini');
         }
 
         Absen::create([
@@ -183,7 +183,7 @@ class AbsenController extends Controller
             'jam_keluar' => null,
         ]);
 
-        return redirect()->back()->with('success','Check-in anda success');
+        return redirect()->back()->withSuccess('Anda Berhasil Check In');
 
 
     }
@@ -192,13 +192,13 @@ class AbsenController extends Controller
     {
 
         if (date('l') == 'Saturday' || date('l') == 'Sunday') {
-            return redirect()->back()->with('error','Hari Libur Tidak bisa Check In');
+            return redirect()->back()->with('errors','Hari Libur Tidak bisa Check In');
         }
 
         $cek = Absen::where('tanggal', date('Y/m/d'))->where('user_id',$request->user_id)->first();
 
         if($cek == null){
-            return redirect()->back()->with('error', 'Check-out gagal');
+            return redirect()->back()->with('errors', 'Check-out gagal');
         }
 
 
@@ -212,125 +212,8 @@ class AbsenController extends Controller
 
         // $data['jam_keluar'] = date('H:i:s');
         // $kehadiran->update($data);
-        return redirect()->back()->with('success', 'Check-out berhasil');
+        return redirect()->back()->withSuccess('Check Out Berhasil');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        // foreach ($users as $user) {
-        //     $absen = Absen::whereUserId($user->id)->whereTanggal(date('Y-m-d'))->first();
-        //     if (!$absen) {
-        //         $alpha = true;
-        //     }
-        // }
-
-        // if ($alpha) {
-        //     foreach ($users as $user) {
-        //         if ($user->id != $request->user_id) {
-        //             Absen::create([
-        //                 'keterangan'    => 'Alpha',
-        //                 'tanggal'       => date('Y-m-d'),
-        //                 'user_id'       => $user->id
-        //             ]);
-        //         }
-        //     }
-        // }
-
-        // $present = Absen::whereUserId($request->user_id)->whereTanggal(date('Y-m-d'))->first();
-        // if ($present) {
-        //     if ($present->keterangan == 'Alpha') {
-        //         $data['jam_masuk']  = date('H:i:s');
-        //         $data['tanggal']    = date('Y-m-d');
-        //         $data['user_id']    = $request->user_id;
-        //         if (strtotime($data['jam_masuk']) >= strtotime('07:00:00') && strtotime($data['jam_masuk']) <= strtotime('08:00:00')) {
-        //             $data['keterangan'] = 'Masuk';
-        //         } else if (strtotime($data['jam_masuk']) > strtotime('08:00:00') && strtotime($data['jam_masuk']) <= strtotime('17:00:00')) {
-        //             $data['keterangan'] = 'Telat';
-        //         } else {
-        //             $data['keterangan'] = 'Alpha';
-        //         }
-        //         $present->update($data);
-        //         return redirect()->back()->with('success','Check-in berhasil');
-        //     } else {
-        //         return redirect()->back()->with('error','Check-in gagal');
-        //     }
-        // }
-
-        // $data['jam_masuk']  = date('H:i:s');
-        // $data['tanggal']    = date('Y-m-d');
-        // $data['user_id']    = $request->user_id;
-        // if (strtotime($data['jam_masuk']) >= strtotime('07:00:00') && strtotime($data['jam_masuk']) <= strtotime('08:00:00')) {
-        //     $data['keterangan'] = 'Masuk';
-        // } else if (strtotime($data['jam_masuk']) > strtotime('08:00:00') && strtotime($data['jam_masuk']) <= strtotime('17:00:00')) {
-        //     $data['keterangan'] = 'Telat';
-        // } else {
-        //     $data['keterangan'] = 'Alpha';
-        // }
-
-        // Absen::create($data);
-
-        // return dd($data);
-        // return redirect()->back()->with('success','Check-in berhasil');
-    }
 }

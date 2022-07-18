@@ -10,7 +10,7 @@ class Pengajuan extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id','keterangan', 'tanggal',  'mulai', 'selesai','status'
+        'user_id','keterangan','alasan', 'tanggal',  'mulai', 'selesai','status'
     ];
 
     /**

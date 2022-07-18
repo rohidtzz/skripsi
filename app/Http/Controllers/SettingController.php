@@ -36,7 +36,7 @@ class SettingController extends Controller
         ]);
 
         if(!$validasi){
-            return redirect()->back();
+            return redirect()->back()->with('errors', 'gagal Update Jam Kerja');
         }
 
         SettingJam::find(1)->update([
@@ -44,7 +44,7 @@ class SettingController extends Controller
             'jam_keluar' => $request->jam_keluar
         ]);
 
-        return redirect('hrd/settings/jamkerja');
+        return redirect('hrd/settings/jamkerja')->withSuccess('Berhasil Update Jam Kerja');
 
 
     }

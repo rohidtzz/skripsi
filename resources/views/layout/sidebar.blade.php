@@ -491,8 +491,8 @@
             </a>
           </li>
 
-          <li class="nav-item {{Request::is('karyawan/pengajuan') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}">
+          <li class="nav-item {{Request::is('karyawan/pengajuan') ? 'menu-open' : ''}}{{Request::is('hrd/pengajuan') ? 'menu-open' : ''}}{{Request::is('direktur/pengajuan') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}{{Request::is('hrd/pengajuan') ? 'active' : ''}}{{Request::is('direktur/pengajuan') ? 'active' : ''}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Pengajuan

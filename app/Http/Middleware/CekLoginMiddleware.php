@@ -20,7 +20,7 @@ class CekLoginMiddleware
     {
 
         if(!Auth::check()) {
-            return redirect('/');
+            return redirect('/')->with('errors', 'username atau password salah');
         }
 
         return $next($request);

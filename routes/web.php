@@ -67,10 +67,13 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/pengajuan', [PengajuanController::class, 'pengajuan']);
     Route::post('/hrd/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
 
+    Route::get('/hrd/pengajuan/terima/{id}', [PengajuanController::class, 'pengajuanterima']);
+    Route::get('/hrd/pengajuan/tolak/{id}', [PengajuanController::class, 'pengajuantolak']);
+
     Route::get('/hrd/pengajuan/edit/{id}', [PengajuanController::class, 'pengajuanedit']);
     Route::get('/hrd/pengajuan/edit/post/{id}', [PengajuanController::class, 'pengajuaneditpost']);
 
-    Route::get('/hrd/pengajuan/destroy/{id}', [PengajuanController::class, 'pengajuan']);
+    Route::get('/hrd/pengajuan/destroy/{id}', [PengajuanController::class, 'destroy']);
 
 
     //setting

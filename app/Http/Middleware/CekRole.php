@@ -27,7 +27,7 @@ class CekRole
         }
 
 
-        return redirect('/');
+        return redirect('/')->with('errors', 'username atau password salah');
 
     }
 }

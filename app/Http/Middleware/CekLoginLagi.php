@@ -29,14 +29,14 @@ class CekLoginLagi
 
 
         if (auth()->user()->jabatan == 'hrd') {
-            return redirect('hrd/home');
+            return redirect('hrd/home')->withSuccess('Selamat datang');
         }else if (auth()->user()->jabatan == 'karyawan') {
-            return redirect('karyawan/home');
+            return redirect('karyawan/home')->withSuccess('Selamat Datang');
         }else if(auth()->user()->jabatan == 'direktur'){
-            return redirect('direktur/home');
+            return redirect('direktur/home')->withSuccess('Selamat Datang');
         }
 
-        return redirect('/');
+        return redirect('/')->with('errors', 'username atau password salah');
 
 
     }

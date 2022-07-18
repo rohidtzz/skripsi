@@ -25,6 +25,9 @@
     </select>
     </div>
 
+    <label for="inputState">alasan</label>
+    <textarea  name="alasan"  class="form-control" placeholder="alasan" required></textarea>
+
     <label for="inputState">tanggal mulai</label>
     <input type="date" name="mulai"  class="form-control" placeholder="tanggal mulai" required>
     <label for="inputState">tanggal selesai</label>
@@ -35,7 +38,8 @@
 
     <br><br>
     <button type="submit" class="btn btn-success">Submit</button>
-    <a href="/karyawan/dashboard" class="btn btn-danger">back</a>
+    <button type="reset" class="btn btn-danger">Reset</button>
+    {{-- <a href="/hrd/dashboard" class="btn btn-danger">reset</a> --}}
 
 
 
@@ -65,6 +69,7 @@
                         <tr>
                             <th>nama</th>
                             <th>keterangan</th>
+                            <th>alasan</th>
                             <th>Tanggal</th>
                             <th>Mulai</th>
                             <th>Selesai</th>
@@ -74,6 +79,7 @@
                           <tr>
                             <td>{{ auth()->user()->name }}</td>
                             <td>{{ $u->keterangan }}</td>
+                            <td>  <textarea disabled name="alasan"  class="form-control" placeholder="alasan" required>{{ $u->alasan }}</textarea> </td>
                             <td>{{ $u->tanggal}}</td>
                             <td>{{ $u->mulai }} </td>
                             <td>{{ $u->selesai }}</td>
