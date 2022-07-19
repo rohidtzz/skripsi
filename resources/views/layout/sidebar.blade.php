@@ -150,7 +150,20 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+          <img src="
+          @if (auth()->user()->jabatan == 'karyawan')
+                {{ asset('foto/'.auth()->user()->foto) }}
+
+                @elseif (auth()->user()->jabatan == 'direktur')
+                {{ asset('foto/'.auth()->user()->foto) }}
+
+                @elseif (auth()->user()->jabatan == 'hrd')
+                {{ asset('foto/'.auth()->user()->foto) }}
+
+                @else
+                @endif
+
+          " class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ auth()->user()->name}}</a>
@@ -564,16 +577,70 @@
             </ul>
           </li>
 
-          @if (Auth()->user()->jabatan == 'hrd')
-          <li class="nav-item ">
-            <a href="/hrd/tambahuser" class="nav-link {{ Request::is('hrd/tambahuser') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-clock"></i>
+
+          <li class="nav-item {{Request::is('hrd/datauser') ? 'menu-open' : ''}}{{Request::is('hrd/user') ? 'menu-open' : ''}}{{ Request::is('hrd/tambahuser') ? 'menu-open' : '' }}{{Request::is('direktur/user') ? 'menu-open' : ''}}{{Request::is('direktur/datauser') ? 'menu-open' : ''}}{{Request::is('karyawan/user') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-user-cog"></i>
               <p>
-                Tambah User
+                Users
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview ">
+
+
+                <li class="nav-item ">
+                    <a href="@if (Auth()->user()->jabatan == 'hrd')
+                        {{ url('hrd/user') }}
+                        @elseif (Auth()->user()->jabatan == 'karyawan')
+                        {{ url('karyawan/user') }}
+                        @else
+                        {{ url('direktur/user') }}
+                        @endif" class="nav-link {{ Request::is('hrd/user') ? 'active' : '' }}{{ Request::is('direktur/user') ? 'active' : '' }}{{ Request::is('karyawan/user') ? 'active' : '' }}">
+                      <i class="nav-icon fas fa-user"></i>
+                      <p>
+                        User
+                      </p>
+                    </a>
+                  </li>
+
+
+
+                @if (Auth()->user()->jabatan == 'hrd')
+              <li class="nav-item ">
+                <a href="/hrd/tambahuser" class="nav-link {{ Request::is('hrd/tambahuser') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>
+                    Tambah User
+                  </p>
+                </a>
+              </li>
+              @endif
+              @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+              <li class="nav-item ">
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/datauser') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('direktur/datauser') }}
+                @else
+                @endif
+                " class="nav-link {{ Request::is('hrd/datauser') ? 'active' : '' }}{{ Request::is('direktur/datauser') ? 'active' : '' }}">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Data User
+                  </p>
+                </a>
+              </li>
+              @endif
+
+
+
+
+
+            </ul>
           </li>
-          @endif
+
 
           <li class="nav-item">
             <a href="{{ url('logout') }}" class="nav-link ">

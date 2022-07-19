@@ -12,6 +12,7 @@ use App\Imports\UserImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Http\Controllers\Session;
+use Illuminate\Support\Facades\Validator;
 
 class HrdController extends Controller
 {
@@ -493,11 +494,32 @@ class HrdController extends Controller
             return redirect()->back()->with('errors', 'Import Gagal');
         }
 
+        $this->validate($request, [
+			'foto' => 'required|file|image|mimes:jpeg,png,jpg|max:2048'
+		]);
+
+
+
+        // if($request->hasFile('foto')){
+        //     $request->file('foto')->move('foto/',$request->file('foto')->getClientOriginalName());
+        //     $tambah->foto = $request->file('foto')->getClientOriginalName();
+
+        // }
+
+        $file = $request->file('foto');
+
+		$nama_file = $file->getClientOriginalName();
+
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'foto';
+		$file->move($tujuan_upload,$nama_file);
+
         $tambah = User::create([
             'no_identitas' => $request->id_identitas,
             'password' => bcrypt($request->password),
             'name' => $request->name,
             'email' => $request->email,
+            'foto' => $nama_file,
             'jabatan' => $request->jabatan,
             'gender' => $request->gender,
             'alamat' => $request->alamat,
@@ -509,6 +531,26 @@ class HrdController extends Controller
             'waktu_aktif' => date('Y/m/d'),
             'status_pekerjaan' => 'masuk',
         ]);
+
+
+
+        // $tambah = User::create([
+        //     'no_identitas' => $request->id_identitas,
+        //     'password' => bcrypt($request->password),
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'foto' => $request->
+        //     'jabatan' => $request->jabatan,
+        //     'gender' => $request->gender,
+        //     'alamat' => $request->alamat,
+        //     'nik' => $request->nik,
+        //     'npwp' => $request->npwp,
+        //     'no_hp' => $request->no_hp,
+        //     'status' => $request->status,
+        //     'no_backup' => $request->no_backup,
+        //     'waktu_aktif' => date('Y/m/d'),
+        //     'status_pekerjaan' => 'masuk',
+        // ]);
 
         if(!$tambah){
             return redirect()->back()->with('errors', 'Import Gagal');
@@ -551,4 +593,113 @@ class HrdController extends Controller
 		// alihkan halaman kembali
 		return redirect('/hrd/tambahuser')->withSuccess('Import Berhasil');
 	}
+
+    public function user()
+    {
+        $id = Auth()->user()->id;
+        $data = User::find($id);
+
+        return View('hrd.user',compact('data'));
+
+    }
+
+    public function datauser(){
+        $data = User::all();
+
+        return View('hrd.datauser',compact('data'));
+    }
+
+    public function datauseredit(Request $request,$id)
+    {
+
+        $data = User::find($id);
+
+        return View('hrd.useredit',compact('data'));
+
+    }
+
+    public function usereditpost(Request $request)
+    {
+
+        $iduser = User::find($request->id);
+
+        if(!$iduser && $request->id == null){
+
+            return redirect()->back()->with('errors', 'Edit Gagal');
+
+        }
+
+        $validator = Validator::make($request->all(), [
+            'foto' => 'required',
+        ]);
+
+        if($validator->fails()){
+
+            $update = User::where('id',$request->id)->update([
+                'no_identitas' => $request->id_identitas,
+                'password' => bcrypt($request->password),
+                'name' => $request->name,
+                'email' => $request->email,
+                'jabatan' => $request->jabatan,
+                'gender' => $request->gender,
+                'alamat' => $request->alamat,
+                'nik' => $request->nik,
+                'npwp' => $request->npwp,
+                'no_hp' => $request->no_hp,
+                'status' => $request->status,
+                'no_backup' => $request->no_backup,
+            ]);
+
+            return redirect()->back()->withSuccess('Edit Berhasil');
+
+        }
+
+            // $this->validate($request, [
+            // 	'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+            // ]);
+
+
+
+        // if($request->hasFile('foto')){
+        //     $request->file('foto')->move('foto/',$request->file('foto')->getClientOriginalName());
+        //     $tambah->foto = $request->file('foto')->getClientOriginalName();
+
+        // }
+
+        $file = $request->file('foto');
+
+		$nama_file = $file->getClientOriginalName();
+
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'foto';
+		$file->move($tujuan_upload,$nama_file);
+
+        User::where('id',$request->id)->update([
+            'no_identitas' => $request->id_identitas,
+            'password' => bcrypt($request->password),
+            'name' => $request->name,
+            'email' => $request->email,
+            'foto' => $nama_file,
+            'jabatan' => $request->jabatan,
+            'gender' => $request->gender,
+            'alamat' => $request->alamat,
+            'nik' => $request->nik,
+            'npwp' => $request->npwp,
+            'no_hp' => $request->no_hp,
+            'status' => $request->status,
+            'no_backup' => $request->no_backup,
+        ]);
+
+        // User::where('id',$id)->update([
+        //     'keterangan' => $request->keterangan,
+        //     'tanggal' => $request->tanggal,
+        //     'jam_masuk' => $request->jam_masuk,
+        //     'jam_keluar' => $request->jam_keluar
+        // ]);
+
+        return redirect()->back()->withSuccess('Edit Berhasil');
+
+    }
+
+
 }

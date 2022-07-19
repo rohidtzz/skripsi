@@ -75,6 +75,12 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::get('/hrd/pengajuan/destroy/{id}', [PengajuanController::class, 'destroy']);
 
+    //user
+    Route::get('hrd/user', [HrdController::class, 'user']);
+    Route::get('hrd/datauser', [HrdController::class, 'datauser']);
+    Route::get('hrd/user/edit/{id}', [HrdController::class, 'datauseredit']);
+    Route::post('hrd/user/edit/post', [HrdController::class, 'usereditpost']);
+
 
     //setting
     Route::get('/hrd/settings/jamkerja', [SettingController::class, 'jamkerja']);
@@ -105,6 +111,10 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
     Route::get('/karyawan/lihatabsen/sakit', [KaryawanController::class, 'lihatabsensakit']);
     Route::get('/karyawan/lihatabsen/izin', [KaryawanController::class, 'lihatabsenizin']);
 
+    //user
+    Route::get('karyawan/user', [KaryawanController::class, 'user']);
+    Route::post('/karyawan/user/edit/post', [KaryawanController::class, 'usereditpost']);
+
 
 
 
@@ -132,6 +142,11 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     //pengajuan
     Route::get('/direktur/pengajuan', [PengajuanController::class, 'pengajuan']);
     Route::post('/direktur/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
+
+    //user
+    Route::get('direktur/user', [DirekturController::class, 'user']);
+    Route::get('direktur/datauser', [DirekturController::class, 'datauser']);
+    Route::post('direktur/user/edit/post', [DirekturController::class, 'usereditpost']);
 
 });
 

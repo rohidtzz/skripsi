@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\Absen;
-use App\Models\SettingJam;;
+use App\Models\SettingJam;
+use Illuminate\Support\Facades\Validator;
 
 class DirekturController extends Controller
 {
@@ -382,6 +383,94 @@ class DirekturController extends Controller
         $JumlahAbsen = Absen::all()->count();
 
         return view('direktur.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+
+    }
+
+    public function user()
+    {
+        $id = Auth()->user()->id;
+        $data = User::find($id);
+
+        return View('direktur.user',compact('data'));
+
+    }
+
+    public function datauser(){
+        $data = User::all();
+
+        return View('direktur.datauser',compact('data'));
+    }
+
+    public function usereditpost(Request $request)
+    {
+
+        $iduser = User::find($request->id);
+
+        if(!$iduser && $request->id == null){
+
+            return redirect()->back()->with('errors', 'Edit Gagal');
+
+        }
+
+        $validator = Validator::make($request->all(), [
+            'foto' => 'required',
+        ]);
+
+        if($validator->fails()){
+
+            $update = User::where('id',$request->id)->update([
+                'password' => bcrypt($request->password),
+                'name' => $request->name,
+                'email' => $request->email,
+                'alamat' => $request->alamat,
+                'no_hp' => $request->no_hp,
+                'status' => $request->status,
+                'no_backup' => $request->no_backup,
+            ]);
+
+            return redirect()->back()->withSuccess('Edit Berhasil');
+
+        }
+
+            // $this->validate($request, [
+            // 	'foto' => 'file|image|mimes:jpeg,png,jpg|max:2048'
+            // ]);
+
+
+
+        // if($request->hasFile('foto')){
+        //     $request->file('foto')->move('foto/',$request->file('foto')->getClientOriginalName());
+        //     $tambah->foto = $request->file('foto')->getClientOriginalName();
+
+        // }
+
+        $file = $request->file('foto');
+
+		$nama_file = $file->getClientOriginalName();
+
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'foto';
+		$file->move($tujuan_upload,$nama_file);
+
+        User::where('id',$request->id)->update([
+            'password' => bcrypt($request->password),
+                'name' => $request->name,
+                'foto' => $nama_file,
+                'email' => $request->email,
+                'alamat' => $request->alamat,
+                'no_hp' => $request->no_hp,
+                'status' => $request->status,
+                'no_backup' => $request->no_backup,
+        ]);
+
+        // User::where('id',$id)->update([
+        //     'keterangan' => $request->keterangan,
+        //     'tanggal' => $request->tanggal,
+        //     'jam_masuk' => $request->jam_masuk,
+        //     'jam_keluar' => $request->jam_keluar
+        // ]);
+
+        return redirect()->back()->withSuccess('Edit Berhasil');
 
     }
 

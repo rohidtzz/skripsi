@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="row">
+{{-- <div class="row">
     <div class="card">
         <div class="card-body">
             <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <div class="row">
 
@@ -48,27 +48,29 @@
         <div class="card-body">
 
 
-<form action="/hrd/tambahuser/post" method="post" enctype="multipart/form-data">
+<form action="/hrd/user/edit/post" method="post" enctype="multipart/form-data">
 @csrf
+    <input type="hidden" name="id" value="{{ $data->id }}">
 
     <label for="inputState">foto</label>
-    <input type="file" name="foto"  class="form-control" required>
+    <img src="{{ asset('foto/'.$data->foto) }}" width="100px"alt="">
+    <input type="file" name="foto"   class="form-control" >
 
     <label for="inputState">id user</label>
-    <input type="number" name="id_identitas"  class="form-control" placeholder="id user" required>
+    <input type="number" name="id_identitas" value="{{ $data->no_identitas }}" class="form-control" placeholder="id user" required>
 
     <label for="inputState">password</label>
-    <input type="password" name="password"  class="form-control" placeholder="password" required>
+    <input type="text" name="password"  class="form-control" placeholder="password" >
 
     <label for="inputState">nama</label>
-    <input type="text" name="name"  class="form-control" placeholder="nama" required>
+    <input type="text" name="name" value="{{ $data->name }}" class="form-control" placeholder="nama" required>
 
     <label for="inputState">email</label>
-    <input type="email" name="email"  class="form-control" placeholder="email" required>
+    <input type="email" name="email" value="{{ $data->email }}" class="form-control" placeholder="email" required>
 
     <label for="inputState">jabatan</label>
     <select id="inputState"  name="jabatan" class="form-control">
-        <option selected>-- Silahkan Pilih --</option>
+        <option value="{{ $data->jabatan }}" selected>{{$data->jabatan}}</option>
         <option value="karyawan">karyawan</option>
         <option value="hrd">hrd</option>
         <option value="direktur">direktur</option>
@@ -76,58 +78,33 @@
 
     <label for="inputState">jenis Kelamin</label>
     <select id="inputState"  name="gender" class="form-control">
-        <option selected>-- Silahkan Pilih --</option>
+        <option value="{{ $data->gender }}"selected>{{ $data->gender }}</option>
         <option value="pria">pria</option>
         <option value="perempuan">perempuan</option>
     </select>
 
     <label for="inputState">alamat</label>
-    <textarea  name="alamat"  class="form-control" placeholder="alamat" required></textarea>
+    <textarea  name="alamat"  class="form-control" placeholder="alamat" required>{{ $data->alamat }}</textarea>
 
     <label for="inputState">nik</label>
-    <input type="number" name="nik"  class="form-control" placeholder="nik" required>
+    <input type="number" name="nik" value="{{ $data->nik }}"  class="form-control" placeholder="nik" required>
 
     <label for="inputState">npwp</label>
-    <input type="number" name="npwp"  class="form-control" placeholder="npwp" required>
+    <input type="number" name="npwp" value="{{ $data->npwp }}"  class="form-control" placeholder="npwp" required>
 
     <label for="inputState">no hp</label>
-    <input type="number" name="no_hp"  class="form-control" placeholder="no hp" required>
+    <input type="number" name="no_hp" value="{{ $data->no_hp }}" class="form-control" placeholder="no hp" required>
 
     <label for="inputState">status pernikahan</label>
     <select id="inputState"  name="status" class="form-control">
-        <option selected>-- Silahkan Pilih --</option>
+        <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
         <option value="kawin">kawin</option>
         <option value="belum_kawin">belum_kawin</option>
     </select>
 
     <label for="inputState">no hp backup</label>
-    <input type="number" name="no_backup"  class="form-control" placeholder="no hp backup" required>
+    <input type="number" name="no_backup" value="{{ $data->no_backup}}" class="form-control" placeholder="no hp backup" required>
 
-
-
-
-
-
-
-    {{-- <div class="form-group">
-    <label for="inputState">keterangan</label>
-    <select id="inputState" value="" name="keterangan" class="form-control">
-      <option selected></option>
-      <option value="masuk">masuk</option>
-      <option value="alpha">alpha</option>
-      <option value="telat">telat</option>
-      <option value="sakit">sakit</option>
-      <option value="cuti">cuti</option>
-    </select>
-    </div>
-
-    <label for="inputState">tanggal</label>
-    <input type="date" name="tanggal" value="" class="form-control" placeholder="kode barang" required>
-    <label for="inputState">jam masuk</label>
-    <input type="time" name="jam_masuk" value="" class="form-control" placeholder="harga" required>
-    <label for="inputState">jam keluar</label>
-    <input type="time" name="jam_keluar" value="" class="form-control" placeholder="harga" required>
-    <br> --}}
 
 
 

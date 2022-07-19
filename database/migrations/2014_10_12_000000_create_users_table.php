@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('foto');
             $table->enum('jabatan', ['karyawan', 'direktur', 'hrd'])->default('karyawan');
             $table->enum('gender', ['perempuan', 'pria'])->default('pria');
             $table->text('alamat');
