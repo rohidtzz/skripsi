@@ -91,20 +91,26 @@
             <form action="/hrd/lihatabsen/" method="get">
                 @csrf
 
-                {{-- @if (!$mulai && !$selesai)
-                <input name="mulai" type="date" id="myDate" value="{{$mulai}}"/>
-                <input name="selesai" type="date" id="myDate" value="{{$selesai}}"/>
 
-                @else --}}
-                <input name="mulai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
-                <input name="selesai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
-                {{-- @endif --}}
+                @if ($mulai == null && $selesai == null)
+
+                <input name="mulai" type="date"  value="<?php echo date('Y-m-d')?>"/>
+                <input name="selesai" type="date" value="<?php echo date('Y-m-d')?>"/>
+
+                @else
+
+                <input name="mulai" type="date"  value="{{ $mulai }}"/>
+                <input name="selesai" type="date" value="{{ $selesai }}"/>
+
+                @endif
+
+
+
+
+
                 <button class="btn btn-secondary" type="submit">submit </button>
             </form>
 
-            <script>
-                document.getElementById('myDate').value = new Date().slice(0,10);
-            </script>
 
         </div>
 
@@ -139,9 +145,10 @@
                         <td>{{ $u->jam_keluar }}</td>
                         {{-- <td>12 menit</td> --}}
                         <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
-                            <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
+                            <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger delete-confirm" role="button">Delete</a></td>
                       </tr>
                 @endforeach
+
             </table>
         </div>
 

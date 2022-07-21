@@ -58,7 +58,7 @@
                         <td>{{ $u->no_backup }}</td>
                         {{-- <td>12 menit</td> --}}
                         <td><a href="/hrd/user/edit/{{$u->id}}" class="btn btn-info">Edit</a>
-                            <a href="/hrd/user/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td>
+                            <a href="/hrd/user/destroy/{{$u->id}}"  class="btn btn-danger delete-confirm" role="button">Delete</a></td>
                       </tr>
                 @endforeach
             </table>

@@ -60,8 +60,11 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->get();
@@ -78,7 +81,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -119,8 +122,11 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->get();
@@ -137,7 +143,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsentelat(Request $request)
@@ -179,8 +185,11 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->orderBy('tanggal','desc')->get();
@@ -197,7 +206,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -243,8 +252,11 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan', 'sakit')->get();
 
@@ -260,7 +272,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -304,8 +316,11 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->get();
 
@@ -321,7 +336,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -365,8 +380,11 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->get();
 
@@ -382,7 +400,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 

@@ -191,14 +191,16 @@ class AbsenController extends Controller
     public function checkOut(Request $request)
     {
 
+        $id = Auth()->user()->id;
+
         if (date('l') == 'Saturday' || date('l') == 'Sunday') {
             return redirect()->back()->with('errors','Hari Libur Tidak bisa Check In');
         }
 
-        $cek = Absen::where('tanggal', date('Y/m/d'))->where('user_id',$request->user_id)->first();
+        $cek = Absen::where('tanggal', date('Y/m/d'))->where('user_id',$id)->first();
 
-        if($cek == null){
-            return redirect()->back()->with('errors', 'Check-out gagal');
+        if($cek != null){
+            return redirect()->back()->with('errors', 'Anda Sudah Check-out Hari ini');
         }
 
 

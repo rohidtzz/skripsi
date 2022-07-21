@@ -80,6 +80,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('hrd/datauser', [HrdController::class, 'datauser']);
     Route::get('hrd/user/edit/{id}', [HrdController::class, 'datauseredit']);
     Route::post('hrd/user/edit/post', [HrdController::class, 'usereditpost']);
+    Route::get('hrd/user/destroy/{id}', [HrdController::class, 'userdestroy']);
+
 
 
     //setting

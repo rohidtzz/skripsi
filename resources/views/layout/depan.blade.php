@@ -7,6 +7,9 @@
     <title>
         @yield('title')
     </title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <!-- SweetAlert2 -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- Favicon -->
     <link href="{{ url('argon') }}/assets/img/brand/favicon.png" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -17,6 +20,7 @@
     <!-- CSS Files -->
     <link href="{{ url('argon') }}/assets/css/argon-dashboard.css?v=1.1.2" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="bg-default">
@@ -89,14 +93,17 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link-icon" href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="nav-link  logout-confirm nav-link-icon" role="button" href="{{ url('logout') }}" >
                             <i class="ni ni-user-run"></i>
                             <span class="nav-link-inner--text">Logout</span>
                         </a>
 
-                        <form id="logout-form" action="{{route('logout')}}" method="get" style="display: none;">
+
+
+
+                        {{-- <form id="logout-form" action="{{route('logout')}}" method="get" style="display: none;">
                             @csrf
-                        </form>
+                        </form> --}}
                     </li>
                 </ul>
             </div>
@@ -199,6 +206,22 @@
          return e;
         }
        </script>
+       <script>
+        $('.logout-confirm').on('click', function (event) {
+           event.preventDefault();
+           const url = $(this).attr('href');
+           swal({
+               title: 'kamu yakin?',
+               text: 'anda Akan Logout',
+               icon: 'warning',
+               buttons: ["Cancel", "Yes!"],
+               }).then(function(value) {
+               if (value) {
+               window.location.href = url;
+             }
+           });
+          });
+     </script>
 @include('sweetalert::alert')
 </body>
 

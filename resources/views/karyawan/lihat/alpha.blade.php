@@ -91,20 +91,21 @@
             <form action="/karyawan/lihatabsen/alpha" method="get">
                 @csrf
 
-                {{-- @if (!$mulai && !$selesai)
-                <input name="mulai" type="date" id="myDate" value="{{$mulai}}"/>
-                <input name="selesai" type="date" id="myDate" value="{{$selesai}}"/>
+                @if ($mulai == null && $selesai == null)
 
-                @else --}}
-                <input name="mulai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
-                <input name="selesai" type="date" id="myDate" value="<?php echo date('Y-m-d');?>"/>
-                {{-- @endif --}}
+                <input name="mulai" type="date"  value="<?php echo date('Y-m-d')?>"/>
+                <input name="selesai" type="date" value="<?php echo date('Y-m-d')?>"/>
+
+                @else
+
+                <input name="mulai" type="date"  value="{{ $mulai }}"/>
+                <input name="selesai" type="date" value="{{ $selesai }}"/>
+
+                @endif
                 <button class="btn btn-secondary" type="submit">submit </button>
             </form>
 
-            <script>
-                document.getElementById('myDate').value = new Date().slice(0,10);
-            </script>
+
 
         </div>
 

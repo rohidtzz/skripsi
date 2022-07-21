@@ -26,8 +26,10 @@ class HrdController extends Controller
     public function lihatabsen(request $request)
     {
 
+
         $mulai = $request->mulai;
         $selesai = $request->selesai;
+
 
         $jammasuk = SettingJam::find(1)->jam_masuk;
         $jamkeluar = SettingJam::find(1)->jam_keluar;
@@ -47,6 +49,8 @@ class HrdController extends Controller
 
         if($mulai && $selesai){
 
+
+
         $daftarabsen = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->orderBy('tanggal','desc')->get();
 
         $JumlahHadir = Absen::whereDate('tanggal', '>=' , $mulai)->whereDate('tanggal', '<=', $selesai )->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->whereTime('jam_keluar', '>=', $jamkeluarkurang5)->whereTime('jam_keluar', '<=', $jamkeluar)->orderBy('tanggal','desc')->count();
@@ -61,8 +65,15 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
+
+
+
+
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->get();
@@ -79,7 +90,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
 
         // $id = auth()->user()->id;
@@ -118,7 +129,7 @@ class HrdController extends Controller
 
 
 
-        // return view('hrd.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        // return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
 
     }
@@ -160,8 +171,11 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->get();
@@ -178,7 +192,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsentelat(Request $request)
@@ -220,8 +234,11 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->orderBy('tanggal','desc')->get();
@@ -238,7 +255,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -284,8 +301,11 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('tanggal', date('Y/m/d'))->where('keterangan', 'sakit')->get();
 
@@ -301,7 +321,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -345,8 +365,11 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->get();
 
@@ -362,7 +385,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -406,8 +429,10 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->get();
 
@@ -423,7 +448,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -698,6 +723,22 @@ class HrdController extends Controller
         // ]);
 
         return redirect()->back()->withSuccess('Edit Berhasil');
+
+    }
+
+    public function userdestroy($id)
+    {
+        $User = User::find($id);
+
+        if(!$User || $id == null){
+            return redirect()->back()->with('errors', 'Hapus Gagal');
+        }
+
+        $cobadestroy = User::find($id)->delete();
+
+        if($cobadestroy){
+            return redirect()->back()->withSuccess('Hapus Berhasil');
+        }
 
     }
 

@@ -69,8 +69,11 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('user_id',$id)->where('tanggal', date('Y/m/d'))->get();
@@ -87,7 +90,7 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.showabsen',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         // $id = auth()->user()->id;
 
         // $daftarabsen = User::find($id)->getabsen;
@@ -150,8 +153,11 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('user_id',$id)->where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->orderBy('tanggal','desc')->get();
@@ -168,7 +174,7 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.masuk',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsentelat(Request $request)
@@ -212,8 +218,11 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
 
         $daftarabsen = Absen::where('user_id',$id)->where('tanggal', date('Y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->orderBy('tanggal','desc')->get();
@@ -230,7 +239,7 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.telat',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -277,8 +286,11 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('user_id',$id)->where('tanggal', date('Y/m/d'))->where('keterangan', 'sakit')->get();
 
@@ -294,7 +306,7 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.sakit',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -340,8 +352,11 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('user_id',$id)->where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->get();
 
@@ -357,7 +372,7 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.alpha',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -404,8 +419,11 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
+
+        $mulai = null;
+        $selesai = null;
 
         $daftarabsen = Absen::where('user_id',$id)->where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->get();
 
@@ -421,7 +439,7 @@ class KaryawanController extends Controller
 
         $JumlahAbsen = Absen::where('user_id',$id)->count();
 
-        return view('karyawan.lihat.izin',compact('JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('karyawan.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 

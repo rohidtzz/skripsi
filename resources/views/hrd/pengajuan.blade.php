@@ -105,7 +105,7 @@
                                 <a href="/hrd/pengajuan/tolak/{{$u->id}}"  class="btn btn-dark">Tolak</a>
 
                                 <a style="padding-left: 10px" href="/hrd/pengajuan/edit/{{$u->id}}" class="btn btn-info">Edit</a>
-                                <a href="/hrd/pengajuan/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a>
+                                <a href="/hrd/pengajuan/destroy/{{$u->id}}"  class="btn btn-danger delete-confirm" role="button">Delete</a>
 
                                 {{-- <a href="/hrd/pengajuan/edit/{{$u->id}}" class="btn btn-info">Edit</a>
                                 <a href="/hrd/pengajuan/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td> --}}

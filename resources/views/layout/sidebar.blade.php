@@ -543,6 +543,10 @@
             </ul>
           </li>
 
+
+          @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+
           <li class="nav-item {{Request::is('hrd/settings/jamkerja') ? 'menu-open' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
               <i class="nav-icon fas fa-cog"></i>
@@ -558,7 +562,7 @@
                   <p>Akun</p>
                 </a>
               </li> --}}
-              @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
               <li class="nav-item">
                 <a href="@if (Auth()->user()->jabatan == 'hrd')
                 {{ url('/hrd/settings/jamkerja') }}
@@ -571,11 +575,12 @@
                   <p>Jam Kerja</p>
                 </a>
               </li>
-              @endif
+
 
 
             </ul>
           </li>
+          @endif
 
 
           <li class="nav-item {{Request::is('hrd/datauser') ? 'menu-open' : ''}}{{Request::is('hrd/user') ? 'menu-open' : ''}}{{ Request::is('hrd/tambahuser') ? 'menu-open' : '' }}{{Request::is('direktur/user') ? 'menu-open' : ''}}{{Request::is('direktur/datauser') ? 'menu-open' : ''}}{{Request::is('karyawan/user') ? 'menu-open' : ''}}">
@@ -643,7 +648,7 @@
 
 
           <li class="nav-item">
-            <a href="{{ url('logout') }}" class="nav-link ">
+            <a href="{{ url('logout') }}" class="nav-link logout-confirm" role="button">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p>
                 Logout

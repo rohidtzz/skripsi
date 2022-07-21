@@ -35,6 +35,10 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <!-- SweetAlert2 -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -77,6 +81,40 @@
 <script src="{{ asset('adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('adminlte/dist/js/adminlte.js') }}"></script>
+<script>
+    $('.delete-confirm').on('click', function (event) {
+       event.preventDefault();
+       const url = $(this).attr('href');
+       swal({
+           title: 'Kamu Yakin?',
+           text: 'Data Ini akan dihapus',
+           icon: 'warning',
+           buttons: ["Cancel", "Yes!"],
+           }).then(function(value) {
+           if (value) {
+           window.location.href = url;
+         }
+       });
+      });
+ </script>
+
+<script>
+    $('.logout-confirm').on('click', function (event) {
+       event.preventDefault();
+       const url = $(this).attr('href');
+       swal({
+           title: 'kamu yakin?',
+           text: 'anda Akan Logout',
+           icon: 'warning',
+           buttons: ["Cancel", "Yes!"],
+           }).then(function(value) {
+           if (value) {
+           window.location.href = url;
+         }
+       });
+      });
+ </script>
+
 <!-- AdminLTE for demo purposes -->
 {{-- <script src="{{ asset('adminlte/dist/js/demo.js') }}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
