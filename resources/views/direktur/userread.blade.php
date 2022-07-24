@@ -54,9 +54,7 @@
                   <li class="list-group-item">
                     <b>Division</b> <a class="float-right">{{ App\Models\Posisi::find($data->id)->name }}</a>
                   </li>
-                  <li class="list-group-item">
-                    <a class="btn btn-primary" href="/hrd/user/edit/{{$data->id}}">Edit</a>
-                  </li>
+
 
               </ul>
 
