@@ -506,7 +506,7 @@ class DirekturController extends Controller
             return redirect()->back()->with('error', 'gagal read karyawan');
         }
 
-        return View('hrd.userread',compact('data','user'));
+        return View('direktur.userread',compact('data','user'));
     }
 
 
