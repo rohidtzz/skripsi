@@ -17,38 +17,38 @@ class DataUserSeeder extends Seeder
     {
         DataUser::create([
             'user_id' =>  1,
-            'cv' => 'ini cv.pdf',
-            'ijazah' => 'ini ijazah.pdf',
-            'sertifikat' => 'ini sertifikat.pdf',
-            'ktp' => 'ini ktp.pdf',
-            'npwp' => 'ini npwp.pdf',
+            'cv' => 'Ini_Cv.pdf',
+            'ijazah' => 'Ini_Ijazah.pdf',
+            'sertifikat' => 'Ini_Sertifikat.pdf',
+            'ktp' => 'Ini_Ktp.pdf',
+            'npwp' => 'Ini_Npwp.pdf',
         ]);
 
         DataUser::create([
             'user_id' =>  2,
-            'cv' => 'ini cv.pdf',
-            'ijazah' => 'ini ijazah.pdf',
-            'sertifikat' => 'ini sertifikat.pdf',
-            'ktp' => 'ini ktp.pdf',
-            'npwp' => 'ini npwp.pdf',
+            'cv' => 'Ini_Cv.pdf',
+            'ijazah' => 'Ini_Ijazah.pdf',
+            'sertifikat' => 'Ini_Sertifikat.pdf',
+            'ktp' => 'Ini_Ktp.pdf',
+            'npwp' => 'Ini_Npwp.pdf',
         ]);
 
         DataUser::create([
             'user_id' =>  3,
-            'cv' => 'ini cv.pdf',
-            'ijazah' => 'ini ijazah.pdf',
-            'sertifikat' => 'ini sertifikat.pdf',
-            'ktp' => 'ini ktp.pdf',
-            'npwp' => 'ini npwp.pdf',
+            'cv' => 'Ini_Cv.pdf',
+            'ijazah' => 'Ini_Ijazah.pdf',
+            'sertifikat' => 'Ini_Sertifikat.pdf',
+            'ktp' => 'Ini_Ktp.pdf',
+            'npwp' => 'Ini_Npwp.pdf',
         ]);
 
         DataUser::create([
             'user_id' =>  4,
-            'cv' => 'ini cv.pdf',
-            'ijazah' => 'ini ijazah.pdf',
-            'sertifikat' => 'ini sertifikat.pdf',
-            'ktp' => 'ini ktp.pdf',
-            'npwp' => 'ini npwp.pdf',
+            'cv' => 'Ini_Cv.pdf',
+            'ijazah' => 'Ini_Ijazah.pdf',
+            'sertifikat' => 'Ini_Sertifikat.pdf',
+            'ktp' => 'Ini_Ktp.pdf',
+            'npwp' => 'Ini_Npwp.pdf',
         ]);
     }
 }
