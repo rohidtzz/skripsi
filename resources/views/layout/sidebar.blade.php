@@ -504,8 +504,8 @@
             </a>
           </li>
 
-          <li class="nav-item {{Request::is('karyawan/pengajuan') ? 'menu-open' : ''}}{{Request::is('hrd/pengajuan') ? 'menu-open' : ''}}{{Request::is('direktur/pengajuan') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}{{Request::is('hrd/pengajuan') ? 'active' : ''}}{{Request::is('direktur/pengajuan') ? 'active' : ''}}">
+          <li class="nav-item {{Request::is('karyawan/pengajuan') ? 'menu-open' : ''}}{{Request::is('hrd/pengajuan') ? 'menu-open' : ''}}{{Request::is('direktur/pengajuan') ? 'menu-open' : ''}}{{Request::is('hrd/datapengajuan') ? 'menu-open' : ''}} {{Request::is('direktur/datapengajuan') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}{{Request::is('hrd/pengajuan') ? 'active' : ''}}{{Request::is('hrd/datapengajuan') ? 'active' : ''}} {{Request::is('direktur/datapengajuan') ? 'active' : ''}}{{Request::is('direktur/pengajuan') ? 'active' : ''}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Pengajuan
@@ -528,11 +528,29 @@
                 @else
                 {{ url('direktur/pengajuan') }}
                 @endif
-                " class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}} {{Request::is('hrd/pengajuan') ? 'active' : ''}} {{Request::is('direktur/pengajuan') ? 'active' : ''}}">
-                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                " class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}} {{Request::is('hrd/pengajuan') ? 'active' : ''}}  {{Request::is('direktur/pengajuan') ? 'active' : ''}}">
+                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Pengajuan</p>
                 </a>
               </li>
+              @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+              <li class="nav-item">
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/datapengajuan') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('direktur/datapengajuan') }}
+                @else
+
+                @endif
+                " class="nav-link  {{Request::is('hrd/datapengajuan') ? 'active' : ''}} {{Request::is('direktur/datapengajuan') ? 'active' : ''}}">
+                  <i class="fas  {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                  <p>Data Pengajuan</p>
+                </a>
+              </li>
+              @else
+                @endif
               {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -582,9 +600,12 @@
           </li>
           @endif
 
+          @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+
 
           <li class="nav-item {{Request::is('hrd/datauser') ? 'menu-open' : ''}}{{Request::is('hrd/user') ? 'menu-open' : ''}}{{ Request::is('hrd/tambahuser') ? 'menu-open' : '' }}{{Request::is('direktur/user') ? 'menu-open' : ''}}{{Request::is('direktur/datauser') ? 'menu-open' : ''}}{{Request::is('karyawan/user') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}">
+            <a href="" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}">
               <i class="nav-icon fas fa-user-cog"></i>
               <p>
                 Data Karyawan
@@ -594,7 +615,7 @@
             <ul class="nav nav-treeview ">
 
 
-                <li class="nav-item ">
+                {{-- <li class="nav-item ">
                     <a href="@if (Auth()->user()->jabatan == 'hrd')
                         {{ url('hrd/user') }}
                         @elseif (Auth()->user()->jabatan == 'karyawan')
@@ -607,7 +628,7 @@
                         Karyawan
                       </p>
                     </a>
-                  </li>
+                  </li> --}}
 
 
 
@@ -645,6 +666,7 @@
 
             </ul>
           </li>
+          @endif
 
 
           <li class="nav-item">

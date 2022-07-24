@@ -31,8 +31,9 @@
                         <th>nik</th>
                         <th>Npwp</th>
                         <th>No hp</th>
-                        <th> status Pernikahan</th>
-                        <th>no Backup</th>
+                        <th>opsi</th>
+                        {{-- <th> status Pernikahan</th> --}}
+                        {{-- <th>no Backup</th> --}}
                         {{-- <th>Jam Kehadiran Rata-Rata</th> --}}
                         {{-- <th>Opsi</th> --}}
                       </tr>
@@ -54,11 +55,10 @@
                         <td>{{ $u->nik }}</td>
                         <td>{{ $u->npwp }}</td>
                         <td>{{ $u->no_hp }}</td>
-                        <td>{{ $u->status }}</td>
-                        <td>{{ $u->no_backup }}</td>
+                        {{-- <td>{{ $u->status }}</td> --}}
+                        {{-- <td>{{ $u->no_backup }}</td> --}}
                         {{-- <td>12 menit</td> --}}
-                        {{-- <td><a href="/hrd/absen/edit/{{$u->id}}" class="btn btn-info">Edit</a>
-                            <a href="/hrd/absen/destroy/{{$u->id}}"  class="btn btn-danger">Delete</a></td> --}}
+                        <td><a href="/direktur/user/read/{{$u->id}}" class="btn btn-info">Read</a><td>
                       </tr>
                 @endforeach
             </table>

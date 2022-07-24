@@ -184,5 +184,22 @@ class PengajuanController extends Controller
 
     }
 
+    public function datapengajuan()
+    {
+
+
+        if(auth()->user()->jabatan == 'hrd'){
+            $all = Pengajuan::all();
+            return view('hrd.datapengajuan', compact('all'));
+        }
+
+        if(auth()->user()->jabatan == 'direktur'){
+            $all = Pengajuan::all();
+            return view('direktur.datapengajuan', compact('all'));
+        }
+
+
+    }
+
 
 }

@@ -18,8 +18,8 @@
     <div class="form-group">
     <label for="inputState">keterangan</label>
     <select id="inputState"  name="keterangan" class="form-control">
-        <option value="cuti" selected>cuti</option>
-      <option value="izin">izin</option>
+        <option value="lembur" >lembur</option>
+      <option value="izin" selected>izin</option>
       <option value="sakit">sakit</option>
 
     </select>
@@ -27,6 +27,11 @@
 
     <label for="inputState">alasan</label>
     <textarea  name="alasan"  class="form-control" placeholder="alasan" required></textarea>
+
+    <label for="inputState">jam mulai</label>
+    <input type="time" name="jammulai"  class="form-control" placeholder="tanggal mulai" >
+    <label for="inputState">jam selesai</label>
+    <input type="time" name="jamselesai" class="form-control" placeholder="tanggal selesai">
 
     <label for="inputState">tanggal mulai</label>
     <input type="date" name="mulai"  class="form-control" placeholder="tanggal mulai" required>

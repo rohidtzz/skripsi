@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PosisiSeeder::class,
             SettingJamSeeder::class,
             PengajuanSeeder::class,
+            DataUserSeeder::class,
         ]);
 
     }

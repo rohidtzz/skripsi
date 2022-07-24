@@ -31,8 +31,8 @@
 
                     <select name="keterangan" class="form-select" aria-label="Default select example">\
                         <option selected value="Masuk">Masuk</option>
-                        <option value="Alpha">Alpha</option>
-                        <option value="Telat">Telat</option>
+                        {{-- <option value="Alpha">Alpha</option>
+                        <option value="Telat">Telat</option> --}}
                         <option value="Sakit">Sakit</option>
                         <option value="Cuti">Cuti</option>
                     </select>

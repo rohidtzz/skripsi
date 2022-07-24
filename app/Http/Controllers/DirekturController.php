@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Absen;
 use App\Models\SettingJam;
+use App\Models\DataUser;
 use Illuminate\Support\Facades\Validator;
 
 class DirekturController extends Controller
@@ -490,6 +491,22 @@ class DirekturController extends Controller
 
         return redirect()->back()->withSuccess('Edit Berhasil');
 
+    }
+
+    public function datauserread(Request $request,$id){
+
+        if($id == null){
+            return redirect()->back()->with('error', 'gagal read karyawan');
+        }
+
+        $data = User::find($id);
+        $user = DataUser::find($id);
+
+        if($data == null){
+            return redirect()->back()->with('error', 'gagal read karyawan');
+        }
+
+        return View('hrd.userread',compact('data','user'));
     }
 
 

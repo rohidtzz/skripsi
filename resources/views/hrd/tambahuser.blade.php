@@ -42,6 +42,42 @@
 </div>
 
 <div class="row">
+    <div class="card">
+        <div class="card-body">
+        <form action="/hrd/uploadpdf" method="post" enctype="multipart/form-data">
+            @csrf
+                                <label for="inputState">User</label>
+                                <select id="inputState"  name="user" class="form-control">
+                                    @foreach ($data as $u )
+                                        <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                    @endforeach
+                                </select>
+
+                                <label for="inputState">cv</label>
+                                <input type="file" name="cv"  class="form-control" required>
+
+                                <label for="inputState">ijazah</label>
+                                <input type="file" name="ijazah"  class="form-control" required>
+
+                                <label for="inputState">sertifikat</label>
+                                <input type="file" name="sertifikat"  class="form-control">
+
+                                <label for="inputState">ktp</label>
+                                <input type="file" name="ktp"  class="form-control" required>
+
+                                <label for="inputState">npwp</label>
+                                <input type="file" name="npwp"  class="form-control" required>
+                                <br>
+
+                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="reset" class="btn btn-danger">Reset</button>
+                            </form>
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
 
     <div class="card">
 
@@ -53,6 +89,8 @@
 
     <label for="inputState">foto</label>
     <input type="file" name="foto"  class="form-control" required>
+
+
 
     <label for="inputState">id user</label>
     <input type="number" name="id_identitas"  class="form-control" placeholder="id user" required>

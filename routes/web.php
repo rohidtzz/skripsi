@@ -8,6 +8,7 @@ use App\Http\Controllers\DirekturController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PengajuanController;
+use App\Http\Controllers\DataUserController;
 
 use App\Imports\SiswaImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -65,6 +66,7 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     //pengajuan
     Route::get('/hrd/pengajuan', [PengajuanController::class, 'pengajuan']);
+    Route::get('/hrd/datapengajuan', [PengajuanController::class, 'datapengajuan']);
     Route::post('/hrd/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
 
     Route::get('/hrd/pengajuan/terima/{id}', [PengajuanController::class, 'pengajuanterima']);
@@ -81,6 +83,7 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('hrd/user/edit/{id}', [HrdController::class, 'datauseredit']);
     Route::post('hrd/user/edit/post', [HrdController::class, 'usereditpost']);
     Route::get('hrd/user/destroy/{id}', [HrdController::class, 'userdestroy']);
+    Route::get('hrd/user/read/{id}', [HrdController::class, 'datauserread']);
 
 
 
@@ -91,6 +94,9 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     //tambahuser
     Route::get('/hrd/tambahuser', [HrdController::class, 'tambahuser']);
     Route::post('/hrd/tambahuser/post', [HrdController::class, 'tambahuserpost']);
+
+    Route::post('/hrd/uploadpdf', [DataUserController::class, 'tambahpdf']);
+
     Route::post('/user/import_excel', [HrdController::class, 'import_excel']);
 
 
@@ -103,6 +109,7 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
     Route::get('/karyawan/dashboard', [KaryawanController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/karyawan/pengajuan', [PengajuanController::class, 'pengajuan']);
+
     Route::post('/karyawan/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
 
     Route::get('/karyawan/LihatAbsen', [KaryawanController::class, 'showabsen'])->name('ShowAbsen');
@@ -143,12 +150,15 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
 
     //pengajuan
     Route::get('/direktur/pengajuan', [PengajuanController::class, 'pengajuan']);
+    Route::get('/direktur/datapengajuan', [PengajuanController::class, 'datapengajuan']);
     Route::post('/direktur/pengajuan/post', [PengajuanController::class, 'pengajuanpost']);
 
     //user
     Route::get('direktur/user', [DirekturController::class, 'user']);
     Route::get('direktur/datauser', [DirekturController::class, 'datauser']);
     Route::post('direktur/user/edit/post', [DirekturController::class, 'usereditpost']);
+
+    Route::get('direktur/user/read/{id}', [DirekturController::class, 'datauserread']);
 
 });
 

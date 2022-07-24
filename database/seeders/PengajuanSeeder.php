@@ -18,9 +18,11 @@ class PengajuanSeeder extends Seeder
 
         Pengajuan::create([
             'user_id' =>  1,
-            'keterangan' => 'cuti',
+            'keterangan' => 'izin',
             'alasan' => 'pengen liburan om cape',
             'tanggal' => date('Y/m/d'),
+            'jam_mulai' => date('H:i:s'),
+            'jam_selesai' => date('H:i:s'),
             'mulai' => date('Y/m/d'),
             'selesai' => date('Y/m/d'),
             'status' => 'pending'

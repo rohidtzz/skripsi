@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Absen;
 
 use App\Models\SettingJam;
+use App\Models\DataUser;
 
 use App\Imports\UserImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -509,7 +510,9 @@ class HrdController extends Controller
 
     public function tambahuser(Request $request)
     {
-        return view('hrd.tambahuser');
+        $data = User::all();
+
+        return view('hrd.tambahuser',compact('data'));
     }
 
     public function tambahuserpost(Request $request)
@@ -533,11 +536,23 @@ class HrdController extends Controller
 
         $file = $request->file('foto');
 
+
+
 		$nama_file = $file->getClientOriginalName();
+
 
       	        // isi dengan nama folder tempat kemana file diupload
 		$tujuan_upload = 'foto';
+
+
 		$file->move($tujuan_upload,$nama_file);
+
+
+
+
+
+
+
 
         $tambah = User::create([
             'no_identitas' => $request->id_identitas,
@@ -628,10 +643,34 @@ class HrdController extends Controller
 
     }
 
-    public function datauser(){
+    public function datauser(Request $request){
+
+
+        if($request->divisi){
+            $data = User::where('jabatan', $request->divisi)->get();
+
+            return View('hrd.datauser',compact('data'));
+        }
+
         $data = User::all();
 
         return View('hrd.datauser',compact('data'));
+    }
+
+    public function datauserread(Request $request,$id){
+
+        if($id == null){
+            return redirect()->back()->with('error', 'gagal read karyawan');
+        }
+
+        $data = User::find($id);
+        $user = DataUser::find($id);
+
+        if($data == null){
+            return redirect()->back()->with('error', 'gagal read karyawan');
+        }
+
+        return View('hrd.userread',compact('data','user'));
     }
 
     public function datauseredit(Request $request,$id)

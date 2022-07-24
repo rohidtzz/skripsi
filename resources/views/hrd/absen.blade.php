@@ -4,7 +4,7 @@
 
 
 
-        @if (date('l') == "Saturday" || date('l') == "Monday")
+        @if (date('l') == "Saturday" || date('l') == "Sunday")
             <div class="text-center">
                 <p style="font-size: 20px; font-family: arial;" id="jam"></p>
                 <p>Absen Libur</p>

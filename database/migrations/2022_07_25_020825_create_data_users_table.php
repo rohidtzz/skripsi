@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengajuansTable extends Migration
+class CreateDataUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreatePengajuansTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengajuans', function (Blueprint $table) {
+        Schema::create('data_users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->enum('keterangan',['Sakit','izin','lembur']);
-            $table->text('alasan');
-            $table->date('tanggal');
-            $table->time('jam_mulai')->nullable();
-            $table->time('jam_selesai')->nullable();
-            $table->date('mulai')->nullable();
-            $table->date('selesai')->nullable();
-            $table->enum('status',['disetujui','ditolak','pending']);
+            $table->string('cv')->nullable();
+            $table->string('ijazah')->nullable();
+            $table->string('sertifikat')->nullable();
+            $table->string('ktp')->nullable();
+            $table->string('npwp')->nullable();
 
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
@@ -37,6 +34,6 @@ class CreatePengajuansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengajuans');
+        Schema::dropIfExists('data_users');
     }
 }
