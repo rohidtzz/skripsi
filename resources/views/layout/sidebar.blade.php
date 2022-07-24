@@ -587,7 +587,7 @@
             <a href="#" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}">
               <i class="nav-icon fas fa-user-cog"></i>
               <p>
-                Users
+                Data Karyawan
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -604,7 +604,7 @@
                         @endif" class="nav-link {{ Request::is('hrd/user') ? 'active' : '' }}{{ Request::is('direktur/user') ? 'active' : '' }}{{ Request::is('karyawan/user') ? 'active' : '' }}">
                       <i class="nav-icon fas fa-user"></i>
                       <p>
-                        User
+                        Karyawan
                       </p>
                     </a>
                   </li>
@@ -616,7 +616,7 @@
                 <a href="/hrd/tambahuser" class="nav-link {{ Request::is('hrd/tambahuser') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-plus"></i>
                   <p>
-                    Tambah User
+                    Tambah Karyawan
                   </p>
                 </a>
               </li>
@@ -633,7 +633,7 @@
                 " class="nav-link {{ Request::is('hrd/datauser') ? 'active' : '' }}{{ Request::is('direktur/datauser') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-users"></i>
                   <p>
-                    Data User
+                    Data Karyawan
                   </p>
                 </a>
               </li>

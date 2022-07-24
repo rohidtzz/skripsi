@@ -4,7 +4,7 @@
 
 
 
-        @if (date('l') == "Saturday" || date('l') == "Sunday")
+        @if (date('l') == "Saturday" || date('l') == "Monday")
             <div class="text-center">
                 <p style="font-size: 20px; font-family: arial;" id="jam"></p>
                 <p>Absen Libur</p>
@@ -31,10 +31,10 @@
 
                     <select name="keterangan" class="form-select" aria-label="Default select example">
                         <option selected value="Masuk">Masuk</option>
-                        <option value="Alpha">Alpha</option>
-                        <option value="Telat">Telat</option>
+                        {{-- <option value="Alpha">Alpha</option>
+                        <option value="Telat">Telat</option> --}}
                         <option value="Sakit">Sakit</option>
-                        <option value="Cuti">Cuti</option>
+                        <option value="Cuti">Izin</option>
                     </select>
                     <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                     <button class="btn btn-primary" type="submit">Check-in</button>
