@@ -475,14 +475,88 @@
             </p>
           </a>
 
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon fas fa-wallet"></i>
+
+          @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+          <li class="nav-item {{Request::is('karyawan/gaji') ? 'menu-open' : ''}} {{Request::is('hrd/gaji') ? 'menu-open' : ''}} {{Request::is('hrd/settinggaji') ? 'menu-open' : ''}} {{Request::is('direktur/gaji') ? 'menu-open' : ''}} {{Request::is('direktur/settinggaji') ? 'menu-open' : ''}} {{Request::is('hrd/datagaji') ? 'menu-open' : ''}} {{Request::is('direktur/datagaji') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('karyawan/gaji') ? 'active' : ''}}{{Request::is('hrd/gaji') ? 'active' : ''}} {{Request::is('hrd/settinggaji') ? 'active' : ''}}{{Request::is('hrd/settinggaji') ? 'active' : ''}} {{Request::is('hrd/datagaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}{{Request::is('direktur/gaji') ? 'active' : ''}}{{Request::is('direktur/settinggaji') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-money-bill"></i>
+              <p>
+                Gaji
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                @if (Auth()->user()->jabatan == 'hrd')
+
+
+                <li class="nav-item">
+                    <a href="
+                    {{ url('hrd/gaji') }}
+                    " class="nav-link  {{Request::is('hrd/gaji') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
+                      <i class="fas {{Request::is('hrd/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                      <p>Gaji</p>
+                    </a>
+                  </li>
+                  @else
+                  @endif
+
+                  @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+              <li class="nav-item">
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/settinggaji') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('/direktur/settinggaji') }}
+                @else
+
+                @endif
+                " class="nav-link  {{Request::is('hrd/settinggaji') ? 'active' : ''}}  {{Request::is('direktur/settinggaji') ? 'active' : ''}}">
+                  <i class="fas  {{Request::is('hrd/settinggaji') ? 'fa-dot-circle' : 'fa-dot-circle'}}   {{Request::is('direktur/settinggaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                  <p>Setting  Gaji</p>
+                </a>
+              </li>
+              @else
+              @endif
+              @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+              <li class="nav-item">
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/datagaji') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('direktur/datagaji') }}
+                @else
+
+                @endif
+                " class="nav-link  {{Request::is('hrd/datagaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}">
+                  <i class="fas  {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datagaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                  <p>Data Gaji</p>
+                </a>
+              </li>
+              @else
+                @endif
+              {{-- <li class="nav-item">
+                <a href="pages/forms/editors.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>pengajuan</p>
+                </a>
+              </li> --}}
+
+            </ul>
+          </li>
+          @else
+          <li class="nav-item ">
+            <a href="{{ url('karyawan/datagaji') }}" class="nav-link {{ Request::is('karyawan/datagaji') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
+                {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
+                {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Gaji
               </p>
             </a>
           </li>
+          @endif
 
           <li class="nav-item ">
             <a href="@if (auth()->user()->jabatan == 'karyawan')
@@ -605,7 +679,7 @@
 
 
           <li class="nav-item {{Request::is('hrd/datauser') ? 'menu-open' : ''}}{{Request::is('hrd/user') ? 'menu-open' : ''}}{{ Request::is('hrd/tambahuser') ? 'menu-open' : '' }}{{Request::is('direktur/user') ? 'menu-open' : ''}}{{Request::is('direktur/datauser') ? 'menu-open' : ''}}{{Request::is('karyawan/user') ? 'menu-open' : ''}}">
-            <a href="" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}">
+            <a href="" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}{{Request::is('direktur/datauser') ? 'active' : ''}}">
               <i class="nav-icon fas fa-user-cog"></i>
               <p>
                 Data Karyawan
@@ -667,6 +741,26 @@
             </ul>
           </li>
           @endif
+
+          {{-- <li class="nav-item ">
+            <a href="@if (auth()->user()->jabatan == 'karyawan')
+                {{url('karyawan/LihatAbsen')}}
+
+                @elseif (auth()->user()->jabatan == 'direktur')
+                {{url('direktur/lihatabsen')}}
+
+                @elseif (auth()->user()->jabatan == 'hrd')
+                {{url('hrd/penyuratan')}}
+
+                @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
+                {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
+                {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-user-clock"></i>
+              <p>
+                Penyuratan
+              </p>
+            </a>
+          </li> --}}
 
 
           <li class="nav-item">

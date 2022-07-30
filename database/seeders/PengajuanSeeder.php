@@ -28,5 +28,17 @@ class PengajuanSeeder extends Seeder
             'status' => 'pending'
         ]);
 
+        Pengajuan::create([
+            'user_id' =>  1,
+            'keterangan' => 'lembur',
+            'alasan' => 'bolehlah',
+            'tanggal' => date('Y/m/d'),
+            'jam_mulai' => '01:00:00',
+            'jam_selesai' => date('02:00:00'),
+            'mulai' => date('Y/m/d'),
+            'selesai' => date('Y/m/d'),
+            'status' => 'pending'
+        ]);
+
     }
 }
