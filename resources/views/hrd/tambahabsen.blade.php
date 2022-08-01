@@ -11,12 +11,10 @@
         <div class="card-body">
 
 
-<form action="/hrd/gaji/post" method="post">
+<form action="/hrd/absen/post" method="post">
 @csrf
 
-@php
-                            $number_format  = number_format($gajipokok->jumlah_potongan,2,",",".");
-                            @endphp
+
 
 <label for="inputState">User</label>
 <select id="inputState"  name="user" class="form-control" required>
@@ -25,11 +23,27 @@
     @endforeach
 </select>
 
-<div class="form-group">
-<label for="inputState">Gaji Pokok</label>
-<input type="text" name="gaji_pokok" value="<?php echo 'Rp. ' . $number_format; ?>"  class="form-control" placeholder="Gajipokok" disabled>
+<label for="inputState">keterangan</label>
+<select id="inoutState" name="keterangan" class="form-control" aria-label="Default select example" required>
+    <option selected value="Masuk">Masuk</option>
+    {{-- <option value="Alpha">Alpha</option>
+    <option value="Telat">Telat</option> --}}
+    <option value="Sakit">Sakit</option>
+    <option value="Cuti">Izin</option>
+</select>
 
-<label for="inputState">Transportasi</label>
+<label for="inputState">jam masuk</label>
+    <input type="time" name="masuk"  class="form-control" placeholder="tanggal mulai" required>
+    <label for="inputState">jam keluar</label>
+    <input type="time" name="keluar" class="form-control" placeholder="tanggal selesai" required>
+
+    <label for="inputState">tanggal </label>
+    <input type="date" name="tgl"  class="form-control" placeholder="tanggal mulai" required>
+{{-- <div class="form-group">
+<label for="inputState">Berapa Hari masuk dalam Sebulan</label>
+<input type="text" name="gaji_pokok" value=""  class="form-control" placeholder="Gajipokok" disabled> --}}
+
+{{-- <label for="inputState">Transportasi</label>
 <input type="number" name="transportasi"  class="form-control" placeholder="Transportasi" required>
 
 <label for="inputState">Gaji Tambahan</label>
@@ -49,7 +63,7 @@
     <option value="lunas" selected>lunas</option>
   <option value="belum" >belum</option>
 
-</select>
+</select> --}}
 
 
 

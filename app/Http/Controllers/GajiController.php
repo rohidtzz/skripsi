@@ -32,6 +32,17 @@ class GajiController extends Controller
         return view('hrd.gaji',compact('user','gaji','settinggaji','gajipokok'));
     }
 
+    public function index2()
+    {
+
+        $user = User::all();
+        $gaji = Gaji::all();
+        $settinggaji = SettingGaji::all();
+        $gajipokok =    SettingGaji::where('jenis_potongan','Gaji pokok')->first();
+
+        return view('hrd.gajidaily',compact('user','gaji','settinggaji','gajipokok'));
+    }
+
     public function gajipost(Request $request)
     {
         // $datk = date_create($request->tgl_gaji);
@@ -142,6 +153,122 @@ class GajiController extends Controller
         return redirect()->back()->with('errors','Pegawai sudah di gaji bulan ini');
 
     }
+
+    public function gajipost2(Request $request)
+    {
+        // $datk = date_create($request->tgl_gaji);
+
+        // $datp = date_format($datk,"m/Y");
+
+        //     $gajik = Gaji::whereDate('tgl_gaji', $datp)->first();
+
+        //     dd($gajik);
+
+        // if(!$gajik){
+        $datei = date_create($request->tgl_gaji);
+
+        $datebulan = date_format($datei,"m");
+        $datetahun = date_format($datei,"Y");
+
+        $result = Gaji::where('user_id',$request->user)->whereYear('tgl_gaji' , $datetahun)->whereMonth('tgl_gaji' , $datebulan)->first();
+
+            // dd($result);
+        if(!$result){
+
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
+
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
+
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
+
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+
+        $settinggaji = SettingGaji::all();
+        $gajipokok =    SettingGaji::where('jenis_potongan','Gaji Pokok')->first();
+
+        $datei = date_create($request->tgl_gaji);
+
+        $datebulan = date_format($datei,"m");
+        $datetahun = date_format($datei,"Y");
+
+        $pph =    SettingGaji::where('jenis_potongan','potongan pph')->first();
+
+        $JumlahAlpha = Absen::where('user_id',$request->user)->whereYear('tanggal' , $datetahun)->whereMonth('tanggal' , $datebulan)->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+        $JumlahHadir = Absen::where('user_id',$request->user)->whereYear('tanggal' , $datetahun)->whereMonth('tanggal' , $datebulan)->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->whereTime('jam_keluar', '>=', $jamkeluarkurang5)->whereTime('jam_keluar', '<=', $jamkeluar)->orderBy('tanggal','desc')->count();
+
+        // dd($JumlahAlpha);
+
+        $alpha = SettingGaji::where('jenis_potongan','potongan sanksi alpha')->first();
+
+        $Hadir = SettingGaji::where('jenis_potongan','hadir')->first();
+
+        $totalalpha = $alpha->jumlah_potongan * $JumlahAlpha;
+
+        $totalhadir = $Hadir->jumlah_potongan * $JumlahHadir;
+
+
+
+
+
+
+
+
+
+        $total =  $totalhadir - $totalalpha;
+
+        // dd($total);
+
+
+
+        // $lembur = Pengajuan::where('user_id',$request->user)->where('keterangan','lembur')->first();
+
+        // $waktustart = $lembur->jam_mulai;
+        // $waktuend = date("Y-m-d h:i:sa");
+        // //echo $waktustart;
+        // //echo $waktuend;
+
+        // $datetime1 = new DateTime($waktustart);//start time
+        // $datetime2 = new DateTime($waktuend);//end time
+        // $durasi = $datetime1->diff($datetime2);
+        // echo $durasi->format('%Y tahun %m bulan %d hari %H jam %i menit %s detik');
+
+        // dd($lembur);
+
+
+        $test = Gaji::create([
+            'user_id' => $request->user,
+            'uang_tambahan' => 0,
+            'gaji_pokok' => 0,
+            'uang_overtime' => 0,
+            'pot_bpjs' => 0,
+            'tgl_gaji' => $request->tgl_gaji,
+            'transportasi' => 0,
+            'total' => $total,
+            'status' => $request->status,
+            'jumlah_overtime' => 0,
+        ]);
+
+        if(!$test){
+            return redirect()->back()->with('errors','gagal Gaji');
+        }
+
+        return redirect()->back()->withsuccess('Berhasil Gaji');
+        }
+
+        return redirect()->back()->with('errors','Pegawai sudah di gaji bulan ini');
+
+    }
+
+
 
     public function datagaji(Request $request)
     {

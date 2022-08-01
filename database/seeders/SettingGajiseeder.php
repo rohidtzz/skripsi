@@ -36,6 +36,11 @@ class SettingGajiseeder extends Seeder
             'jumlah_potongan' => '3000000',
         ]);
 
+        SettingGaji::create([
+            'jenis_potongan' => 'hadir',
+            'jumlah_potongan' => '100000',
+        ]);
+
 
 
         // SettingGaji::create([

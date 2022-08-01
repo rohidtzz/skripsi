@@ -11,7 +11,7 @@
         <div class="card-body">
 
 
-<form action="/hrd/gaji/post" method="post">
+<form action="/hrd/gaji-daily/post" method="post">
 @csrf
 
 @php
@@ -25,11 +25,21 @@
     @endforeach
 </select>
 
-<div class="form-group">
-<label for="inputState">Gaji Pokok</label>
-<input type="text" name="gaji_pokok" value="<?php echo 'Rp. ' . $number_format; ?>"  class="form-control" placeholder="Gajipokok" disabled>
+<label for="inputState">Tanggal Gaji</label>
+<input type="date" name="tgl_gaji"  class="form-control" placeholder="Transportasi" required>
 
-<label for="inputState">Transportasi</label>
+<label for="inputState">status</label>
+<select id="inputState"  name="status" class="form-control">
+    <option value="lunas" selected>lunas</option>
+  <option value="belum" >belum</option>
+
+</select>
+
+{{-- <div class="form-group">
+<label for="inputState">Berapa Hari masuk dalam Sebulan</label>
+<input type="text" name="gaji_pokok" value=""  class="form-control" placeholder="Gajipokok" disabled> --}}
+
+{{-- <label for="inputState">Transportasi</label>
 <input type="number" name="transportasi"  class="form-control" placeholder="Transportasi" required>
 
 <label for="inputState">Gaji Tambahan</label>
@@ -49,7 +59,7 @@
     <option value="lunas" selected>lunas</option>
   <option value="belum" >belum</option>
 
-</select>
+</select> --}}
 
 
 

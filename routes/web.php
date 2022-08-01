@@ -66,6 +66,10 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/lihatabsen/sakit', [HrdController::class, 'lihatabsensakit']);
     Route::get('/hrd/lihatabsen/izin', [HrdController::class, 'lihatabsenizin']);
 
+    Route::get('/hrd/tambahabsen', [HrdController::class, 'tambahabsen']);
+
+    Route::post('/hrd/absen/post', [HrdController::class, 'tambahabsenpost']);
+
     Route::get('/hrd/absen/edit/{id}', [HrdController::class, 'edit']);
     Route::post('/hrd/absen/update/{id}', [HrdController::class, 'update']);
     Route::get('/hrd/absen/destroy/{id}', [HrdController::class, 'destroy']);
@@ -121,6 +125,11 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     //gaji
     Route::get('/hrd/gaji', [GajiController::class, 'index']);
     Route::post('/hrd/gaji/post', [GajiController::class, 'gajipost']);
+
+    Route::get('/hrd/gaji-daily', [GajiController::class, 'index2']);
+    Route::post('/hrd/gaji-daily/post', [GajiController::class, 'gajipost2']);
+
+
     Route::get('/hrd/datagaji', [GajiController::class, 'datagaji']);
     Route::get('hrd/gaji/read/{id}', [GajiController::class, 'datagajiread']);
 

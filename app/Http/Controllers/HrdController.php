@@ -24,6 +24,26 @@ class HrdController extends Controller
         return view('hrd.hrd');
     }
 
+    public function tambahabsen()
+    {
+        $user = User::all();
+
+        return View('/hrd/tambahabsen',compact('user'));
+    }
+
+    public function tambahabsenpost(Request $request)
+    {
+        Absen::create([
+            'user_id' => $request->user,
+            'keterangan' => $request->keterangan,
+            'tanggal' => $request->tgl,
+            'jam_masuk' => $request->masuk,
+            'jam_keluar' => $request->keluar,
+        ]);
+
+        return redirect()->back()->withSuccess('Berhasil Tambah Absen');
+    }
+
     public function lihatabsen(request $request)
     {
 
