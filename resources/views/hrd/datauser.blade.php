@@ -44,6 +44,8 @@
 
 
             </form>
+            <br>
+           <a href="/hrd/exportuser" target="_blank"><button  class="btn btn-info">Export Karyawan</button></a>
 
 
         </div>
