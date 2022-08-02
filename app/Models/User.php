@@ -32,7 +32,8 @@ class User extends Authenticatable
         'no_hp',
         'status',
         'no_backup',
-        'waktu_aktif'
+        'waktu_aktif',
+        'tgl_lahir'
     ];
 
     /**

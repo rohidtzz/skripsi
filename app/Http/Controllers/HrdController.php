@@ -11,6 +11,8 @@ use App\Models\DataUser;
 
 use App\Imports\UserImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
+use App\Exports\AbsenExport;
 
 use App\Http\Controllers\Session;
 use Illuminate\Support\Facades\Validator;
@@ -732,6 +734,7 @@ class HrdController extends Controller
                 'no_hp' => $request->no_hp,
                 'status' => $request->status,
                 'no_backup' => $request->no_backup,
+                'tgl_lahir' => $request->tgl_lahir
             ]);
 
             return redirect()->back()->withSuccess('Edit Berhasil');
@@ -800,6 +803,18 @@ class HrdController extends Controller
         }
 
     }
+
+    public function exportuser()
+    {
+        return Excel::download(new UserExport, 'karyawan.xlsx');
+    }
+
+    public function exportabsen()
+    {
+        return Excel::download(new AbsenExport, 'absen.xlsx');
+    }
+
+
 
 
 }

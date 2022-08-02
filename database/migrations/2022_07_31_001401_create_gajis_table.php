@@ -25,6 +25,7 @@ class CreateGajisTable extends Migration
             $table->double('total')->nullable()->default(0);
             $table->enum('status',['lunas','belum']);
             $table->string('jumlah_overtime')->nullable();
+            $table->enum('status_gaji',['staff','daily worker']);
 
             $table->timestamps();
 

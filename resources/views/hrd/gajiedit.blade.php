@@ -47,6 +47,14 @@
 
 </select>
 
+<label for="inputState">status Gaji Karyawan</label>
+<select id="inputState"  name="status_gaji" class="form-control">
+    <option value="{{ $all->status_gaji }}" selected>{{ $all->status_gaji }}</option>
+  <option value="staff" >staff</option>
+  <option value="daily worker" >daily worker</option>
+
+</select>
+
 <label for="inputState">Total Gaji</label>
 <input type="number" name="total" value="{{ $all->total }}"  class="form-control" placeholder="Transportasi" required>
 

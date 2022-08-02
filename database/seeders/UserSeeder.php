@@ -31,6 +31,7 @@ class UserSeeder extends Seeder
             'status' => 'kawin',
             'no_backup' => '0124215565',
             'waktu_aktif' => date('d/m/y'),
+            'tgl_lahir' => '1990/05/10'
         ]);
 
         User::create([
@@ -48,6 +49,7 @@ class UserSeeder extends Seeder
             'status' => 'kawin',
             'no_backup' => '0102359652',
             'waktu_aktif' => date('d/m/y'),
+            'tgl_lahir' => '1990/05/10'
         ]);
 
         User::create([
@@ -65,6 +67,7 @@ class UserSeeder extends Seeder
             'status' => 'kawin',
             'no_backup' => '2356753',
             'waktu_aktif' => date('d/m/y'),
+            'tgl_lahir' => '1990/05/10'
         ]);
 
         User::create([
@@ -82,6 +85,7 @@ class UserSeeder extends Seeder
             'status' => 'kawin',
             'no_backup' => '234234',
             'waktu_aktif' => date('d/m/y'),
+            'tgl_lahir' => '1990/05/10'
         ]);
 
     }

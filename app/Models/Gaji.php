@@ -10,7 +10,7 @@ class Gaji extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'uang_tambahan', 'gaji_pokok','uang_overtime','pot_bpjs','tgl_gaji','transportasi','total','status','jumlah_overtime'
+        'user_id', 'uang_tambahan', 'gaji_pokok','uang_overtime','pot_bpjs','tgl_gaji','transportasi','total','status','jumlah_overtime','status_gaji'
     ];
 
     /**

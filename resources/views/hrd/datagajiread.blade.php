@@ -36,6 +36,7 @@
                             <th>Tanggal</th>
                             <th>status</th>
                             <th>total</th>
+                            <th>status Gaji Karyawan</th>
                             {{-- <th>opsi</th> --}}
                         </tr>
                           @foreach ($all as $u )
@@ -61,6 +62,7 @@
                             <td>{{ $u->tgl_gaji}}</td>
                             <td>@if($u->status == 'belum') <span class="badge badge-danger">{{$u->status == 'belum' ? 'Belum Lunas':''}}</span> @else <span class="badge badge-success">{{$u->status == 'lunas' ? 'lunas':''}}</span> @endif </td>
                             <td><?php echo 'Rp. ' . $total; ?></td>
+                            <td>{{ $u->status_gaji }}</td>
                                 {{-- <table >
                                     <tr>
                                         <td><a href="/hrd/pengajuan/edit/{{$u->id}}" class="btn btn-info">Edit</a>

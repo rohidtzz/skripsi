@@ -110,6 +110,7 @@
 
                 <button class="btn btn-secondary" type="submit">submit </button>
             </form>
+            <a  href="/hrd/absen/exportexcel"><button class="btn btn-info">Export excel</button></a>
 
 
         </div>

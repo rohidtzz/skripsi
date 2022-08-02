@@ -19,6 +19,17 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Data Gaji</h3>
+                    @if (Auth()->user()->jabatan == 'hrd')
+
+
+                    <a  href="/hrd/datagaji/exportpdf"><button class="btn btn-info">Export Pdf</button></a>
+                    <a  href="/hrd/datagaji/exportexcel"><button class="btn btn-info">Export excel</button></a>
+
+                    @elseif (Auth()->user()->jabatan == 'direktur')
+                    <a  href="/direktur/datagaji/exportpdf"><button class="btn btn-info">Export Pdf</button></a>
+                    <a  href="/direktur/datagaji/exportexcel"><button class="btn btn-info">Export excel</button></a>
+                    @else
+                    @endif
                 </div>
 
                 <div class="card-body">
@@ -30,6 +41,7 @@
                             <th>total</th>
                             <th>Tanggal</th>
                             <th>status</th>
+                            <th>Status Gaji Karyawan</th>
 
                             <th>opsi</th>
 
@@ -44,6 +56,7 @@
                             <td><?php echo 'Rp. ' . $number_format; ?></td>
                             <td>{{ $u->tgl_gaji}}</td>
                             <td>@if($u->status == 'belum') <span class="badge badge-danger">{{$u->status == 'belum' ? 'Belum Lunas':''}}</span> @else <span class="badge badge-success">{{$u->status == 'lunas' ? 'lunas':''}}</span> @endif </td>
+                            <td>{{ $u->status_gaji }}</td>
                             <td>
                                 {{-- <table >
                                     <tr>

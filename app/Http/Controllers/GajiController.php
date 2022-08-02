@@ -10,7 +10,12 @@ use App\Models\DataUser;
 use App\Models\SettingGaji;
 use App\Models\Pengajuan;
 
+use App\Exports\GajiExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\SettingJam;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 use Illuminate\Http\Request;
 
@@ -141,6 +146,7 @@ class GajiController extends Controller
             'total' => $total,
             'status' => $request->status,
             'jumlah_overtime' => $request->lembur_jam,
+            'status_gaji' => 'staff'
         ]);
 
         if(!$test){
@@ -255,6 +261,7 @@ class GajiController extends Controller
             'total' => $total,
             'status' => $request->status,
             'jumlah_overtime' => 0,
+            'status_gaji' => 'daily worker'
         ]);
 
         if(!$test){
@@ -350,6 +357,7 @@ class GajiController extends Controller
             'total' => $request->total,
             'status' => $request->status,
             'jumlah_overtime' => $request->lembur_jam,
+            'status_gaji' => $request->status_gaji
         ]);
 
         if(!$test){
@@ -376,6 +384,21 @@ class GajiController extends Controller
             return redirect()->back()->withSuccess('Hapus Gaji Berhasil');
         }
 
+    }
+
+    public function datagajiexportpdf()
+    {
+        $data = Gaji::all();
+
+        View()->share('data',$data);
+        $pdf = Pdf::loadview('hrd.datagaji-pdf')->setPaper('a4', 'landscape');
+        return $pdf->download('datagaji.pdf');
+
+    }
+
+    public function exportexcel()
+    {
+        return Excel::download(new GajiExport, 'gaji.xlsx');
     }
 
     /**

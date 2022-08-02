@@ -52,6 +52,9 @@
                     <b>Npwp</b> <a class="float-right">{{ $data->npwp }}</a>
                   </li>
                   <li class="list-group-item">
+                    <b>Tanggal Lahir</b> <a class="float-right">{{ $data->tgl_lahir }}</a>
+                  </li>
+                  <li class="list-group-item">
                     <b>Division</b> <a class="float-right">{{ App\Models\Posisi::find($data->id)->name }}</a>
                   </li>
                   <li class="list-group-item">

@@ -102,6 +102,10 @@
         <option value="belum_kawin">belum_kawin</option>
     </select>
 
+    <label for="inputState">Tanggal Lahir</label>
+    <input type="date" name="tgl_lahir" value="{{ $data->tgl_lahir }}" class="form-control" placeholder="tanggal lahir" required>
+
+
     <label for="inputState">no hp backup</label>
     <input type="number" name="no_backup" value="{{ $data->no_backup}}" class="form-control" placeholder="no hp backup" required>
 

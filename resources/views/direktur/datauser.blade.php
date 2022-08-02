@@ -10,7 +10,9 @@
 
     <div class="card">
         <div class="card-header">
-            <h3>Data User</h3>
+            <h3>Data Karyawan</h3>
+
+            <a href="/direktur/exportuser" target="_blank"><button  class="btn btn-info">Export Karyawan</button></a>
 
 
         </div>

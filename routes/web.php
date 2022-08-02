@@ -60,6 +60,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::get('/hrd/lihatabsen', [HrdController::class, 'lihatabsen']);
 
+    Route::get('/hrd/absen/exportexcel', [HrdController::class, 'exportabsen']);
+
     Route::get('/hrd/lihatabsen/masuk', [HrdController::class, 'lihatabsenmasuk']);
     Route::get('/hrd/lihatabsen/telat', [HrdController::class, 'lihatabsentelat']);
     Route::get('/hrd/lihatabsen/alpha', [HrdController::class, 'lihatabsenalpha']);
@@ -95,6 +97,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('hrd/user/destroy/{id}', [HrdController::class, 'userdestroy']);
     Route::get('hrd/user/read/{id}', [HrdController::class, 'datauserread']);
 
+    Route::get('hrd/exportuser', [HrdController::class, 'exportuser']);
+
 
 
     //setting
@@ -124,6 +128,9 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     //gaji
     Route::get('/hrd/gaji', [GajiController::class, 'index']);
+
+    Route::get('/hrd/datagaji/exportexcel', [GajiController::class, 'exportexcel']);
+
     Route::post('/hrd/gaji/post', [GajiController::class, 'gajipost']);
 
     Route::get('/hrd/gaji-daily', [GajiController::class, 'index2']);
@@ -131,6 +138,9 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
 
     Route::get('/hrd/datagaji', [GajiController::class, 'datagaji']);
+    Route::get('/hrd/datagaji/exportpdf', [GajiController::class, 'datagajiexportpdf']);
+
+
     Route::get('hrd/gaji/read/{id}', [GajiController::class, 'datagajiread']);
 
     Route::get('hrd/gaji/edit/{id}', [GajiController::class, 'edit']);
@@ -187,6 +197,8 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     //absen
     Route::get('/direktur/home', [AbsenController::class, 'indexdirektur']);
 
+    Route::get('/direktur/absen/exportexcel', [HrdController::class, 'exportabsen']);
+
     Route::get('/direktur/lihatabsen', [DirekturController::class, 'lihatabsen']);
 
     Route::get('/direktur/lihatabsen/masuk', [DirekturController::class, 'lihatabsenmasuk']);
@@ -215,6 +227,9 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     //gaji
     Route::get('/direktur/datagaji', [GajiController::class, 'datagaji']);
     Route::get('/direktur/gaji/read/{id}', [GajiController::class, 'datagajiread']);
+    Route::get('/direktur/datagaji/exportpdf', [GajiController::class, 'datagajiexportpdf']);
+    Route::get('/direktur/datagaji/exportexcel', [GajiController::class, 'exportexcel']);
+    Route::get('/direktur/exportuser', [HrdController::class, 'exportuser']);
 
 });
 
