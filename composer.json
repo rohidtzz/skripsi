@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
         "nesbot/carbon": "^2.58",
+        "phpmailer/phpmailer": "^6.6",
         "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {

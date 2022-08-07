@@ -149,6 +149,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::get('/hrd/gaji/destroy/{id}', [GajiController::class, 'destroy']);
 
+    Route::get('/hrd/slipgaji/{id}', [GajiController::class, 'slipgaji']);
+
 
 
 
@@ -182,6 +184,8 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
     //gaji
     Route::get('/karyawan/datagaji', [GajiController::class, 'datagajikar']);
     Route::get('/karyawan/gaji/read/{id}', [GajiController::class, 'datagajireadkar']);
+
+    Route::get('/karyawan/slipgaji/{id}', [GajiController::class, 'slipgaji']);
 
 
 
@@ -230,6 +234,9 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     Route::get('/direktur/datagaji/exportpdf', [GajiController::class, 'datagajiexportpdf']);
     Route::get('/direktur/datagaji/exportexcel', [GajiController::class, 'exportexcel']);
     Route::get('/direktur/exportuser', [HrdController::class, 'exportuser']);
+
+
+    Route::get('/direktur/slipgaji/{id}', [GajiController::class, 'slipgaji']);
 
 });
 

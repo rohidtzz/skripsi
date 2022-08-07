@@ -5,7 +5,39 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-3 col-6">
+
+    <div class="card">
+        <div class="card-body">
+
+            <div id="piechart" style="width: 900px; height: 500px;"></div>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Masuk',     {{$JumlahHadir}}],
+          ['Alpha',      {{$JumlahAlpha}}],
+          ['Telat',  {{$JumlahTelat}}],
+          ['Sakit', {{$JumlahSakit}}],
+          ['Izin',    {{$JumlahIzin}}]
+        ]);
+
+        var options = {
+          title: 'Aktifitas Absen',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+        </div>
+    </div>
+    {{-- <div class="col-lg-3 col-6">
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
@@ -63,12 +95,12 @@
         </div>
         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
-    </div>
+    </div> --}}
     <!-- ./col -->
-  </div>
+  {{-- </div> --}}
   <!-- /.row -->
   <!-- Main row -->
-  <div class="row">
+  {{-- <div class="row">
     <!-- Left col -->
     <section class="col-lg-7 connectedSortable">
       <!-- Custom tabs (Charts with tabs)-->
@@ -578,8 +610,8 @@
       <!-- /.card -->
     </section>
     <!-- right col -->
-  </div>
-
+  </div> --}}
+    </div>
 
 @endsection
 

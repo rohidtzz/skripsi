@@ -19,6 +19,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Data Gaji</h3>
+
+
+                    <a  href="/hrd/slipgaji/{{ $all->first()->id }}"><button class="btn btn-info">Cetak SLip Gaji</button></a>
                 </div>
 
                 <div class="card-body">

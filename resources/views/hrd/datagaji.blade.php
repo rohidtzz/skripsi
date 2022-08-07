@@ -48,8 +48,8 @@
                         </tr>
                           @foreach ($all as $u )
                           @php
-        $number_format  = number_format($u->total,2,",",".");
-@endphp
+                                    $number_format  = number_format($u->total,2,",",".");
+                            @endphp
                         <tr>
                             <td>{{App\Models\User::find($u->user_id)->no_identitas}}</td>
                             <td>{{ App\Models\User::find($u->user_id)->name }}</td>

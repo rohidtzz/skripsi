@@ -17,6 +17,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\SettingJam;
 use Barryvdh\DomPDF\Facade\Pdf;
 
+
+
 use Illuminate\Http\Request;
 
 class GajiController extends Controller
@@ -300,10 +302,26 @@ class GajiController extends Controller
     public function datagajiread(Request $request,$id)
     {
 
+        $user = Auth()->user()->jabatan;
 
-        $all = Gaji::where('id',$id)->get();
+        if($user == 'hrd'){
+            $all = Gaji::where('id',$id)->get();
 
         return view('hrd.datagajiread',compact('all'));
+        } elseif ($user == 'direktur'){
+            $all = Gaji::where('id',$id)->get();
+
+            return view('direktur.datagajiread',compact('all'));
+
+        } elseif ($user == 'kaeyawan') {
+            $all = Gaji::where('id',$id)->get();
+
+            return view('karyawan.datagajiread',compact('all'));
+        } else{
+            return redirect()->back();
+        }
+
+
 
     }
 
@@ -313,7 +331,7 @@ class GajiController extends Controller
 
         $all = Gaji::where('user_id',$id)->get();
 
-        return view('hrd.datagajiread',compact('all'));
+        return view('karyawan.datagajiread',compact('all'));
 
     }
 
@@ -399,6 +417,17 @@ class GajiController extends Controller
     public function exportexcel()
     {
         return Excel::download(new GajiExport, 'gaji.xlsx');
+    }
+
+    public function slipgaji($id)
+    {
+
+        $data = Gaji::find($id);
+
+        View()->share('data',$data);
+        $pdf = Pdf::loadview('hrd.slipgaji');
+        return $pdf->stream('slipgaji.pdf');
+
     }
 
     /**
