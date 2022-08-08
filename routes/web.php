@@ -99,8 +99,6 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::get('hrd/exportuser', [HrdController::class, 'exportuser']);
 
-
-
     //setting
     Route::get('/hrd/settings/jamkerja', [SettingController::class, 'jamkerja']);
     Route::post('/hrd/settings/jamkerja/update', [SettingController::class, 'jamkerjaupdate']);
@@ -115,7 +113,14 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     //penyuratan
     Route::get('/hrd/penyuratan', [PenyuratanController::class, 'index']);
-    Route::get('/hrd/penyuratan/show/{id}', [PenyuratanController::class, 'penyuratanshow']);
+
+    Route::get('/hrd/penyuratan/edit/{id}', [PenyuratanController::class, 'penyuratanedit']);
+    Route::post('/hrd/penyuratan/edit/post', [PenyuratanController::class, 'penyurataneditpost']);
+
+    Route::get('/hrd/datapenyuratan', [PenyuratanController::class, 'datapenyuratan']);
+
+    Route::get('/hrd/penyuratan/kirim/{id}/{alpha}', [PenyuratanController::class, 'penyuratankirim']);
+
 
     //settingpotongangaji
     Route::get('/hrd/settinggaji', [SettingGajiController::class, 'index']);
@@ -187,6 +192,10 @@ Route::group(['middleware' => ['CekRole:karyawan']], function () {
 
     Route::get('/karyawan/slipgaji/{id}', [GajiController::class, 'slipgaji']);
 
+    //penyuratan
+
+    Route::get('/karyawan/datapenyuratan', [PenyuratanController::class, 'datapenyuratankar']);
+
 
 
 
@@ -234,9 +243,11 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     Route::get('/direktur/datagaji/exportpdf', [GajiController::class, 'datagajiexportpdf']);
     Route::get('/direktur/datagaji/exportexcel', [GajiController::class, 'exportexcel']);
     Route::get('/direktur/exportuser', [HrdController::class, 'exportuser']);
-
-
     Route::get('/direktur/slipgaji/{id}', [GajiController::class, 'slipgaji']);
+
+    //penyuratan
+
+    Route::get('/direktur/datapenyuratan', [PenyuratanController::class, 'datapenyuratan']);
 
 });
 

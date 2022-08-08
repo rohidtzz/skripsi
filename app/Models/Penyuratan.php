@@ -11,7 +11,7 @@ class Penyuratan extends Model
 
 
     protected $fillable = [
-        'user_id', 'tanggal', 'alpha'
+        'user_id','to_user_id','alpha','deskripsi', 'tanggal'
     ];
 
     /**

@@ -817,12 +817,70 @@
                 @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-clock"></i>
+              <i class="nav-icon fas fa-scroll"></i>
               <p>
                 Penyuratan
+
               </p>
             </a>
           </li> --}}
+
+
+          <li class="nav-item {{ Request::is('hrd/penyuratan') ? 'menu-open' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'menu-open' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'menu-open' : '' }}{{ Request::is('hrd/tambahabsen') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link
+            {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'active' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'active' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }} {{ Request::is('hrd/tambahabsen') ? 'active' : '' }}
+            ">
+              <i class="nav-icon fas fa-scroll"></i>
+              <p>
+               Penyuratan
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+                @if (Auth()->user()->jabatan == 'hrd')
+                <li class="nav-item">
+                    <a href="
+
+                    {{ url('/hrd/penyuratan') }}
+                    " class="nav-link
+                    {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('direktur/penyuratan') ? 'active' : '' }}{{ Request::is('karyawan/penyuratan') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}">
+                      <i class="fas {{Request::is('karyawan/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                      <p>Beri Peringatan</p>
+                    </a>
+                  </li>
+                @endif
+
+
+
+              <li class="nav-item">
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/datapenyuratan') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('/direktur/datapenyuratan') }}
+                @elseif (Auth()->user()->jabatan == 'karyawan')
+                {{ url('/karyawan/datapenyuratan') }}
+                @endif
+                " class="nav-link  {{Request::is('hrd/datapenyuratan') ? 'active' : ''}} {{Request::is('direktur/datapenyuratan') ? 'active' : ''}} {{Request::is('karyawan/datapenyuratan') ? 'active' : ''}}">
+                  <i class="fas  {{Request::is('hrd/datapenyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapenyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('karyawan/datapenyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                  <p>Data Penyuratan</p>
+                </a>
+              </li>
+
+              {{-- <li class="nav-item">
+                <a href="pages/forms/editors.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>pengajuan</p>
+                </a>
+              </li> --}}
+
+            </ul>
+          </li>
+
+
+
+
 
 
           <li class="nav-item">
