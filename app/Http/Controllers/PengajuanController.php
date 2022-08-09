@@ -18,17 +18,17 @@ class PengajuanController extends Controller
             $id = auth()->user()->id;
 
             $all = Pengajuan::where('user_id', $id)->get();
-            return view('karyawan.pengajuan', compact('all'));
+            return view('karyawan.pengajuan.pengajuan', compact('all'));
         }
 
         if(auth()->user()->jabatan == 'hrd'){
             $all = Pengajuan::all();
-            return view('hrd.pengajuan', compact('all'));
+            return view('hrd.pengajuan.pengajuan', compact('all'));
         }
 
         if(auth()->user()->jabatan == 'direktur'){
             $all = Pengajuan::all();
-            return view('direktur.pengajuan', compact('all'));
+            return view('direktur.pengajuan.pengajuan', compact('all'));
         }
 
 
@@ -141,7 +141,7 @@ class PengajuanController extends Controller
     {
         $data = Pengajuan::find($id);
 
-        return view('hrd.pengajuanedit', compact('data'));
+        return view('hrd.pengajuan.pengajuanedit', compact('data'));
     }
 
     public function pengajuaneditpost(Request $request,$id)
@@ -179,7 +179,7 @@ class PengajuanController extends Controller
         $cobadestroy = Pengajuan::find($id)->delete();
 
         if($cobadestroy){
-            return redirect('/hrd/pengajuan')->withSuccess('Hapus Berhasil');
+            return redirect('/hrd/datapengajuan')->withSuccess('Hapus Berhasil');
         }
 
     }
@@ -190,12 +190,12 @@ class PengajuanController extends Controller
 
         if(auth()->user()->jabatan == 'hrd'){
             $all = Pengajuan::all();
-            return view('hrd.datapengajuan', compact('all'));
+            return view('hrd.pengajuan.datapengajuan', compact('all'));
         }
 
         if(auth()->user()->jabatan == 'direktur'){
             $all = Pengajuan::all();
-            return view('direktur.datapengajuan', compact('all'));
+            return view('direktur.pengajuan.datapengajuan', compact('all'));
         }
 
 

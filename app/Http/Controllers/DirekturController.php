@@ -47,7 +47,7 @@ class DirekturController extends Controller
         $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
 
 
-        return view('direktur.direktur',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.dashboard.direktur',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsen(Request $request)
@@ -89,7 +89,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -110,7 +110,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -151,7 +151,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -172,7 +172,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsentelat(Request $request)
@@ -214,7 +214,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -235,7 +235,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -281,7 +281,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -301,7 +301,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -345,7 +345,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -365,7 +365,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -409,7 +409,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -429,7 +429,7 @@ class DirekturController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('direktur.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('direktur.absen.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -438,14 +438,14 @@ class DirekturController extends Controller
         $id = Auth()->user()->id;
         $data = User::find($id);
 
-        return View('direktur.user',compact('data'));
+        return View('direktur.karyawan.user',compact('data'));
 
     }
 
     public function datauser(){
         $data = User::all();
 
-        return View('direktur.datauser',compact('data'));
+        return View('direktur.karyawan.datauser',compact('data'));
     }
 
     public function usereditpost(Request $request)
@@ -534,7 +534,7 @@ class DirekturController extends Controller
             return redirect()->back()->with('error', 'gagal read karyawan');
         }
 
-        return View('direktur.userread',compact('data','user'));
+        return View('direktur.karyawan.userread',compact('data','user'));
     }
 
 

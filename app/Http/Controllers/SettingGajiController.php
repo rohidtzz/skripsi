@@ -18,7 +18,7 @@ class SettingGajiController extends Controller
 
         $all = SettingGaji::all();
 
-        return view('hrd.settinggaji',compact('all'));
+        return view('hrd.gaji.settinggaji',compact('all'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SettingGajiController extends Controller
      */
     public function create()
     {
-        return view('hrd.settinggajicreate');
+        return view('hrd.gaji.settinggajicreate');
     }
 
     public function settinggajipost(Request $request)
@@ -85,7 +85,7 @@ class SettingGajiController extends Controller
             return redirect()->back()->with('errors', 'Edit Gagal');
         }
 
-        return view('hrd.settinggajiedit',compact('all'));
+        return view('hrd.gaji.settinggajiedit',compact('all'));
     }
 
     /**

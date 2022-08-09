@@ -55,7 +55,7 @@ class AbsenController extends Controller
         // return view('karyawan.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
 
-        return view('karyawan.absen', );
+        return view('karyawan.absen.absen', );
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -92,7 +92,7 @@ class AbsenController extends Controller
         // return view('hrd.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
 
-        return view('hrd.absen');
+        return view('hrd.absen.absen');
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 
@@ -128,7 +128,7 @@ class AbsenController extends Controller
         // $jamkeluarkurang5 = date_format($dati,"H:i:s");
         // return view('direktur.absen', compact('jamkeluarkurang5','jammasuk','jamkeluar','libur','holiday'));
 
-        return view('direktur.absen');
+        return view('direktur.absen.absen');
 
         // $kalender = Http::get('https://kalenderindonesia.com/api/APIZ7UX2msi3c/libur/masehi/2022')->json();
 

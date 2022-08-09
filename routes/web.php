@@ -50,7 +50,7 @@ Route::group(['middleware' => ['CekLoginLagi']], function () {
 
 Route::group(['middleware' => ['CekRole:hrd']], function () {
 
-    Route::get('/kirimemail',[MailController::class, 'index ']);
+    // Route::get('/kirimemail',[MailController::class, 'index ']);
 
     //dashboard
     Route::get('/hrd/dashboard', [HrdController::class, 'index']);

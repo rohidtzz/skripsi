@@ -826,9 +826,9 @@
           </li> --}}
 
 
-          <li class="nav-item {{ Request::is('hrd/penyuratan') ? 'menu-open' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'menu-open' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'menu-open' : '' }}{{ Request::is('hrd/tambahabsen') ? 'menu-open' : '' }}">
+          <li class="nav-item {{ Request::is('hrd/penyuratan') ? 'menu-open' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'menu-open' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link
-            {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'active' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'active' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }} {{ Request::is('hrd/tambahabsen') ? 'active' : '' }}
+            {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'active' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'active' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'active' : '' }}
             ">
               <i class="nav-icon fas fa-scroll"></i>
               <p>
@@ -844,8 +844,8 @@
 
                     {{ url('/hrd/penyuratan') }}
                     " class="nav-link
-                    {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('direktur/penyuratan') ? 'active' : '' }}{{ Request::is('karyawan/penyuratan') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}">
-                      <i class="fas {{Request::is('karyawan/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                    {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('direktur/penyuratan') ? 'active' : '' }}{{ Request::is('karyawan/penyuratan') ? 'active' : '' }}">
+                      <i class="fas {{Request::is('karyawan/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}}  nav-icon"></i>
                       <p>Beri Peringatan</p>
                     </a>
                   </li>

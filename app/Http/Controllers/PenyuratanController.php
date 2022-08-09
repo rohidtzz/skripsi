@@ -83,7 +83,7 @@ class PenyuratanController extends Controller
 
 
         //  dd($user->with('getuser')->get());
-        return view('hrd.penyuratan',compact('JumlahAbsen','all','jammasuklebih10','jamkeluarkurang5','mulai','user','datebulan','datetahun'));
+        return view('hrd.penyuratan.penyuratan',compact('JumlahAbsen','all','jammasuklebih10','jamkeluarkurang5','mulai','user','datebulan','datetahun'));
 
         }
 
@@ -102,7 +102,7 @@ class PenyuratanController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.penyuratan',compact('JumlahAbsen','all','jammasuklebih10','jamkeluarkurang5','mulai','user','datebulan','datetahun'));
+        return view('hrd.penyuratan.penyuratan',compact('JumlahAbsen','all','jammasuklebih10','jamkeluarkurang5','mulai','user','datebulan','datetahun'));
     }
 
     public function penyuratanedit(Request $request,$id)
@@ -111,7 +111,7 @@ class PenyuratanController extends Controller
 
         $all = Penyuratan::find($id);
 
-        return view('hrd.penyuratanedit',compact('all'));
+        return view('hrd.penyuratan.penyuratanedit',compact('all'));
 
 
     }
@@ -152,7 +152,7 @@ class PenyuratanController extends Controller
         }
 
 
-        return view('hrd.beriperingatan',compact('user','alpha'));
+        return view('hrd.penyuratan.beriperingatan',compact('user','alpha'));
     }
 
     public function penyuratankirimpost(Request $request)
@@ -187,11 +187,11 @@ class PenyuratanController extends Controller
         if($jabatan == 'hrd'){
             $data = Penyuratan::all();
 
-        return view('hrd.datapenyuratan',compact('data'));
+        return view('hrd.penyuratan.datapenyuratan',compact('data'));
         } elseif ($jabatan == 'direktur'){
             $data = Penyuratan::all();
 
-        return view('direktur.datapenyuratan',compact('data'));
+        return view('direktur.penyuratan.datapenyuratan',compact('data'));
         }
 
     }
@@ -203,7 +203,7 @@ class PenyuratanController extends Controller
         $data = Penyuratan::where('to_user_id',$id)->get();
 
 
-        return view('karyawan.datapenyuratan',compact('data'));
+        return view('karyawan.penyuratan.datapenyuratan',compact('data'));
     }
 
     /**

@@ -18,7 +18,7 @@
 	</center>
 
     @php
-                            $alpha = App\Models\SettingGaji::where('jenis_potongan', 'potongan sanksi alpha')->first();
+                            $pph = App\Models\SettingGaji::where('jenis_potongan', 'potongan pph')->first();
                           $total  = number_format($data->total,2,",",".");
                           $tambahan  = number_format($data->uang_tambahan,2,",",".");
                           $gajipokok  = number_format($data->gaji_pokok,2,",",".");
@@ -26,7 +26,8 @@
                           $asuransi  = number_format($data->pot_bpjs,2,",",".");
                           $transportasi  = number_format($data->transportasi,2,",",".");
                           $lemburjam  = number_format($data->jumlah_overtime,2,",",".");
-                            $totalpotongan = number_format($alpha->jumlah_potongan,2,",",".");
+                            $potonganalpha = number_format($data->pot_uang_alpha,2,",",".");
+                            $potonganpph = number_format($pph->jumlah_potongan,2,",",".");
 
                   @endphp
 
@@ -92,7 +93,19 @@
 		<tr>
 			<td>4</td>
 			<td>Potongan Sanksi Alpha</td>
-			<td><?php echo 'Rp. ' . $totalpotongan ?></td>
+			<td><?php echo 'Rp. ' . $potonganalpha ?></td>
+		</tr>
+
+        <tr>
+			<td>5</td>
+			<td>Potongan Bpjs</td>
+			<td><?php echo 'Rp. ' . $asuransi ?></td>
+		</tr>
+
+        <tr>
+			<td>6</td>
+			<td>Potongan pph</td>
+			<td><?php echo 'Rp. ' . $potonganpph ?></td>
 		</tr>
 
 		<tr>

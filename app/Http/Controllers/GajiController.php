@@ -36,7 +36,7 @@ class GajiController extends Controller
         $settinggaji = SettingGaji::all();
         $gajipokok =    SettingGaji::where('jenis_potongan','Gaji pokok')->first();
 
-        return view('hrd.gaji',compact('user','gaji','settinggaji','gajipokok'));
+        return view('hrd.gaji.gaji',compact('user','gaji','settinggaji','gajipokok'));
     }
 
     public function index2()
@@ -47,7 +47,7 @@ class GajiController extends Controller
         $settinggaji = SettingGaji::all();
         $gajipokok =    SettingGaji::where('jenis_potongan','Gaji pokok')->first();
 
-        return view('hrd.gajidaily',compact('user','gaji','settinggaji','gajipokok'));
+        return view('hrd.gaji.gajidaily',compact('user','gaji','settinggaji','gajipokok'));
     }
 
     public function gajipost(Request $request)
@@ -143,6 +143,7 @@ class GajiController extends Controller
             'gaji_pokok' => $gajipokok->jumlah_potongan,
             'uang_overtime' => $totallembur,
             'pot_bpjs' => $potonganbpjs->jumlah_potongan,
+            'pot_uang_alpha' => $totalalpha,
             'tgl_gaji' => $request->tgl_gaji,
             'transportasi' => $request->transportasi,
             'total' => $total,
@@ -258,6 +259,7 @@ class GajiController extends Controller
             'gaji_pokok' => 0,
             'uang_overtime' => 0,
             'pot_bpjs' => 0,
+            'pot_uang_alpha' => $totalalpha,
             'tgl_gaji' => $request->tgl_gaji,
             'transportasi' => 0,
             'total' => $total,
@@ -284,7 +286,7 @@ class GajiController extends Controller
 
         $all = Gaji::all();
 
-        return view('hrd.datagaji',compact('all'));
+        return view('hrd.gaji.datagaji',compact('all'));
 
     }
 
@@ -295,7 +297,7 @@ class GajiController extends Controller
 
         $all = Gaji::where('user_id',$id)->get();
 
-        return view('hrd.datagaji',compact('all'));
+        return view('hrd.gaji.datagaji',compact('all'));
 
     }
 
@@ -307,16 +309,16 @@ class GajiController extends Controller
         if($user == 'hrd'){
             $all = Gaji::where('id',$id)->get();
 
-        return view('hrd.datagajiread',compact('all'));
+        return view('hrd.gaji.datagajiread',compact('all'));
         } elseif ($user == 'direktur'){
             $all = Gaji::where('id',$id)->get();
 
-            return view('direktur.datagajiread',compact('all'));
+            return view('direktur.gaji.datagajiread',compact('all'));
 
         } elseif ($user == 'kaeyawan') {
             $all = Gaji::where('id',$id)->get();
 
-            return view('karyawan.datagajiread',compact('all'));
+            return view('karyawan.gaji.datagajiread',compact('all'));
         } else{
             return redirect()->back();
         }
@@ -331,7 +333,7 @@ class GajiController extends Controller
 
         $all = Gaji::where('user_id',$id)->get();
 
-        return view('karyawan.datagajiread',compact('all'));
+        return view('karyawan.gaji.datagajiread',compact('all'));
 
     }
 
@@ -347,7 +349,7 @@ class GajiController extends Controller
 
         // return view('hrd/edit')->with(['data' => $data]);
 
-        return view('hrd.gajiedit', compact('all'));
+        return view('hrd.gaji.gajiedit', compact('all'));
 
 
     }
@@ -409,7 +411,7 @@ class GajiController extends Controller
         $data = Gaji::all();
 
         View()->share('data',$data);
-        $pdf = Pdf::loadview('hrd.datagaji-pdf')->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadview('hrd.gaji.datagaji-pdf')->setPaper('a4', 'landscape');
         return $pdf->download('datagaji.pdf');
 
     }
@@ -425,7 +427,7 @@ class GajiController extends Controller
         $data = Gaji::find($id);
 
         View()->share('data',$data);
-        $pdf = Pdf::loadview('hrd.slipgaji');
+        $pdf = Pdf::loadview('hrd.gaji.slipgaji');
         return $pdf->stream('slipgaji.pdf');
 
     }

@@ -20,6 +20,7 @@ class CreateGajisTable extends Migration
             $table->double('gaji_pokok')->default(0);
             $table->double('uang_overtime')->default(0);
             $table->double('pot_bpjs')->default(0);
+            $table->double('pot_uang_alpha')->default(0);
             $table->date('tgl_gaji');
             $table->string('transportasi')->nullable();
             $table->double('total')->nullable()->default(0);

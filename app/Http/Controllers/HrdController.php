@@ -52,14 +52,14 @@ class HrdController extends Controller
         $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
 
 
-        return view('hrd.hrd',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.dashboard.hrd',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function tambahabsen()
     {
         $user = User::all();
 
-        return View('/hrd/tambahabsen',compact('user'));
+        return View('/hrd/absen/tambahabsen',compact('user'));
     }
 
     public function tambahabsenpost(Request $request)
@@ -117,7 +117,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -142,7 +142,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
 
         // $id = auth()->user()->id;
@@ -223,7 +223,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -244,7 +244,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsentelat(Request $request)
@@ -286,7 +286,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -307,7 +307,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -353,7 +353,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -373,7 +373,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -417,7 +417,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -437,7 +437,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -481,7 +481,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
         $mulai = null;
         $selesai = null;
@@ -500,7 +500,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -516,7 +516,7 @@ class HrdController extends Controller
 
         // return view('hrd/edit')->with(['data' => $data]);
 
-        return view('hrd/edit', compact('data'));
+        return view('hrd/absen/edit', compact('data'));
 
 
     }
@@ -527,7 +527,7 @@ class HrdController extends Controller
 
         if(!$idabsen && $idabsen == null){
 
-            return redirect('hrd/absen/lihatabsen')->with('errors', 'Edit Gagal');
+            return redirect('hrd/lihatabsen')->with('errors', 'Edit Gagal');
 
         }
 
@@ -563,7 +563,7 @@ class HrdController extends Controller
     {
         $data = User::all();
 
-        return view('hrd.tambahuser',compact('data'));
+        return view('hrd.karyawan.tambahuser',compact('data'));
     }
 
     public function tambahuserpost(Request $request)
@@ -690,7 +690,7 @@ class HrdController extends Controller
         $id = Auth()->user()->id;
         $data = User::find($id);
 
-        return View('hrd.user',compact('data'));
+        return View('hrd.karyawan.user',compact('data'));
 
     }
 
@@ -700,12 +700,12 @@ class HrdController extends Controller
         if($request->divisi){
             $data = User::where('jabatan', $request->divisi)->get();
 
-            return View('hrd.datauser',compact('data'));
+            return View('hrd.karyawan.datauser',compact('data'));
         }
 
         $data = User::all();
 
-        return View('hrd.datauser',compact('data'));
+        return View('hrd.karyawan.datauser',compact('data'));
     }
 
     public function datauserread(Request $request,$id){
@@ -721,7 +721,7 @@ class HrdController extends Controller
             return redirect()->back()->with('error', 'gagal read karyawan');
         }
 
-        return View('hrd.userread',compact('data','user'));
+        return View('hrd.karyawan.userread',compact('data','user'));
     }
 
     public function datauseredit(Request $request,$id)
@@ -729,7 +729,7 @@ class HrdController extends Controller
 
         $data = User::find($id);
 
-        return View('hrd.useredit',compact('data'));
+        return View('hrd.karyawan.useredit',compact('data'));
 
     }
 
