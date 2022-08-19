@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             PengajuanSeeder::class,
             DataUserSeeder::class,
             SettingGajiSeeder::class,
+            JatahGajiSeeder::class,
         ]);
 
     }

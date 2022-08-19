@@ -77,6 +77,28 @@
     </div>
 </div>
 
+
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <form action="/hrd/tambahposisi/post" method="post" enctype="multipart/form-data">
+                    @csrf
+            <label for="inputState">User</label>
+                                <select id="inputState"  name="user" class="form-control">
+                                    @foreach ($data as $u )
+                                        <option value="{{ $u->id }}">{{ $u->name }}</option>
+                                    @endforeach
+                                </select>
+                                <label for="inputState">Posisi</label>
+        <input type="text" name="posisi"  class="form-control" placeholder="posisi" required>
+        <br><br>
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="row">
 
     <div class="card">
@@ -112,6 +134,8 @@
         <option value="direktur">direktur</option>
     </select>
 
+
+
     <label for="inputState">jenis Kelamin</label>
     <select id="inputState"  name="gender" class="form-control">
         <option selected>-- Silahkan Pilih --</option>
@@ -140,6 +164,9 @@
 
     <label for="inputState">no hp backup</label>
     <input type="number" name="no_backup"  class="form-control" placeholder="no hp backup" required>
+
+    <label for="inputState">Tanggal lahir</label>
+    <input type="date" name="lahir"  class="form-control" placeholder="tanggal lahir" required>
 
 
 

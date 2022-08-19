@@ -49,10 +49,8 @@
                             <th>opsi</th>
 
                         </tr>
-                        <form action="/hrd/hitunggaji" method="post">
-                            @csrf
-                          @foreach ($user as $u )
-                          {{-- <input type="hidden" name="id" value="{{ $u->id }}"> --}}
+                        <form action="/" method="post">
+                          @foreach ($all as $u )
                           @php
                           $coba = $u->getjatahgaji()->get('Gaji_Pokok');
 
@@ -73,7 +71,7 @@
                             <div class="form-group">
 
 
-                            <td><input class="form-control" type="muber" name="lembur" placeholder="Berapa jam lembur" ></td>
+                            <td><input class="form-control" type="text" name="lembur" placeholder="Berapa jam lembur"></td>
 
 
                             <td><input class="form-control" type="number" name="potongan" placeholder="nominal potongan"></td>
@@ -89,7 +87,7 @@
                             {{-- <td>@if($u->status == 'belum') <span class="badge badge-danger">{{$u->status == 'belum' ? 'Belum Lunas':''}}</span> @else <span class="badge badge-success">{{$u->status == 'lunas' ? 'lunas':''}}</span> @endif </td>
                             <td>{{ $u->status_gaji }}</td> --}}
                             <td>
-                               <a href=""><button class="btn btn-success">kirim</button></a>
+                                <a href="" class="btn btn-success">Simpan</a>
                             </td>
                         </tr>
                         </form>

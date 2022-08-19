@@ -13,6 +13,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\PenyuratanController;
 use App\Http\Controllers\SettingGajiController;
 use App\Http\Controllers\GajiController;
+use App\Http\Controllers\JatahGajiController;
 
 use App\Imports\SiswaImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -107,6 +108,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/tambahuser', [HrdController::class, 'tambahuser']);
     Route::post('/hrd/tambahuser/post', [HrdController::class, 'tambahuserpost']);
 
+    Route::post('/hrd/tambahposisi/post', [HrdController::class, 'tambahposisipost']);
+
     Route::post('/hrd/uploadpdf', [DataUserController::class, 'tambahpdf']);
 
     Route::post('/user/import_excel', [HrdController::class, 'import_excel']);
@@ -120,6 +123,7 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/datapenyuratan', [PenyuratanController::class, 'datapenyuratan']);
 
     Route::get('/hrd/penyuratan/kirim/{id}/{alpha}', [PenyuratanController::class, 'penyuratankirim']);
+    Route::post('/hrd/penyuratan/kirim/post', [PenyuratanController::class, 'penyuratankirimpost']);
 
 
     //settingpotongangaji
@@ -134,15 +138,25 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     //gaji
     Route::get('/hrd/gaji', [GajiController::class, 'index']);
 
+    Route::post('/hrd/hitunggaji/{id}', [GajiController::class, 'hitunggaji']);
+
     Route::get('/hrd/datagaji/exportexcel', [GajiController::class, 'exportexcel']);
 
     Route::post('/hrd/gaji/post', [GajiController::class, 'gajipost']);
+
+    Route::get('/hrd/slipgaji', [GajiController::class, 'dataslipgaji']);
 
     Route::get('/hrd/gaji-daily', [GajiController::class, 'index2']);
     Route::post('/hrd/gaji-daily/post', [GajiController::class, 'gajipost2']);
 
 
     Route::get('/hrd/datagaji', [GajiController::class, 'datagaji']);
+
+    Route::get('/hrd/read/datagaji/{id}', [GajiController::class, 'readdatagaji']);
+
+
+    Route::get('/hrd/ratio/gaji', [JatahGajiController::class, 'index']);
+
     Route::get('/hrd/datagaji/exportpdf', [GajiController::class, 'datagajiexportpdf']);
 
 
@@ -155,6 +169,10 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::get('/hrd/gaji/destroy/{id}', [GajiController::class, 'destroy']);
 
     Route::get('/hrd/slipgaji/{id}', [GajiController::class, 'slipgaji']);
+
+
+
+
 
 
 

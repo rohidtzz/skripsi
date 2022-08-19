@@ -19,7 +19,8 @@
     <label for="inputState">keterangan</label>
     <select id="inputState"  name="keterangan" class="form-control">
         <option value="lembur" >lembur</option>
-      <option value="izin" selected>izin</option>
+        <option value="cuti" >cuti</option>
+      <option value="Dinas" selected>Dinas</option>
       <option value="sakit">sakit</option>
 
     </select>

@@ -67,6 +67,16 @@ class User extends Authenticatable
         return $this->hasMany(Absen::class,'user_id');
     }
 
+    public function getpengajuan()
+    {
+        return $this->hasMany(Pengajuan::class,'user_id');
+    }
+
+    public function getjatahgaji()
+    {
+        return $this->hasMany(JatahGaji::class,'user_id');
+    }
+
     public function getam()
     {
         return $this->hasOne(Absen::class,'user_id');

@@ -51,6 +51,13 @@ class PengajuanController extends Controller
         // }
 
         $id = auth()->user()->id;
+            $awal = date_create($request->jammulai);
+            $akhir = date_create($request->jamselesai);
+            $diff =    date_diff($awal,$akhir);
+            // dd($total->h);
+
+            $total = $diff->h;
+
 
         $test = Pengajuan::create([
             'user_id' =>  $id,
@@ -59,6 +66,9 @@ class PengajuanController extends Controller
             'tanggal' => date('Y/m/d'),
             'mulai' => $request->mulai,
             'selesai' =>$request->selesai,
+            'jam_mulai' => $request->jammulai,
+            'jam_selesai' => $request->jamselesai,
+            'jam_lembur' => $total,
             'status' => 'pending'
         ]);
 
@@ -107,7 +117,7 @@ class PengajuanController extends Controller
 
         if(!$idd || $idd == null){
 
-            return redirect('hrd/pengajuan')->with('errors', 'gagal Terima Pengajuan');
+            return redirect()->back()->with('errors', 'gagal Terima Pengajuan');
 
         }
 
@@ -115,7 +125,7 @@ class PengajuanController extends Controller
             'status' => 'disetujui'
         ]);
 
-        return redirect('hrd/pengajuan')->withSuccess('Berhasil Terima Pengajuan');
+        return redirect()->back()->withSuccess('Berhasil Terima Pengajuan');
 
 
     }
@@ -126,7 +136,7 @@ class PengajuanController extends Controller
 
         if(!$idd || $idd == null){
 
-            return redirect('hrd/pengajuan')->with('errors', 'gagal Tolak Pengajuan');
+            return redirect()->back()->with('errors', 'gagal Tolak Pengajuan');
 
         }
 
@@ -134,7 +144,7 @@ class PengajuanController extends Controller
             'status' => 'ditolak'
         ]);
 
-        return redirect('hrd/pengajuan')->withSuccess('Berhasil Tolak Pengajuan');
+        return redirect()->back()->withSuccess('Berhasil Tolak Pengajuan');
     }
 
     public function pengajuanedit(Request $request, $id)

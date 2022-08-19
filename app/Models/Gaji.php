@@ -10,7 +10,7 @@ class Gaji extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'uang_tambahan', 'gaji_pokok','uang_overtime','pot_bpjs','tgl_gaji','transportasi','pot_uang_alpha','total','status','jumlah_overtime','status_gaji'
+        'user_id', 'total_gaji','gaji_pokok','uang_lembur','potongan','bonus','pot_asuransi','pot_sanksialpha','tgl_gaji'
     ];
 
     /**
@@ -18,5 +18,4 @@ class Gaji extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
 }

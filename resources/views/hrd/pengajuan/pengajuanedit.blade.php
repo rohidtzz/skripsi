@@ -26,6 +26,9 @@
     </select>
     </div>
 
+    <label for="inputState">alasan</label>
+    <textarea  name="alasan"  class="form-control" placeholder="alasan" required>{{ $data->alasan }}</textarea>
+
     <label for="inputState">tanggal </label>
     <input type="date" name="tanggal" value="{{$data->tanggal}}"  class="form-control" placeholder="tanggal mulai" required>
 

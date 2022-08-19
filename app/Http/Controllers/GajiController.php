@@ -10,6 +10,8 @@ use App\Models\DataUser;
 use App\Models\SettingGaji;
 use App\Models\Pengajuan;
 
+use App\Models\JatahGaji;
+
 use App\Exports\GajiExport;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -31,12 +33,53 @@ class GajiController extends Controller
     public function index()
     {
 
-        $user = User::all();
+        $user = User::with('getjatahgaji')->get();
+
+        // dd($user[0]->getjatahgaji()->Get('Gaji_Pokok'));
+
+
+
+        // dd($user[0]->getpengajuan()->get()[0]->total);
         $gaji = Gaji::all();
         $settinggaji = SettingGaji::all();
         $gajipokok =    SettingGaji::where('jenis_potongan','Gaji pokok')->first();
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
 
-        return view('hrd.gaji.gaji',compact('user','gaji','settinggaji','gajipokok'));
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
+
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
+
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+        // return view('hrd.gaji.gaji',compact('user','gaji','settinggaji','gajipokok'));
+        // foreach($user as $user){
+        //     $user = $user->getjatahgaji();
+        //     return $user;
+        // }
+
+        $datei = date_create(date('Y-m-d'));
+
+        $datebulan = date_format($datei,"m");
+        $datetahun = date_format($datei,"Y");
+
+        $JumlahHadir = Absen::where('user_id',1)->whereYear('tanggal' , $datetahun)->whereMonth('tanggal' , $datebulan)->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->whereTime('jam_keluar', '>=', $jamkeluarkurang5)->whereTime('jam_keluar', '<=', $jamkeluar)->orderBy('tanggal','desc')->count();
+
+        // dd(json_decode($user->get()[0]['getjatahgaji']));
+
+        $JumlahLembur = Pengajuan::all();
+
+        // dd($JumlahLembur);
+
+
+        return view('hrd.gaji.gaji',compact('user'));
+
     }
 
     public function index2()
@@ -48,6 +91,50 @@ class GajiController extends Controller
         $gajipokok =    SettingGaji::where('jenis_potongan','Gaji pokok')->first();
 
         return view('hrd.gaji.gajidaily',compact('user','gaji','settinggaji','gajipokok'));
+    }
+
+
+    public function hitunggaji(Request $request,$id)
+    {
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
+
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
+
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
+
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+        $datei = date_create(date('Y/m/d'));
+
+
+
+        $datebulan = date_format($datei,"m");
+        $datetahun = date_format($datei,"Y");
+
+        $pph =    SettingGaji::where('jenis_potongan','potongan pph')->first();
+
+        $JumlahAlpha = Absen::where('user_id',$id)->whereYear('tanggal' , $datetahun)->whereMonth('tanggal' , $datebulan)->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->orderBy('tanggal','desc')->count();
+
+
+
+        // dd($JumlahAlpha);
+        // dd($JumlahAlpha);
+
+        $alpha = SettingGaji::where('jenis_potongan','potongan sanksi alpha')->first();
+
+        $totalalpha = $alpha->jumlah_potongan * $JumlahAlpha;
+
+        $potonganbpjs = SettingGaji::where('jenis_potongan', 'potongan_asuransi')->first();
+
+
+
     }
 
     public function gajipost(Request $request)
@@ -284,9 +371,19 @@ class GajiController extends Controller
     public function datagaji(Request $request)
     {
 
-        $all = Gaji::all();
+        $all = JatahGaji::all();
 
         return view('hrd.gaji.datagaji',compact('all'));
+
+    }
+
+    public function readdatagaji(Request $request,$id)
+    {
+
+
+        $all = JatahGaji::find($id);
+
+        return view('hrd.gaji.readdatagaji',compact('all'));
 
     }
 
@@ -419,6 +516,14 @@ class GajiController extends Controller
     public function exportexcel()
     {
         return Excel::download(new GajiExport, 'gaji.xlsx');
+    }
+
+    public function dataslipgaji()
+    {
+
+        $all = Gaji::all();
+
+        return view('hrd.gaji.dataslipgaji',compact('all'));
     }
 
     public function slipgaji($id)

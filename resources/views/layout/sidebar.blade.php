@@ -477,8 +477,8 @@
 
 
           @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
-          <li class="nav-item {{Request::is('karyawan/gaji') ? 'menu-open' : ''}}  {{Request::is('hrd/gaji-daily') ? 'menu-open' : ''}} {{Request::is('hrd/gaji') ? 'menu-open' : ''}} {{Request::is('hrd/settinggaji') ? 'menu-open' : ''}} {{Request::is('direktur/gaji') ? 'menu-open' : ''}} {{Request::is('direktur/settinggaji') ? 'menu-open' : ''}} {{Request::is('hrd/datagaji') ? 'menu-open' : ''}} {{Request::is('direktur/datagaji') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{Request::is('karyawan/gaji') ? 'active' : ''}} {{Request::is('hrd/gaji-daily') ? 'active' : ''}} {{Request::is('hrd/gaji') ? 'active' : ''}} {{Request::is('hrd/settinggaji') ? 'active' : ''}}{{Request::is('hrd/settinggaji') ? 'active' : ''}} {{Request::is('hrd/datagaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}{{Request::is('direktur/gaji') ? 'active' : ''}}{{Request::is('direktur/settinggaji') ? 'active' : ''}}">
+          <li class="nav-item {{Request::is('karyawan/gaji') ? 'menu-open' : ''}}  {{Request::is('hrd/gaji-daily') ? 'menu-open' : ''}} {{Request::is('hrd/gaji') ? 'menu-open' : ''}} {{Request::is('hrd/settinggaji') ? 'menu-open' : ''}} {{Request::is('direktur/gaji') ? 'menu-open' : ''}} {{Request::is('direktur/settinggaji') ? 'menu-open' : ''}} {{Request::is('hrd/datagaji') ? 'menu-open' : ''}} {{Request::is('direktur/datagaji') ? 'menu-open' : ''}} {{Request::is('hrd/ratio/gaji') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('karyawan/gaji') ? 'active' : ''}} {{Request::is('hrd/gaji-daily') ? 'active' : ''}} {{Request::is('hrd/gaji') ? 'active' : ''}} {{Request::is('hrd/settinggaji') ? 'active' : ''}}{{Request::is('hrd/settinggaji') ? 'active' : ''}} {{Request::is('hrd/datagaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}{{Request::is('direktur/gaji') ? 'active' : ''}}{{Request::is('direktur/settinggaji') ? 'active' : ''}} {{Request::is('hrd/ratio/gaji') ? 'active' : ''}}">
               <i class="nav-icon fas fa-money-bill"></i>
               <p>
                 Gaji
@@ -500,12 +500,21 @@
 
                   <li class="nav-item">
                     <a href="
+                    {{ url('hrd/slipgaji') }}
+                    " class="nav-link  {{Request::is('hrd/gaji') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
+                      <i class="fas {{Request::is('hrd/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                      <p>Slip Gaji</p>
+                    </a>
+                  </li>
+
+                  {{-- <li class="nav-item">
+                    <a href="
                     {{ url('hrd/gaji-daily') }}
                     " class="nav-link  {{Request::is('hrd/gaji-daily') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
                       <i class="fas {{Request::is('hrd/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                       <p>Gaji daily</p>
                     </a>
-                  </li>
+                  </li> --}}
                   @else
                   @endif
 
@@ -545,6 +554,25 @@
               </li>
               @else
                 @endif
+
+                {{-- @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+              <li class="nav-item">
+                <a href="
+                @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/ratio/gaji') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('direktur/datagaji') }}
+                @else
+
+                @endif
+                " class="nav-link  {{Request::is('hrd/ratio/gaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}">
+                  <i class="fas  {{Request::is('hrd/ratio/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datagaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                  <p>Ration Gaji</p>
+                </a>
+              </li>
+              @else
+                @endif --}}
               {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

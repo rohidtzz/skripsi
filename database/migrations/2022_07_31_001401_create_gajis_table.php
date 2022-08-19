@@ -16,17 +16,20 @@ class CreateGajisTable extends Migration
         Schema::create('gajis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->double('uang_tambahan')->default(0);
+            $table->double('total_gaji')->default(0);
             $table->double('gaji_pokok')->default(0);
-            $table->double('uang_overtime')->default(0);
-            $table->double('pot_bpjs')->default(0);
-            $table->double('pot_uang_alpha')->default(0);
+            $table->double('uang_lembur')->default(0);
+            $table->double('potongan')->default(0);
+            $table->double('bonus')->default(0);
+            $table->double('pot_asuransi')->default(0);
+            $table->double('pot_sanksialpha')->default(0);
             $table->date('tgl_gaji');
-            $table->string('transportasi')->nullable();
-            $table->double('total')->nullable()->default(0);
-            $table->enum('status',['lunas','belum']);
-            $table->string('jumlah_overtime')->nullable();
-            $table->enum('status_gaji',['staff','daily worker']);
+            // $table->string('transportasi')->nullable();
+            // $table->double('total')->nullable()->default(0);
+            // $table->enum('status',['lunas','belum']);
+            // $table->enum('acc',['sudah','belum']);
+            // $table->string('jumlah_overtime')->nullable();
+            // $table->enum('status_gaji',['staff','daily worker']);
 
             $table->timestamps();
 

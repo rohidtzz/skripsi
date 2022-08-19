@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Absen;
+use App\Models\Posisi;
 
 use App\Models\SettingJam;
 use App\Models\DataUser;
@@ -621,7 +622,10 @@ class HrdController extends Controller
             'no_backup' => $request->no_backup,
             'waktu_aktif' => date('Y/m/d'),
             'status_pekerjaan' => 'masuk',
+            'tgl_lahir' => $request->lahir
         ]);
+
+
 
 
 
@@ -652,6 +656,19 @@ class HrdController extends Controller
 
 
 
+    }
+
+    public function tambahposisipost(Request $request){
+
+        $posisi = Posisi::create([
+            'user_id' => $request->user,
+            'name' => $request->posisi
+        ]);
+
+        if(!$posisi){
+            return redirect()->back()->with('errors', 'Import Gagal');
+        }
+        return redirect()->back()->withSuccess('Import Berhasil');
     }
 
     public function import_excel(Request $request)
