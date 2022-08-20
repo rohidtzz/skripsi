@@ -13,12 +13,50 @@
     td{
         text-align: center;
     }
+    .main-sidebar{
+      background:white !important;
+    }
+    .sidebar a{
+      color: #5a5a5a !important;
+    }
+    .nav-item li {
+      padding-left: 32px;
+    }
+    .img-circle{
+        width: 3rem !important;
+        height: 3rem !important;
+        object-fit: cover !important;
+    }
+    .nav-link.active{
+      color: white !important;
+    }
+    .border-r{
+      border-right: 1px solid #e4e4e4;
+    }
+    .border-t{
+      border-top: 1px solid #e4e4e4;
+    }
+    .nav-item i {
+        font-size: 14px !important;
+    }
+    .nav-item {
+        font-size: 14px;
+    text-transform: lowercase;
+    }
+    .nav-treeview .nav-link.active{
+      color: #5a5a5a !important;
+      font-weight: bold;
+    }
+    .nav-item{
+      text-transform: uppercase !important;
+    }
     </style>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}"> --}}
+  <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset('adminlte/https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css') }}">
   <!-- Tempusdominus Bootstrap 4 -->
