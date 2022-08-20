@@ -32,7 +32,8 @@ class User extends Authenticatable
         'no_hp',
         'status',
         'no_backup',
-        'waktu_aktif'
+        'waktu_aktif',
+        'tgl_lahir'
     ];
 
     /**
@@ -64,6 +65,16 @@ class User extends Authenticatable
     public function getabsen()
     {
         return $this->hasMany(Absen::class,'user_id');
+    }
+
+    public function getpengajuan()
+    {
+        return $this->hasMany(Pengajuan::class,'user_id');
+    }
+
+    public function getjatahgaji()
+    {
+        return $this->hasMany(JatahGaji::class,'user_id');
     }
 
     public function getam()

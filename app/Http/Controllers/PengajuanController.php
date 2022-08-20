@@ -18,17 +18,17 @@ class PengajuanController extends Controller
             $id = auth()->user()->id;
 
             $all = Pengajuan::where('user_id', $id)->get();
-            return view('karyawan.pengajuan', compact('all'));
+            return view('karyawan.pengajuan.pengajuan', compact('all'));
         }
 
         if(auth()->user()->jabatan == 'hrd'){
             $all = Pengajuan::all();
-            return view('hrd.pengajuan', compact('all'));
+            return view('hrd.pengajuan.pengajuan', compact('all'));
         }
 
         if(auth()->user()->jabatan == 'direktur'){
             $all = Pengajuan::all();
-            return view('direktur.pengajuan', compact('all'));
+            return view('direktur.pengajuan.pengajuan', compact('all'));
         }
 
 
@@ -51,6 +51,13 @@ class PengajuanController extends Controller
         // }
 
         $id = auth()->user()->id;
+            $awal = date_create($request->jammulai);
+            $akhir = date_create($request->jamselesai);
+            $diff =    date_diff($awal,$akhir);
+            // dd($total->h);
+
+            $total = $diff->h;
+
 
         $test = Pengajuan::create([
             'user_id' =>  $id,
@@ -59,6 +66,9 @@ class PengajuanController extends Controller
             'tanggal' => date('Y/m/d'),
             'mulai' => $request->mulai,
             'selesai' =>$request->selesai,
+            'jam_mulai' => $request->jammulai,
+            'jam_selesai' => $request->jamselesai,
+            'jam_lembur' => $total,
             'status' => 'pending'
         ]);
 
@@ -107,7 +117,7 @@ class PengajuanController extends Controller
 
         if(!$idd || $idd == null){
 
-            return redirect('hrd/pengajuan')->with('errors', 'gagal Terima Pengajuan');
+            return redirect()->back()->with('errors', 'gagal Terima Pengajuan');
 
         }
 
@@ -115,7 +125,7 @@ class PengajuanController extends Controller
             'status' => 'disetujui'
         ]);
 
-        return redirect('hrd/pengajuan')->withSuccess('Berhasil Terima Pengajuan');
+        return redirect()->back()->withSuccess('Berhasil Terima Pengajuan');
 
 
     }
@@ -126,7 +136,7 @@ class PengajuanController extends Controller
 
         if(!$idd || $idd == null){
 
-            return redirect('hrd/pengajuan')->with('errors', 'gagal Tolak Pengajuan');
+            return redirect()->back()->with('errors', 'gagal Tolak Pengajuan');
 
         }
 
@@ -134,14 +144,14 @@ class PengajuanController extends Controller
             'status' => 'ditolak'
         ]);
 
-        return redirect('hrd/pengajuan')->withSuccess('Berhasil Tolak Pengajuan');
+        return redirect()->back()->withSuccess('Berhasil Tolak Pengajuan');
     }
 
     public function pengajuanedit(Request $request, $id)
     {
         $data = Pengajuan::find($id);
 
-        return view('hrd.pengajuanedit', compact('data'));
+        return view('hrd.pengajuan.pengajuanedit', compact('data'));
     }
 
     public function pengajuaneditpost(Request $request,$id)
@@ -179,8 +189,25 @@ class PengajuanController extends Controller
         $cobadestroy = Pengajuan::find($id)->delete();
 
         if($cobadestroy){
-            return redirect('/hrd/pengajuan')->withSuccess('Hapus Berhasil');
+            return redirect('/hrd/datapengajuan')->withSuccess('Hapus Berhasil');
         }
+
+    }
+
+    public function datapengajuan()
+    {
+
+
+        if(auth()->user()->jabatan == 'hrd'){
+            $all = Pengajuan::all();
+            return view('hrd.pengajuan.datapengajuan', compact('all'));
+        }
+
+        if(auth()->user()->jabatan == 'direktur'){
+            $all = Pengajuan::all();
+            return view('direktur.pengajuan.datapengajuan', compact('all'));
+        }
+
 
     }
 

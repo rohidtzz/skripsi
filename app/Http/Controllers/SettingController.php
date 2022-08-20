@@ -44,7 +44,7 @@ class SettingController extends Controller
             'jam_keluar' => $request->jam_keluar
         ]);
 
-        return redirect('hrd/settings/jamkerja')->withSuccess('Berhasil Update Jam Kerja');
+        return redirect()->back()->withSuccess('Berhasil Update Jam Kerja');
 
 
     }

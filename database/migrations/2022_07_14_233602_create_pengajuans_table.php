@@ -16,11 +16,14 @@ class CreatePengajuansTable extends Migration
         Schema::create('pengajuans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->enum('keterangan',['Sakit','Cuti','izin']);
+            $table->enum('keterangan',['Sakit','Dinas','cuti','lembur']);
             $table->text('alasan');
             $table->date('tanggal');
+            $table->time('jam_mulai')->nullable();
+            $table->time('jam_selesai')->nullable();
             $table->date('mulai')->nullable();
             $table->date('selesai')->nullable();
+            $table->double('jam_lembur')->default(0);
             $table->enum('status',['disetujui','ditolak','pending']);
 
 

@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Absen;
+use App\Models\Posisi;
 
 use App\Models\SettingJam;
+use App\Models\DataUser;
 
 use App\Imports\UserImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UserExport;
+use App\Exports\AbsenExport;
 
 use App\Http\Controllers\Session;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +24,56 @@ class HrdController extends Controller
     public function index()
     {
 
-        return view('hrd.hrd');
+
+
+
+        $jammasuk = SettingJam::find(1)->jam_masuk;
+        $jamkeluar = SettingJam::find(1)->jam_keluar;
+
+        $date=date_create($jammasuk);
+        date_add($date,date_interval_create_from_date_string("+5 minutes"));
+        $jammasuklebih5 = date_format($date,"H:i:s");
+
+        $datu=date_create($jammasuk);
+        date_add($datu,date_interval_create_from_date_string("+10 minutes"));
+        $jammasuklebih10 = date_format($datu,"H:i:s");
+
+        $dati=date_create($jamkeluar);
+        date_add($dati,date_interval_create_from_date_string("-5 minutes"));
+        $jamkeluarkurang5 = date_format($dati,"H:i:s");
+
+        $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->whereTime('jam_keluar', '>=', $jamkeluarkurang5)->whereTime('jam_keluar', '<=', $jamkeluar)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
+
+        $JumlahTelat = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
+
+
+        return view('hrd.dashboard.hrd',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+    }
+
+    public function tambahabsen()
+    {
+        $user = User::all();
+
+        return View('/hrd/absen/tambahabsen',compact('user'));
+    }
+
+    public function tambahabsenpost(Request $request)
+    {
+        Absen::create([
+            'user_id' => $request->user,
+            'keterangan' => $request->keterangan,
+            'tanggal' => $request->tgl,
+            'jam_masuk' => $request->masuk,
+            'jam_keluar' => $request->keluar,
+        ]);
+
+        return redirect()->back()->withSuccess('Berhasil Tambah Absen');
     }
 
     public function lihatabsen(request $request)
@@ -65,7 +118,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -90,7 +143,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.showabsen',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
 
         // $id = auth()->user()->id;
@@ -171,7 +224,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -192,7 +245,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.masuk',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
     }
 
     public function lihatabsentelat(Request $request)
@@ -234,7 +287,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -255,7 +308,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.telat',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -301,7 +354,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -321,7 +374,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.sakit',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -365,7 +418,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
 
         $mulai = null;
@@ -385,7 +438,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.alpha',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -429,7 +482,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
         }
         $mulai = null;
         $selesai = null;
@@ -448,7 +501,7 @@ class HrdController extends Controller
 
         $JumlahAbsen = Absen::all()->count();
 
-        return view('hrd.lihat.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        return view('hrd.absen.izin',compact('mulai','selesai','JumlahAbsen','daftarabsen','JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
 
     }
 
@@ -464,7 +517,7 @@ class HrdController extends Controller
 
         // return view('hrd/edit')->with(['data' => $data]);
 
-        return view('hrd/edit', compact('data'));
+        return view('hrd/absen/edit', compact('data'));
 
 
     }
@@ -475,7 +528,7 @@ class HrdController extends Controller
 
         if(!$idabsen && $idabsen == null){
 
-            return redirect('hrd/absen/lihatabsen')->with('errors', 'Edit Gagal');
+            return redirect('hrd/lihatabsen')->with('errors', 'Edit Gagal');
 
         }
 
@@ -509,7 +562,9 @@ class HrdController extends Controller
 
     public function tambahuser(Request $request)
     {
-        return view('hrd.tambahuser');
+        $data = User::all();
+
+        return view('hrd.karyawan.tambahuser',compact('data'));
     }
 
     public function tambahuserpost(Request $request)
@@ -533,11 +588,23 @@ class HrdController extends Controller
 
         $file = $request->file('foto');
 
+
+
 		$nama_file = $file->getClientOriginalName();
+
 
       	        // isi dengan nama folder tempat kemana file diupload
 		$tujuan_upload = 'foto';
+
+
 		$file->move($tujuan_upload,$nama_file);
+
+
+
+
+
+
+
 
         $tambah = User::create([
             'no_identitas' => $request->id_identitas,
@@ -555,7 +622,10 @@ class HrdController extends Controller
             'no_backup' => $request->no_backup,
             'waktu_aktif' => date('Y/m/d'),
             'status_pekerjaan' => 'masuk',
+            'tgl_lahir' => $request->lahir
         ]);
+
+
 
 
 
@@ -586,6 +656,19 @@ class HrdController extends Controller
 
 
 
+    }
+
+    public function tambahposisipost(Request $request){
+
+        $posisi = Posisi::create([
+            'user_id' => $request->user,
+            'name' => $request->posisi
+        ]);
+
+        if(!$posisi){
+            return redirect()->back()->with('errors', 'Import Gagal');
+        }
+        return redirect()->back()->withSuccess('Import Berhasil');
     }
 
     public function import_excel(Request $request)
@@ -624,14 +707,38 @@ class HrdController extends Controller
         $id = Auth()->user()->id;
         $data = User::find($id);
 
-        return View('hrd.user',compact('data'));
+        return View('hrd.karyawan.user',compact('data'));
 
     }
 
-    public function datauser(){
+    public function datauser(Request $request){
+
+
+        if($request->divisi){
+            $data = User::where('jabatan', $request->divisi)->get();
+
+            return View('hrd.karyawan.datauser',compact('data'));
+        }
+
         $data = User::all();
 
-        return View('hrd.datauser',compact('data'));
+        return View('hrd.karyawan.datauser',compact('data'));
+    }
+
+    public function datauserread(Request $request,$id){
+
+        if($id == null){
+            return redirect()->back()->with('error', 'gagal read karyawan');
+        }
+
+        $data = User::find($id);
+        $user = DataUser::find($id);
+
+        if($data == null){
+            return redirect()->back()->with('error', 'gagal read karyawan');
+        }
+
+        return View('hrd.karyawan.userread',compact('data','user'));
     }
 
     public function datauseredit(Request $request,$id)
@@ -639,7 +746,7 @@ class HrdController extends Controller
 
         $data = User::find($id);
 
-        return View('hrd.useredit',compact('data'));
+        return View('hrd.karyawan.useredit',compact('data'));
 
     }
 
@@ -673,6 +780,7 @@ class HrdController extends Controller
                 'no_hp' => $request->no_hp,
                 'status' => $request->status,
                 'no_backup' => $request->no_backup,
+                'tgl_lahir' => $request->tgl_lahir
             ]);
 
             return redirect()->back()->withSuccess('Edit Berhasil');
@@ -741,6 +849,18 @@ class HrdController extends Controller
         }
 
     }
+
+    public function exportuser()
+    {
+        return Excel::download(new UserExport, 'karyawan.xlsx');
+    }
+
+    public function exportabsen()
+    {
+        return Excel::download(new AbsenExport, 'absen.xlsx');
+    }
+
+
 
 
 }
