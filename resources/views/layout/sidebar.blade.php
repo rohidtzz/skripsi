@@ -39,7 +39,7 @@
       </li>
 
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fad fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
@@ -95,7 +95,7 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
-      </li>
+      </li> --}}
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -489,13 +489,13 @@
                 @if (Auth()->user()->jabatan == 'hrd')
 
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="
                     {{ url('hrd/gaji') }}
                     " class="nav-link  {{Request::is('hrd/gaji') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
                       <p>Gaji</p>
                     </a>
-                  </li>
+                  </li> --}}
 
                   <li class="nav-item">
                     <a href="
@@ -520,14 +520,14 @@
               <li class="nav-item">
                 <a href="
                 @if (Auth()->user()->jabatan == 'hrd')
-                {{ url('/hrd/settinggaji') }}
+                {{ url('/hrd/mastergaji') }}
                 @elseif (Auth()->user()->jabatan == 'direktur')
-                {{ url('/direktur/settinggaji') }}
+                {{ url('/direktur/mastergaji') }}
                 @else
 
                 @endif
-                " class="nav-link  {{Request::is('hrd/settinggaji') ? 'active' : ''}}  {{Request::is('direktur/settinggaji') ? 'active' : ''}}">
-                  <p>Setting  Gaji</p>
+                " class="nav-link  {{Request::is('hrd/mastergaji') ? 'active' : ''}}  {{Request::is('direktur/mastergaji') ? 'active' : ''}}">
+                  <p>Master Gaji</p>
                 </a>
               </li>
               @else
