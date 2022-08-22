@@ -4,14 +4,14 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fad fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      {{-- <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li> --}}
     </ul>
 
     <!-- Right navbar links -->
@@ -19,7 +19,7 @@
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          <i class="fas fa-search"></i>
+          <i class="fad fa-search"></i>
         </a>
         <div class="navbar-search-block">
           <form class="form-inline">
@@ -39,9 +39,9 @@
       </li>
 
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+      {{-- <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-comments"></i>
+          <i class="fad fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -55,7 +55,7 @@
                   <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">Call me whenever you can...</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                <p class="text-sm text-muted"><i class="fad fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
             <!-- Message End -->
@@ -71,7 +71,7 @@
                   <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">I got your message bro</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                <p class="text-sm text-muted"><i class="fad fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
             <!-- Message End -->
@@ -87,7 +87,7 @@
                   <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
                 </h3>
                 <p class="text-sm">The subject goes here</p>
-                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                <p class="text-sm text-muted"><i class="fad fa-clock mr-1"></i> 4 Hours Ago</p>
               </div>
             </div>
             <!-- Message End -->
@@ -95,11 +95,11 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
-      </li>
+      </li> --}}
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-bell"></i>
+          <i class="fad fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -138,7 +138,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary border-r">
     <!-- Brand Logo -->
     {{-- <a href="index3.html" class="brand-link">
       <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -198,19 +198,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./index.html" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Dashboard v2</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
               </li>
@@ -230,56 +230,56 @@
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Layout Options
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-right right"></i>
                 <span class="badge badge-info right">6</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Top Navigation</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Top Navigation + Sidebar</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/boxed.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Boxed</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Fixed Sidebar</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Fixed Sidebar <small>+ Custom Area</small></p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Fixed Navbar</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/fixed-footer.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Fixed Footer</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Collapsed Sidebar</p>
                 </a>
               </li>
@@ -296,25 +296,25 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/charts/chartjs.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>ChartJS</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/flot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Flot</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/inline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Inline</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/charts/uplot.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>uPlot</p>
                 </a>
               </li>
@@ -325,55 +325,55 @@
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 UI Elements
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/UI/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>General</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/icons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Icons</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/buttons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Buttons</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/sliders.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Sliders</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/modals.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Modals & Alerts</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/navbar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Navbar & Tabs</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/timeline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Timeline</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/ribbons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Ribbons</p>
                 </a>
               </li>
@@ -384,31 +384,31 @@
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>General Elements</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/advanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Advanced Elements</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Editors</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Validation</p>
                 </a>
               </li>
@@ -419,25 +419,25 @@
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
-                <i class="fas fa-angle-left right"></i>
+                <i class="fas fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="pages/tables/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Simple Tables</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/tables/data.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>DataTables</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/tables/jsgrid.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>jsGrid</p>
                 </a>
               </li>
@@ -446,7 +446,7 @@
           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
             <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
+              <i class="nav-icon fad fa-calendar-alt"></i>
               <p>
                 Calendar
                 <span class="badge badge-info right">2</span>
@@ -469,7 +469,7 @@
 
 
           @endif" class="nav-link {{ Request::is('karyawan/dashboard') ? 'active' : '' }} {{ Request::is('direktur/dashboard') ? 'active' : '' }} {{ Request::is('hrd/dashboard') ? 'active' : '' }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fad fa-home"></i>
             <p>
               Dashboard
             </p>
@@ -479,30 +479,28 @@
           @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
           <li class="nav-item {{Request::is('karyawan/gaji') ? 'menu-open' : ''}}  {{Request::is('hrd/gaji-daily') ? 'menu-open' : ''}} {{Request::is('hrd/gaji') ? 'menu-open' : ''}} {{Request::is('hrd/settinggaji') ? 'menu-open' : ''}} {{Request::is('direktur/gaji') ? 'menu-open' : ''}} {{Request::is('direktur/settinggaji') ? 'menu-open' : ''}} {{Request::is('hrd/datagaji') ? 'menu-open' : ''}} {{Request::is('direktur/datagaji') ? 'menu-open' : ''}} {{Request::is('hrd/ratio/gaji') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link {{Request::is('karyawan/gaji') ? 'active' : ''}} {{Request::is('hrd/gaji-daily') ? 'active' : ''}} {{Request::is('hrd/gaji') ? 'active' : ''}} {{Request::is('hrd/settinggaji') ? 'active' : ''}}{{Request::is('hrd/settinggaji') ? 'active' : ''}} {{Request::is('hrd/datagaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}{{Request::is('direktur/gaji') ? 'active' : ''}}{{Request::is('direktur/settinggaji') ? 'active' : ''}} {{Request::is('hrd/ratio/gaji') ? 'active' : ''}}">
-              <i class="nav-icon fas fa-money-bill"></i>
+              <i class="nav-icon fad fa-money-bill"></i>
               <p>
                 Gaji
-                <i class="fas fa-angle-left right"></i>
+                <i class="fad fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
                 @if (Auth()->user()->jabatan == 'hrd')
 
 
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="
                     {{ url('hrd/gaji') }}
                     " class="nav-link  {{Request::is('hrd/gaji') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
-                      <i class="fas {{Request::is('hrd/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                       <p>Gaji</p>
                     </a>
-                  </li>
+                  </li> --}}
 
                   <li class="nav-item">
                     <a href="
                     {{ url('hrd/slipgaji') }}
-                    " class="nav-link  {{Request::is('hrd/gaji') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
-                      <i class="fas {{Request::is('hrd/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
+                    " class="nav-link  {{Request::is('hrd/slipgaji') ? 'active' : ''}}  {{Request::is('direktur/slipgaji') ? 'active' : ''}}">
                       <p>Slip Gaji</p>
                     </a>
                   </li>
@@ -511,7 +509,6 @@
                     <a href="
                     {{ url('hrd/gaji-daily') }}
                     " class="nav-link  {{Request::is('hrd/gaji-daily') ? 'active' : ''}}  {{Request::is('direktur/gaji') ? 'active' : ''}}">
-                      <i class="fas {{Request::is('hrd/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                       <p>Gaji daily</p>
                     </a>
                   </li> --}}
@@ -523,15 +520,14 @@
               <li class="nav-item">
                 <a href="
                 @if (Auth()->user()->jabatan == 'hrd')
-                {{ url('/hrd/settinggaji') }}
+                {{ url('/hrd/mastergaji') }}
                 @elseif (Auth()->user()->jabatan == 'direktur')
-                {{ url('/direktur/settinggaji') }}
+                {{ url('/direktur/mastergaji') }}
                 @else
 
                 @endif
-                " class="nav-link  {{Request::is('hrd/settinggaji') ? 'active' : ''}}  {{Request::is('direktur/settinggaji') ? 'active' : ''}}">
-                  <i class="fas  {{Request::is('hrd/settinggaji') ? 'fa-dot-circle' : 'fa-dot-circle'}}   {{Request::is('direktur/settinggaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
-                  <p>Setting  Gaji</p>
+                " class="nav-link  {{Request::is('hrd/mastergaji') ? 'active' : ''}}  {{Request::is('direktur/mastergaji') ? 'active' : ''}}">
+                  <p>Master Gaji</p>
                 </a>
               </li>
               @else
@@ -548,7 +544,6 @@
 
                 @endif
                 " class="nav-link  {{Request::is('hrd/datagaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}">
-                  <i class="fas  {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datagaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Data Gaji</p>
                 </a>
               </li>
@@ -567,7 +562,6 @@
 
                 @endif
                 " class="nav-link  {{Request::is('hrd/ratio/gaji') ? 'active' : ''}} {{Request::is('direktur/datagaji') ? 'active' : ''}}">
-                  <i class="fas  {{Request::is('hrd/ratio/gaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datagaji') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Ration Gaji</p>
                 </a>
               </li>
@@ -575,7 +569,7 @@
                 @endif --}}
               {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>pengajuan</p>
                 </a>
               </li> --}}
@@ -587,7 +581,7 @@
             <a href="{{ url('karyawan/datagaji') }}" class="nav-link {{ Request::is('karyawan/datagaji') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-money-bill"></i>
+              <i class="nav-icon fad fa-money-bill"></i>
               <p>
                 Gaji
               </p>
@@ -612,7 +606,7 @@
                 @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-user-clock"></i>
+              <i class="nav-icon fad fa-user-clock"></i>
               <p>
                 Absensi
               </p>
@@ -624,10 +618,10 @@
             <a href="#" class="nav-link
             {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }} {{ Request::is('hrd/tambahabsen') ? 'active' : '' }}
             ">
-              <i class="nav-icon fas fa-user-clock"></i>
+              <i class="nav-icon fad fa-user-clock"></i>
               <p>
                Absensi
-                <i class="fas fa-angle-left right"></i>
+                <i class="fad fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -637,7 +631,6 @@
                 {{ url('/hrd/lihatabsen') }}
                 " class="nav-link
                 {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}">
-                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>absensi</p>
                 </a>
               </li>
@@ -649,7 +642,6 @@
                 {{ url('/hrd/tambahabsen') }}
 
                 " class="nav-link  {{Request::is('hrd/tambahabsen') ? 'active' : ''}} {{Request::is('direktur/datapengajuan') ? 'active' : ''}}">
-                  <i class="fas  {{Request::is('hrd/tambahabsen') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Tambah absen</p>
                 </a>
               </li>
@@ -657,7 +649,7 @@
                 @endif
               {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>pengajuan</p>
                 </a>
               </li> --}}
@@ -670,16 +662,16 @@
 
           <li class="nav-item {{Request::is('karyawan/pengajuan') ? 'menu-open' : ''}}{{Request::is('hrd/pengajuan') ? 'menu-open' : ''}}{{Request::is('direktur/pengajuan') ? 'menu-open' : ''}}{{Request::is('hrd/datapengajuan') ? 'menu-open' : ''}} {{Request::is('direktur/datapengajuan') ? 'menu-open' : ''}}">
             <a href="#" class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}}{{Request::is('hrd/pengajuan') ? 'active' : ''}}{{Request::is('hrd/datapengajuan') ? 'active' : ''}} {{Request::is('direktur/datapengajuan') ? 'active' : ''}}{{Request::is('direktur/pengajuan') ? 'active' : ''}}">
-              <i class="nav-icon fas fa-edit"></i>
+              <i class="nav-icon fad fa-edit"></i>
               <p>
                 Pengajuan
-                <i class="fas fa-angle-left right"></i>
+                <i class="fad fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               {{-- <li class="nav-item">
                 <a href="pages/forms/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>Pengajuan Lembur</p>
                 </a>
               </li> --}}
@@ -693,7 +685,6 @@
                 {{ url('direktur/pengajuan') }}
                 @endif
                 " class="nav-link {{Request::is('karyawan/pengajuan') ? 'active' : ''}} {{Request::is('hrd/pengajuan') ? 'active' : ''}}  {{Request::is('direktur/pengajuan') ? 'active' : ''}}">
-                  <i class="fas {{Request::is('karyawan/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/pengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Pengajuan</p>
                 </a>
               </li>
@@ -709,7 +700,6 @@
 
                 @endif
                 " class="nav-link  {{Request::is('hrd/datapengajuan') ? 'active' : ''}} {{Request::is('direktur/datapengajuan') ? 'active' : ''}}">
-                  <i class="fas  {{Request::is('hrd/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapengajuan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Data Pengajuan</p>
                 </a>
               </li>
@@ -717,7 +707,7 @@
                 @endif
               {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>pengajuan</p>
                 </a>
               </li> --}}
@@ -725,55 +715,16 @@
             </ul>
           </li>
 
-
-          @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
-
-
-          <li class="nav-item {{Request::is('hrd/settings/jamkerja') ? 'menu-open' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'menu-open' : ''}}">
-            <a href="#" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Settings
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview ">
-              {{-- <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link ">
-                  <i class="fas fa-circle nav-icon"></i>
-                  <p>Akun</p>
-                </a>
-              </li> --}}
-
-              <li class="nav-item">
-                <a href="@if (Auth()->user()->jabatan == 'hrd')
-                {{ url('/hrd/settings/jamkerja') }}
-                @else
-                {{ url('direktur/settings/jamkerja') }}
-                @endif
-
-                " class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}} {{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
-                  <i class="fas {{Request::is('hrd/settings/jamkerja') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/settings/jamkerja') ? 'fa-dot-circle' : 'fa-dot-circle'}}  nav-icon"></i>
-                  <p>Jam Kerja</p>
-                </a>
-              </li>
-
-
-
-            </ul>
-          </li>
-          @endif
-
           @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
 
 
 
           <li class="nav-item {{Request::is('hrd/datauser') ? 'menu-open' : ''}}{{Request::is('hrd/user') ? 'menu-open' : ''}}{{ Request::is('hrd/tambahuser') ? 'menu-open' : '' }}{{Request::is('direktur/user') ? 'menu-open' : ''}}{{Request::is('direktur/datauser') ? 'menu-open' : ''}}{{Request::is('karyawan/user') ? 'menu-open' : ''}}">
             <a href="" class="nav-link {{Request::is('hrd/user') ? 'active' : ''}}{{Request::is('hrd/tambahuser') ? 'active' : ''}}{{Request::is('hrd/datauser') ? 'active' : ''}}{{Request::is('direktur/user') ? 'active' : ''}}{{Request::is('karyawan/user') ? 'active' : ''}}{{Request::is('direktur/datauser') ? 'active' : ''}}">
-              <i class="nav-icon fas fa-user-cog"></i>
+              <i class="nav-icon fad fa-user-cog"></i>
               <p>
                 Data Karyawan
-                <i class="fas fa-angle-left right"></i>
+                <i class="fad fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview ">
@@ -787,7 +738,7 @@
                         @else
                         {{ url('direktur/user') }}
                         @endif" class="nav-link {{ Request::is('hrd/user') ? 'active' : '' }}{{ Request::is('direktur/user') ? 'active' : '' }}{{ Request::is('karyawan/user') ? 'active' : '' }}">
-                      <i class="nav-icon fas fa-user"></i>
+                      <i class="nav-icon fad fa-user"></i>
                       <p>
                         Karyawan
                       </p>
@@ -799,7 +750,7 @@
                 @if (Auth()->user()->jabatan == 'hrd')
               <li class="nav-item ">
                 <a href="/hrd/tambahuser" class="nav-link {{ Request::is('hrd/tambahuser') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-plus"></i>
+                  <i class="nav-icon fad fa-plus"></i>
                   <p>
                     Tambah Karyawan
                   </p>
@@ -816,7 +767,7 @@
                 @else
                 @endif
                 " class="nav-link {{ Request::is('hrd/datauser') ? 'active' : '' }}{{ Request::is('direktur/datauser') ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-users"></i>
+                  <i class="nav-icon fad fa-users"></i>
                   <p>
                     Data Karyawan
                   </p>
@@ -845,7 +796,7 @@
                 @else @endif  " class="nav-link {{ Request::is('karyawan/LihatAbsen') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('karyawan/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('hrd/lihatabsen') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('hrd/lihatabsen/izin') ? 'active' : '' }}
                 {{ Request::is('direktur/lihatabsen') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/masuk') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/telat') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/sakit') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/alpha') ? 'active' : '' }}{{ Request::is('direktur/lihatabsen/izin') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-scroll"></i>
+              <i class="nav-icon fad fa-scroll"></i>
               <p>
                 Penyuratan
 
@@ -858,10 +809,10 @@
             <a href="#" class="nav-link
             {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('hrd/datapenyuratan') ? 'active' : '' }}{{ Request::is('direktur/datapenyuratan') ? 'active' : '' }}{{ Request::is('karyawan/datapenyuratan') ? 'active' : '' }}
             ">
-              <i class="nav-icon fas fa-scroll"></i>
+              <i class="nav-icon fad fa-scroll"></i>
               <p>
                Penyuratan
-                <i class="fas fa-angle-left right"></i>
+                <i class="fad fa-angle-right right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
@@ -873,7 +824,6 @@
                     {{ url('/hrd/penyuratan') }}
                     " class="nav-link
                     {{ Request::is('hrd/penyuratan') ? 'active' : '' }}{{ Request::is('direktur/penyuratan') ? 'active' : '' }}{{ Request::is('karyawan/penyuratan') ? 'active' : '' }}">
-                      <i class="fas {{Request::is('karyawan/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('hrd/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/penyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}}  nav-icon"></i>
                       <p>Beri Peringatan</p>
                     </a>
                   </li>
@@ -891,20 +841,56 @@
                 {{ url('/karyawan/datapenyuratan') }}
                 @endif
                 " class="nav-link  {{Request::is('hrd/datapenyuratan') ? 'active' : ''}} {{Request::is('direktur/datapenyuratan') ? 'active' : ''}} {{Request::is('karyawan/datapenyuratan') ? 'active' : ''}}">
-                  <i class="fas  {{Request::is('hrd/datapenyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('direktur/datapenyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} {{Request::is('karyawan/datapenyuratan') ? 'fa-dot-circle' : 'fa-dot-circle'}} nav-icon"></i>
                   <p>Data Penyuratan</p>
                 </a>
               </li>
 
               {{-- <li class="nav-item">
                 <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fad fa-circle nav-icon"></i>
                   <p>pengajuan</p>
                 </a>
               </li> --}}
 
             </ul>
           </li>
+
+          @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+
+          <li class="nav-item {{Request::is('hrd/settings/jamkerja') ? 'menu-open' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'menu-open' : ''}}">
+            <a href="#" class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}}{{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
+              <i class="nav-icon fad fa-cog"></i>
+              <p>
+                Settings
+                <i class="fad fa-angle-right right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview ">
+              {{-- <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link ">
+                  <i class="fad fa-circle nav-icon"></i>
+                  <p>Akun</p>
+                </a>
+              </li> --}}
+
+              <li class="nav-item">
+                <a href="@if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/settings/jamkerja') }}
+                @else
+                {{ url('direktur/settings/jamkerja') }}
+                @endif
+
+                " class="nav-link {{Request::is('hrd/settings/jamkerja') ? 'active' : ''}} {{Request::is('direktur/settings/jamkerja') ? 'active' : ''}}">
+                  <p>Jam Kerja</p>
+                </a>
+              </li>
+
+
+
+            </ul>
+          </li>
+          @endif
 
 
 
@@ -913,7 +899,7 @@
 
           <li class="nav-item">
             <a href="{{ url('logout') }}" class="nav-link logout-confirm" role="button">
-              <i class="nav-icon far fa-circle text-danger"></i>
+              <i class="nav-icon fad fa-circle text-danger"></i>
               <p>
                 Logout
               </p>

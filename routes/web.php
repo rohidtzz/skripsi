@@ -11,8 +11,10 @@ use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\DataUserController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PenyuratanController;
-use App\Http\Controllers\SettingGajiController;
+use App\Http\Controllers\MasterGajiController;
+use App\Http\Controllers\DataGajiController;
 use App\Http\Controllers\GajiController;
+use App\Http\Controllers\SlipGajiController;
 use App\Http\Controllers\JatahGajiController;
 
 use App\Imports\SiswaImport;
@@ -126,14 +128,16 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::post('/hrd/penyuratan/kirim/post', [PenyuratanController::class, 'penyuratankirimpost']);
 
 
-    //settingpotongangaji
-    Route::get('/hrd/settinggaji', [SettingGajiController::class, 'index']);
-    Route::get('/hrd/settinggaji/create', [SettingGajiController::class, 'create']);
-    Route::post('/hrd/settinggaji/post', [SettingGajiController::class, 'settinggajipost']);
+    // //settingpotongangaji
+    // Route::get('/hrd/mastergaji', [MasterGajiController::class, 'index']);
+    // Route::get('/hrd/mastergaji/create', [MasterGajiController::class, 'create']);
+    // Route::post('/hrd/mastergaji/post', [MasterGajiController::class, 'MasterGajipost']);
 
-    Route::get('/hrd/settinggaji/edit/{id}', [SettingGajiController::class, 'edit']);
-    Route::post('/hrd/settinggaji/edit/post/{id}', [SettingGajiController::class, 'update']);
-    Route::get('/hrd/settinggaji/destroy/{id}', [SettingGajiController::class, 'destroy']);
+    // Route::get('/hrd/mastergaji/edit/{id}', [MasterGajiController::class, 'edit']);
+    // Route::post('/hrd/mastergaji/edit/post/{id}', [MasterGajiController::class, 'update']);
+    // Route::get('/hrd/mastergaji/destroy/{id}', [MasterGajiController::class, 'destroy']);
+    Route::resource('/hrd/mastergaji', MasterGajiController::class);
+    Route::resource('/hrd/datagaji', DataGajiController::class);
 
     //gaji
     Route::get('/hrd/gaji', [GajiController::class, 'index']);
@@ -144,13 +148,14 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::post('/hrd/gaji/post', [GajiController::class, 'gajipost']);
 
-    Route::get('/hrd/slipgaji', [GajiController::class, 'dataslipgaji']);
+    Route::get('/hrd/slipgaji', [SlipGajiController::class, 'index']);
+    Route::get('/hrd/slipgaji/{id}', [SlipGajiController::class, 'show']);
 
     Route::get('/hrd/gaji-daily', [GajiController::class, 'index2']);
     Route::post('/hrd/gaji-daily/post', [GajiController::class, 'gajipost2']);
 
 
-    Route::get('/hrd/datagaji', [GajiController::class, 'datagaji']);
+    // Route::get('/hrd/datagaji', [GajiController::class, 'datagaji']);
 
     Route::get('/hrd/read/datagaji/{id}', [GajiController::class, 'readdatagaji']);
 
@@ -167,15 +172,6 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::post('hrd/gaji/edit/post', [GajiController::class, 'editpost']);
 
     Route::get('/hrd/gaji/destroy/{id}', [GajiController::class, 'destroy']);
-
-    Route::get('/hrd/slipgaji/{id}', [GajiController::class, 'slipgaji']);
-
-
-
-
-
-
-
 
 });
 
@@ -252,8 +248,8 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
 
     Route::get('direktur/user/read/{id}', [DirekturController::class, 'datauserread']);
 
-    //settinggaji
-    Route::get('/direktur/settinggaji', [SettingGajiController::class, 'index']);
+    //master
+    Route::get('/direktur/mastergaji', [MasterGajiController::class, 'index']);
 
     //gaji
     Route::get('/direktur/datagaji', [GajiController::class, 'datagaji']);

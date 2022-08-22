@@ -80,7 +80,7 @@
                       <tr>
                         <td>{{ $u->no_identitas}}</td>
                         <td><img src="{{ asset('foto/'.$u->foto) }}" width="100px" alt=""></td>
-                        <td>{{ $u->name}}</td>
+                        <td><a href="{{ url('/hrd/user/'.$u->id) }}">{{ $u->name}}</a></td>
                         {{-- <td>{{ $u->password }}</td> --}}
                         <td>{{ $u->email }}</td>
                         <td>{{ $u->jabatan }}</td>
