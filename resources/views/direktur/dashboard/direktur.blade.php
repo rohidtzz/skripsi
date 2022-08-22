@@ -9,7 +9,13 @@
     <div class="card">
         <div class="card-body">
 
+            @if ($cek == true)
+            <div id="piechartt" style="width: 900px; height: 500px;"></div>
+            @else
             <div id="piechart" style="width: 900px; height: 500px;"></div>
+            @endif
+
+
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
@@ -35,6 +41,31 @@
         chart.draw(data, options);
       }
     </script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Masuk',     {{$JumlahHadir}}],
+        ['Alpha',      {{$JumlahAlpha}}],
+        ['Telat',  {{$JumlahTelat}}],
+        ['Sakit', {{$JumlahSakit}}],
+        ['Izin',    {{$JumlahIzin}}]
+      ]);
+
+      var options = {
+        title: 'Aktifitas Absen kemarin',
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('piechartt'));
+
+      chart.draw(data, options);
+    }
+  </script>
         </div>
     </div>
     {{-- <div class="col-lg-3 col-6">

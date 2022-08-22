@@ -12,7 +12,12 @@
 
                 <div class="card-header">
                     <h3>Data Setting  Gaji</h3>
+                    @if (Auth()->user()->jabatan == 'hrd')
+
+
                     <a href="/hrd/datagaji/create"><button class="btn btn-success"> Tambah Data </button></a>
+                    @else
+                    @endif
                 </div>
 
                 <div class="card-body">

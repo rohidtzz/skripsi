@@ -42,6 +42,34 @@ class HrdController extends Controller
         date_add($dati,date_interval_create_from_date_string("-5 minutes"));
         $jamkeluarkurang5 = date_format($dati,"H:i:s");
 
+        $datei = date_create(date('Y/m/d'));
+        date_add($datei,date_interval_create_from_date_string("-1 days"));
+        $kurang1hari = date_format($datei,"Y/m/d");
+
+        // $datebulan = date_format($datei,"d");
+        // $datetahun = date_format($datei,"Y");
+
+        $absenhariini = Absen::where('tanggal',date('y/m/d'))->count();
+
+        if($absenhariini == 0){
+
+            $cek = true;
+
+            $JumlahHadir = Absen::where('tanggal', $kurang1hari)->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->whereTime('jam_keluar', '>=', $jamkeluarkurang5)->whereTime('jam_keluar', '<=', $jamkeluar)->orderBy('tanggal','desc')->count();
+
+        $JumlahAlpha = Absen::where('tanggal', $kurang1hari)->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
+
+        $JumlahTelat = Absen::where('tanggal', $kurang1hari)->whereTime('jam_masuk', '>=', $jammasuklebih5)->whereTime('jam_masuk', '<=', $jammasuklebih10)->count();
+
+        $JumlahSakit = Absen::where('tanggal', $kurang1hari)->where('keterangan', 'sakit')->count();
+
+        $JumlahIzin = Absen::where('tanggal', $kurang1hari)->where('keterangan', 'izin')->count();
+
+
+
+            return view('hrd.dashboard.hrd',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin','cek'));
+        }
+
         $JumlahHadir = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuk)->whereTime('jam_masuk', '<=', $jammasuklebih5)->whereTime('jam_keluar', '>=', $jamkeluarkurang5)->whereTime('jam_keluar', '<=', $jamkeluar)->orderBy('tanggal','desc')->count();
 
         $JumlahAlpha = Absen::where('tanggal',date('y/m/d'))->whereTime('jam_masuk', '>=', $jammasuklebih10)->whereTime('jam_masuk', '<=', $jamkeluarkurang5)->count();
@@ -53,7 +81,11 @@ class HrdController extends Controller
         $JumlahIzin = Absen::where('tanggal',date('y/m/d'))->where('keterangan', 'izin')->count();
 
 
-        return view('hrd.dashboard.hrd',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin'));
+        $cek = false;
+
+
+
+        return view('hrd.dashboard.hrd',compact('JumlahHadir','JumlahAlpha','JumlahTelat', 'JumlahSakit','JumlahIzin','cek'));
     }
 
     public function tambahabsen()

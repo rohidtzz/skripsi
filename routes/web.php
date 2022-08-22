@@ -259,6 +259,8 @@ Route::group(['middleware' => ['CekRole:direktur']], function () {
     Route::get('/direktur/exportuser', [HrdController::class, 'exportuser']);
     Route::get('/direktur/slipgaji/{id}', [GajiController::class, 'slipgaji']);
 
+
+    Route::get('/direktur/slipgaji', [SlipGajiController::class, 'index']);
     //penyuratan
 
     Route::get('/direktur/datapenyuratan', [PenyuratanController::class, 'datapenyuratan']);

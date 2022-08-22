@@ -36,9 +36,9 @@ class DataGajiController extends Controller
             $lembur = Str::slug($lembur->name);
             $potongan = GajiFormat::where('type', 'credit')->get();
             $bonus = GajiFormat::where('type', 'debit')->get();
-            
+
             $payload = json_decode($item->data_gaji);
-            
+
             $lembur = (int)$payload->{$lembur} * $jamlembur;
             $gaji = $payload->{$jamkerja} * $payload->{$gajiperjam};
 
@@ -58,7 +58,7 @@ class DataGajiController extends Controller
             $item->lembur = str_replace(',','.', number_format($lembur));
         }
 
-        return view('hrd.penggajian.data.index', compact('data')); 
+        return view('hrd.penggajian.data.index', compact('data'));
     }
 
     /**
@@ -84,7 +84,7 @@ class DataGajiController extends Controller
         $request->validate([
             '*' => 'required',
         ]);
-        
+
         $user = Auth::user();
 
         DataGaji::create([
@@ -133,7 +133,7 @@ class DataGajiController extends Controller
         $request->validate([
             '*' => 'required',
         ]);
-        
+
         $user = Auth::user();
 
         DataGaji::where('id', $id)

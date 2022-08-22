@@ -59,11 +59,11 @@ class GajiFormatSeeder extends Seeder
         ]);
         GajiFormat::create([
             'name' => 'NPWP',
-            'type' => 'credit',
+            'type' => 'identifier',
         ]);
         GajiFormat::create([
             'name' => 'Rekening',
-            'type' => 'credit',
+            'type' => 'identifier',
         ]);
     }
 }

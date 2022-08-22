@@ -486,7 +486,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-                @if (Auth()->user()->jabatan == 'hrd')
+
 
 
                 {{-- <li class="nav-item">
@@ -497,13 +497,13 @@
                     </a>
                   </li> --}}
 
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a href="
                     {{ url('hrd/slipgaji') }}
                     " class="nav-link  {{Request::is('hrd/slipgaji') ? 'active' : ''}}  {{Request::is('direktur/slipgaji') ? 'active' : ''}}">
                       <p>Slip Gaji</p>
                     </a>
-                  </li>
+                  </li> --}}
 
                   {{-- <li class="nav-item">
                     <a href="
@@ -512,10 +512,23 @@
                       <p>Gaji daily</p>
                     </a>
                   </li> --}}
-                  @else
-                  @endif
+
 
                   @if (Auth()->user()->jabatan == 'hrd' || Auth()->user()->jabatan == 'direktur')
+
+                  <li class="nav-item">
+                    <a href="
+                    @if (Auth()->user()->jabatan == 'hrd')
+                {{ url('/hrd/slipgaji') }}
+                @elseif (Auth()->user()->jabatan == 'direktur')
+                {{ url('/direktur/slipgaji') }}
+                @else
+
+                @endif
+                    " class="nav-link  {{Request::is('hrd/slipgaji') ? 'active' : ''}}  {{Request::is('direktur/slipgaji') ? 'active' : ''}}">
+                      <p>Slip Gaji</p>
+                    </a>
+                  </li>
 
               <li class="nav-item">
                 <a href="

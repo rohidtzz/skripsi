@@ -80,7 +80,7 @@
                       <tr>
                         <td>{{ $u->no_identitas}}</td>
                         <td><img src="{{ asset('foto/'.$u->foto) }}" width="100px" alt=""></td>
-                        <td><a href="{{ url('/hrd/user/'.$u->id) }}">{{ $u->name}}</a></td>
+                        <td><a href="{{ url('/hrd/user/read/'.$u->id) }}">{{ $u->name}}</a></td>
                         {{-- <td>{{ $u->password }}</td> --}}
                         <td>{{ $u->email }}</td>
                         <td>{{ $u->jabatan }}</td>
@@ -92,7 +92,8 @@
                         {{-- <td>{{ $u->status }}</td> --}}
                         <td>{{ $u->no_backup }}</td>
                         {{-- <td>12 menit</td> --}}
-                        <td><a href="/hrd/user/read/{{$u->id}}" class="btn btn-success">Read</a>
+                        <td>
+                            {{-- <a href="/hrd/user/read/{{$u->id}}" class="btn btn-success">Read</a> --}}
                             <a href="/hrd/user/edit/{{$u->id}}" class="btn btn-info">Edit</a>
                             <a href="/hrd/user/destroy/{{$u->id}}"  class="btn btn-danger delete-confirm" role="button">Delete</a></td>
                       </tr>

@@ -65,7 +65,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3>Data Absen</h3>
+                    <h3>Data Pengajuan</h3>
                 </div>
 
                 <div class="card-body">
