@@ -14,6 +14,7 @@ use App\Http\Controllers\PenyuratanController;
 use App\Http\Controllers\MasterGajiController;
 use App\Http\Controllers\DataGajiController;
 use App\Http\Controllers\GajiController;
+use App\Http\Controllers\SlipGajiController;
 use App\Http\Controllers\JatahGajiController;
 
 use App\Imports\SiswaImport;
@@ -147,7 +148,8 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::post('/hrd/gaji/post', [GajiController::class, 'gajipost']);
 
-    Route::get('/hrd/slipgaji', [GajiController::class, 'dataslipgaji']);
+    Route::get('/hrd/slipgaji', [SlipGajiController::class, 'index']);
+    Route::get('/hrd/slipgaji/{id}', [SlipGajiController::class, 'show']);
 
     Route::get('/hrd/gaji-daily', [GajiController::class, 'index2']);
     Route::post('/hrd/gaji-daily/post', [GajiController::class, 'gajipost2']);
@@ -170,15 +172,6 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
     Route::post('hrd/gaji/edit/post', [GajiController::class, 'editpost']);
 
     Route::get('/hrd/gaji/destroy/{id}', [GajiController::class, 'destroy']);
-
-    Route::get('/hrd/slipgaji/{id}', [GajiController::class, 'slipgaji']);
-
-
-
-
-
-
-
 
 });
 

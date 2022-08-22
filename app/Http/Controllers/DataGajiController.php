@@ -8,7 +8,6 @@ use App\Models\DataGaji;
 use App\Models\User;
 use App\Models\Pengajuan;
 
-
 use Str;
 use Auth;
 
