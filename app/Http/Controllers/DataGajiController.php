@@ -103,7 +103,9 @@ class DataGajiController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = DataGaji::findOrFail($id);
+        $data->delete();
+        return redirect()->back()->with('errors', 'Hapus Berhasil');
     }
 
     /**
