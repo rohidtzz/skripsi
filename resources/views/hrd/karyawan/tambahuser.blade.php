@@ -50,7 +50,7 @@
                 <div class="col-md-6 col-12 mb-5">
                     <form action="/hrd/tambahuser/post" method="post" enctype="multipart/form-data">
                         @csrf
-    
+
                         <p>
                             <label for="inputState">foto</label>
                             <input type="file" name="foto" class="form-control" required>
@@ -60,22 +60,22 @@
                             <label for="inputState">id user</label>
                             <input type="number" name="id_identitas" class="form-control" placeholder="id user" required>
                         </p>
-    
+
                         <p>
                             <label for="inputState">password</label>
                             <input type="password" name="password" class="form-control" placeholder="password" required>
                         </p>
-    
+
                         <p>
                             <label for="inputState">nama</label>
                             <input type="text" name="name" class="form-control" placeholder="nama" required>
                         </p>
-    
+
                         <p>
                             <label for="inputState">email</label>
                             <input type="email" name="email" class="form-control" placeholder="email" required>
                         </p>
-    
+
                        <p>
                             <label for="inputState">jabatan</label>
                             <select id="inputState" name="jabatan" class="form-control">
@@ -85,7 +85,7 @@
                                 <option value="direktur">direktur</option>
                             </select>
                        </p>
-    
+
                         <p>
                             <label for="inputState">jenis Kelamin</label>
                             <select id="inputState" name="gender" class="form-control">
@@ -94,27 +94,27 @@
                                 <option value="perempuan">perempuan</option>
                             </select>
                         </p>
-    
+
                         <p>
                             <label for="inputState">alamat</label>
                             <textarea name="alamat" class="form-control" placeholder="alamat" required></textarea>
                         </p>
-    
+
                         <p>
                             <label for="inputState">nik</label>
                             <input type="number" name="nik" class="form-control" placeholder="nik" required>
                         </p>
-    
+
                         <p>
                             <label for="inputState">npwp</label>
                             <input type="number" name="npwp" class="form-control" placeholder="npwp" required>
                         </p>
-    
+
                         <p>
                             <label for="inputState">no hp</label>
                             <input type="number" name="no_hp" class="form-control" placeholder="no hp" required>
                         </p>
-    
+
                         <p>
                             <label for="inputState">status pernikahan</label>
                             <select id="inputState" name="status" class="form-control">
@@ -128,10 +128,40 @@
                             <label for="inputState">no hp backup</label>
                             <input type="number" name="no_backup" class="form-control" placeholder="no hp backup" required>
                         </p>
-    
+
                         <p class="mb-5">
                             <label for="inputState">Tanggal lahir</label>
                             <input type="date" name="lahir" class="form-control" placeholder="tanggal lahir" required>
+                        </p>
+
+                        <p>
+                            <label for="inputState">ttl</label>
+                            <input type="text" name="ttl" class="form-control" placeholder="" required>
+                        </p>
+
+                        <p>
+                            <label for="inputState">agama</label>
+                            <input type="text" name="agama" class="form-control" placeholder="" required>
+                        </p>
+
+                        <p>
+                            <label for="inputState">niy</label>
+                            <input type="text" name="niy" class="form-control" placeholder="" required>
+                        </p>
+
+                        <p>
+                            <label for="inputState">sk pengangkatan</label>
+                            <input type="text" name="sk_pengangkatan" class="form-control" placeholder="" required>
+                        </p>
+
+                        <p>
+                            <label for="inputState">pendidikan terakhir</label>
+                            <input type="text" name="pendidikan" class="form-control" placeholder="" required>
+                        </p>
+
+                        <p>
+                            <label for="inputState">nuptk</label>
+                            <input type="text" name="nuptk" class="form-control" placeholder="" required>
                         </p>
 
                         {{-- <div class="form-group">
@@ -145,7 +175,7 @@
                         <option value="cuti">cuti</option>
                         </select>
                         </div>
-    
+
                         <label for="inputState">tanggal</label>
                         <input type="date" name="tanggal" value="" class="form-control" placeholder="kode barang" required>
                         <label for="inputState">jam masuk</label>
@@ -153,14 +183,14 @@
                         <label for="inputState">jam keluar</label>
                         <input type="time" name="jam_keluar" value="" class="form-control" placeholder="harga" required>
                         <br> --}}
-    
+
                         <button type="submit" class="btn btn-success">Submit</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                         {{-- <a href="/hrd/dashboard" class="btn btn-danger">reset</a> --}}
-    
-    
-    
-    
+
+
+
+
                     </form>
                     {{-- end form --}}
                 </div>
@@ -169,7 +199,7 @@
                     <h3>Dokumen lengkap</h3>
                 </div>
                 {{-- end col --}}
-        
+
                 <div class="col-md-6 col-12 mb-5">
                     <form action="/hrd/uploadpdf" method="post" enctype="multipart/form-data">
                         @csrf
@@ -211,7 +241,7 @@
                     </form>
                 </div>
                 {{-- end col --}}
-        
+
                 <div class="col-md-6 col-12">
                     <h3>Jabatan</h3>
                 </div>
@@ -232,7 +262,7 @@
                     </form>
                 </div>
                 {{-- end col --}}
-        
+
             </div>
         </div>
     </div>

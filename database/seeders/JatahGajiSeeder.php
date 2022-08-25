@@ -57,18 +57,18 @@ class JatahGajiSeeder extends Seeder
             'tgl_gaji' => date('Y-m-d')
         ]);
 
-        JatahGaji::create([
-            'User_id' => 4,
-            'tj_kesehatan' => '80000',
-            'tj_pangan' => '30000',
-            'tj_jabatan' => '0',
-            'rekening' => 3456789044,
-            'Gaji_Pokok' => '2500000',
-            'Gaji_Perjam' => '10000',
-            'Gaji_Hari' => '100000',
-            'Lembur_Jam' => '10000',
-            'status_karyawan' => 'daily',
-            'tgl_gaji' => date('Y-m-d')
-        ]);
+        // JatahGaji::create([
+        //     'User_id' => 4,
+        //     'tj_kesehatan' => '80000',
+        //     'tj_pangan' => '30000',
+        //     'tj_jabatan' => '0',
+        //     'rekening' => 3456789044,
+        //     'Gaji_Pokok' => '2500000',
+        //     'Gaji_Perjam' => '10000',
+        //     'Gaji_Hari' => '100000',
+        //     'Lembur_Jam' => '10000',
+        //     'status_karyawan' => 'daily',
+        //     'tgl_gaji' => date('Y-m-d')
+        // ]);
     }
 }

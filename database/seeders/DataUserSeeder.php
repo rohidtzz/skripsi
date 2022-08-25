@@ -42,13 +42,13 @@ class DataUserSeeder extends Seeder
             'npwp' => 'Ini_Npwp.pdf',
         ]);
 
-        DataUser::create([
-            'user_id' =>  4,
-            'cv' => 'Ini_Cv.pdf',
-            'ijazah' => 'Ini_Ijazah.pdf',
-            'sertifikat' => 'Ini_Sertifikat.pdf',
-            'ktp' => 'Ini_Ktp.pdf',
-            'npwp' => 'Ini_Npwp.pdf',
-        ]);
+        // DataUser::create([
+        //     'user_id' =>  4,
+        //     'cv' => 'Ini_Cv.pdf',
+        //     'ijazah' => 'Ini_Ijazah.pdf',
+        //     'sertifikat' => 'Ini_Sertifikat.pdf',
+        //     'ktp' => 'Ini_Ktp.pdf',
+        //     'npwp' => 'Ini_Npwp.pdf',
+        // ]);
     }
 }

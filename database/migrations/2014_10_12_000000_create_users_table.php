@@ -32,6 +32,12 @@ class CreateUsersTable extends Migration
             $table->date('waktu_aktif');
             $table->enum('status_pekerjaan',['masuk', 'alpha','telat','sakit','cuti','pending','izin'])->nullable;
             $table->date('tgl_lahir');
+            $table->string('ttl');
+            $table->string('agama');
+            $table->string('niy');
+            $table->string('sk_pengangkatan');
+            $table->string('pendidikan_terakhir');
+            $table->string('nuptk');
 
 
             // $table->timestamp('email_verified_at')->nullable();

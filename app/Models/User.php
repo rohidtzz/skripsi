@@ -33,7 +33,13 @@ class User extends Authenticatable
         'status',
         'no_backup',
         'waktu_aktif',
-        'tgl_lahir'
+        'tgl_lahir',
+        'ttl',
+        'agama',
+        'niy',
+        'sk_pengangkatan',
+        'pendidikan_terakhir',
+        'nuptk'
     ];
 
     /**

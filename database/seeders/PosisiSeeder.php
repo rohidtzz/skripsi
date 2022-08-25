@@ -17,22 +17,22 @@ class PosisiSeeder extends Seeder
     {
         Posisi::create([
             'user_id' => 1,
-            'name' => 'staff it',
+            'name' => 'Guru mapel',
         ]);
 
         Posisi::create([
             'user_id' => 2,
-            'name' => 'personalita',
+            'name' => 'kepala sekolah',
         ]);
 
         Posisi::create([
             'user_id' => 3,
-            'name' => 'ceo',
+            'name' => 'Guru mapel',
         ]);
 
-        Posisi::create([
-            'user_id' => 4,
-            'name' => 'security',
-        ]);
+        // Posisi::create([
+        //     'user_id' => 4,
+        //     'name' => 'security',
+        // ]);
     }
 }

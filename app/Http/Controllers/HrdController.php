@@ -654,7 +654,13 @@ class HrdController extends Controller
             'no_backup' => $request->no_backup,
             'waktu_aktif' => date('Y/m/d'),
             'status_pekerjaan' => 'masuk',
-            'tgl_lahir' => $request->lahir
+            'tgl_lahir' => $request->lahir,
+            'ttl' => $request->ttl,
+            'agama' => $request->agama,
+            'niy' => $request->niy,
+            'sk_pengangkatan' => $request->sk_pengangkatan,
+            'pendidikan_terakhir' => $request->pendidikan,
+            'nuptk' => $request->nuptk
         ]);
 
 
