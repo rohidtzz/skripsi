@@ -12,6 +12,9 @@ use App\Models\Pengajuan;
 
 use App\Models\JatahGaji;
 
+use App\Models\GajiFormat;
+use App\Models\DataGaji;
+
 use App\Exports\GajiExport;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -19,7 +22,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\SettingJam;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-
+use Str;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -389,12 +393,45 @@ class GajiController extends Controller
 
     public function datagajikar(Request $request)
     {
+        $user_id = Auth()->user()->id;
+        $data = DataGaji::where('user_id', $user_id)
+        ->firstOrFail();
+       
+        $jamkerja = GajiFormat::where('type', 'duration')->firstOrFail();
+        $jamkerja = Str::slug($jamkerja->name);
+        $gajiperjam = GajiFormat::where('type', 'income')->firstOrFail();
+        $gajiperjam = Str::slug($gajiperjam->name);            
+        $payload = json_decode($data->data_gaji);
+        $gaji = $payload->{$jamkerja} * $payload->{$gajiperjam};
+        $data->penghasilan = (object)[
+            'gaji' =>  str_replace(',','.', number_format($gaji))
+        ];
+        $data->potongan = (object)[];
 
-        $id = Auth()->user()->id;
+        $debit = GajiFormat::where('type', 'debit')->get();
+        $credit = GajiFormat::where('type', 'credit')->get();
 
-        $all = Gaji::where('user_id',$id)->get();
-
-        return view('hrd.gaji.datagaji',compact('all'));
+        $data->penghasilan_total = $gaji;
+        foreach($debit as $db) {
+            if(property_exists($payload, Str::slug($db->name))) {
+                $amount = $payload->{Str::slug($db->name)};
+                $data->penghasilan_total += $amount;
+                $amount = str_replace(',','.', number_format($amount));
+                $data->penghasilan->{$db->name} = $amount;
+            }
+        }
+        
+        $data->potongan_total = 0;
+        foreach($credit as $cr) {
+            if(property_exists($payload, Str::slug($cr->name))) {
+                $amount = $payload->{Str::slug($cr->name)};
+                $data->potongan_total += $amount;
+                $amount = str_replace(',','.', number_format($amount));
+                $data->potongan->{$cr->name} = $amount;
+            }
+        }
+       
+        return view('hrd.penggajian.slip.show', compact('data'));
 
     }
 

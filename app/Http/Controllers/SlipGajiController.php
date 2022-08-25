@@ -81,18 +81,22 @@ class SlipGajiController extends Controller
 
         $data->penghasilan_total = $gaji;
         foreach($debit as $db) {
-            $amount = $payload->{Str::slug($db->name)};
-            $data->penghasilan_total += $amount;
-            $amount = str_replace(',','.', number_format($amount));
-            $data->penghasilan->{$db->name} = $amount;
+            if(property_exists($payload, Str::slug($db->name))) {
+                $amount = $payload->{Str::slug($db->name)};
+                $data->penghasilan_total += $amount;
+                $amount = str_replace(',','.', number_format($amount));
+                $data->penghasilan->{$db->name} = $amount;
+            }
         }
         
         $data->potongan_total = 0;
         foreach($credit as $cr) {
-            $amount = $payload->{Str::slug($cr->name)};
-            $data->potongan_total += $amount;
-            $amount = str_replace(',','.', number_format($amount));
-            $data->potongan->{$cr->name} = $amount;
+            if(property_exists($payload, Str::slug($cr->name))) {
+                $amount = $payload->{Str::slug($cr->name)};
+                $data->potongan_total += $amount;
+                $amount = str_replace(',','.', number_format($amount));
+                $data->potongan->{$cr->name} = $amount;
+            }
         }
        
         return view('hrd.penggajian.slip.show', compact('data'));
@@ -130,5 +134,49 @@ class SlipGajiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function send($id) {
+        $data = DataGaji::findOrFail($id);
+       
+        $jamkerja = GajiFormat::where('type', 'duration')->firstOrFail();
+        $jamkerja = Str::slug($jamkerja->name);
+        $gajiperjam = GajiFormat::where('type', 'income')->firstOrFail();
+        $gajiperjam = Str::slug($gajiperjam->name);            
+        $payload = json_decode($data->data_gaji);
+        $gaji = $payload->{$jamkerja} * $payload->{$gajiperjam};
+        $data->penghasilan = (object)[
+            'gaji' =>  str_replace(',','.', number_format($gaji))
+        ];
+        $data->potongan = (object)[];
+
+        $debit = GajiFormat::where('type', 'debit')->get();
+        $credit = GajiFormat::where('type', 'credit')->get();
+
+        $data->penghasilan_total = $gaji;
+        foreach($debit as $db) {
+            $amount = $payload->{Str::slug($db->name)};
+            $data->penghasilan_total += $amount;
+            $amount = str_replace(',','.', number_format($amount));
+            $data->penghasilan->{$db->name} = $amount;
+        }
+        
+        $data->potongan_total = 0;
+        foreach($credit as $cr) {
+            $amount = $payload->{Str::slug($cr->name)};
+            $data->potongan_total += $amount;
+            $amount = str_replace(',','.', number_format($amount));
+            $data->potongan->{$cr->name} = $amount;
+        }
+
+        $email = User::findOrFail($payload->users)?->email;
+
+        $sendmail = \Mail::to($email)->send(new \App\Mail\SlipGaji($data));
+        
+        if($sendmail == null) {
+            return redirect()->back()->with('success', 'Berhasil mengirim slipgaji');
+        }else{
+            return redirect()->back()->with('error', 'Gagal mengirim slipgaji');
+        }
     }
 }

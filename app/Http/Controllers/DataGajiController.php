@@ -44,12 +44,16 @@ class DataGajiController extends Controller
 
             $credit = 0;
             foreach($potongan as $pt) {
-                $credit += $payload->{Str::slug($pt->name)};
+                if(property_exists($payload, Str::slug($pt?->name))){
+                    $credit += $payload?->{Str::slug($pt?->name)};
+                }
             }
 
             $debit = 0;
             foreach($bonus as $bn) {
-                $debit += $payload->{Str::slug($bn->name)};
+                if(property_exists($payload, Str::slug($bn?->name))){
+                    $debit += $payload?->{Str::slug($bn?->name)};
+                }
             }
 
             $item->potongan = str_replace(',','.', number_format($credit));
@@ -85,10 +89,8 @@ class DataGajiController extends Controller
             '*' => 'required',
         ]);
 
-        $user = Auth::user();
-
         DataGaji::create([
-            'user_id' => $user->id,
+            'user_id' => $request->users,
             'data_gaji' => json_encode($request->except(['_token', '_method'])),
         ]);
 
@@ -136,11 +138,9 @@ class DataGajiController extends Controller
             '*' => 'required',
         ]);
 
-        $user = Auth::user();
-
         DataGaji::where('id', $id)
         ->update([
-            'user_id' => $user->id,
+            'user_id' => $request->users,
             'data_gaji' => json_encode($request->except(['_token', '_method'])),
         ]);
 

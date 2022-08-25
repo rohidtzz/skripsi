@@ -15,7 +15,7 @@
                     @if (Auth()->user()->jabatan == 'hrd')
 
 
-                    <a href="/hrd/datagaji/create"><button class="btn btn-success"> Tambah Data </button></a>
+                    {{-- <a href="/hrd/datagaji/create"><button class="btn btn-success"> Tambah Data </button></a> --}}
                     @else
                     @endif
                 </div>

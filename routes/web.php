@@ -150,6 +150,7 @@ Route::group(['middleware' => ['CekRole:hrd']], function () {
 
     Route::get('/hrd/slipgaji', [SlipGajiController::class, 'index']);
     Route::get('/hrd/slipgaji/{id}', [SlipGajiController::class, 'show']);
+    Route::get('/hrd/slipgaji/{id}/send', [SlipGajiController::class, 'send']);
 
     Route::get('/hrd/gaji-daily', [GajiController::class, 'index2']);
     Route::post('/hrd/gaji-daily/post', [GajiController::class, 'gajipost2']);
