@@ -818,7 +818,13 @@ class HrdController extends Controller
                 'no_hp' => $request->no_hp,
                 'status' => $request->status,
                 'no_backup' => $request->no_backup,
-                'tgl_lahir' => $request->tgl_lahir
+                'tgl_lahir' => $request->tgl_lahir,
+                'ttl' => $request->ttl,
+                'agama' => $request->agama,
+                'niy' => $request->niy,
+                'sk_pengangkatan' => $request->sk_pengangkatan,
+                'pendidikan_terakhir' => $request->pendidikan,
+                'nuptk' => $request->nuptk
             ]);
 
             return redirect()->back()->withSuccess('Edit Berhasil');
@@ -859,6 +865,12 @@ class HrdController extends Controller
             'no_hp' => $request->no_hp,
             'status' => $request->status,
             'no_backup' => $request->no_backup,
+            'ttl' => $request->ttl,
+            'agama' => $request->agama,
+            'niy' => $request->niy,
+            'sk_pengangkatan' => $request->sk_pengangkatan,
+            'pendidikan_terakhir' => $request->pendidikan,
+            'nuptk' => $request->nuptk,
         ]);
 
         // User::where('id',$id)->update([

@@ -110,7 +110,35 @@
     <input type="number" name="no_backup" value="{{ $data->no_backup}}" class="form-control" placeholder="no hp backup" required>
 
 
+    <p>
+        <label for="inputState">ttl</label>
+        <input type="text" name="ttl" value="{{ $data->ttl }}" class="form-control" placeholder="" required>
+    </p>
 
+    <p>
+        <label for="inputState">agama</label>
+        <input type="text" name="agama" value="{{ $data->agama }}" class="form-control" placeholder="" required>
+    </p>
+
+    <p>
+        <label for="inputState">niy</label>
+        <input type="text" name="niy" value="{{ $data->niy }}" class="form-control" placeholder="" required>
+    </p>
+
+    <p>
+        <label for="inputState">sk pengangkatan</label>
+        <input type="text" name="sk_pengangkatan" value="{{ $data->sk_pengangkatan }}" class="form-control" placeholder="" required>
+    </p>
+
+    <p>
+        <label for="inputState">pendidikan terakhir</label>
+        <input type="text" name="pendidikan" value="{{ $data->pendidikan_terakhir }}" class="form-control" placeholder="" required>
+    </p>
+
+    <p>
+        <label for="inputState">nuptk</label>
+        <input type="text" name="nuptk" value="{{ $data->nuptk }}" class="form-control" placeholder="" required>
+    </p>
 
     <br><br>
     <button type="submit" class="btn btn-success">Submit</button>

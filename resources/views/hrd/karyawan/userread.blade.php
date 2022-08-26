@@ -52,11 +52,28 @@
                     <b>Npwp</b> <a class="float-right">{{ $data->npwp }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Tanggal Lahir</b> <a class="float-right">{{ $data->tgl_lahir }}</a>
+                    <b>Ttl</b> <a class="float-right">{{ $data->ttl }}</a>
                   </li>
                   <li class="list-group-item">
                     <b>Division</b> <a class="float-right">{{ App\Models\Posisi::find($data->id)->name }}</a>
                   </li>
+
+                  <li class="list-group-item">
+                    <b>Agama</b> <a class="float-right">{{ $data->agama }}</a>
+                  </li>
+
+                  <li class="list-group-item">
+                    <b>niy</b> <a class="float-right">{{ $data->niy}}</a>
+                  </li>
+
+
+
+                  <li class="list-group-item">
+                    <b>nuptk</b> <a class="float-right">{{ $data->nuptk }}</a>
+                  </li>
+
+
+
                   <li class="list-group-item">
                     <a class="btn btn-primary" href="/hrd/user/edit/{{$data->id}}">Edit</a>
                   </li>
@@ -102,6 +119,18 @@
               <strong><i class="far fa-file-alt mr-1"></i>No Backup</strong>
 
               <p class="text-muted">{{ $data->no_backup }}</p>
+
+              <hr>
+
+              <strong><i class="far fa-file-alt mr-1"></i>Sk Pengangkatan</strong>
+
+              <p class="text-muted">{{ $data->sk_pengangkatan}}</p>
+
+              <hr>
+
+              <strong><i class="far fa-file-alt mr-1"></i>Pendidikan terakhir</strong>
+
+              <p class="text-muted">{{ $data->pendidikan_terakhir }}</p>
             </div>
             <!-- /.card-body -->
           </div>

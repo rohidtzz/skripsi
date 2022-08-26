@@ -33,7 +33,7 @@
                         <th>nik</th>
                         <th>Npwp</th>
                         <th>No hp</th>
-                        <th>opsi</th>
+                        {{-- <th>opsi</th> --}}
                         {{-- <th> status Pernikahan</th> --}}
                         {{-- <th>no Backup</th> --}}
                         {{-- <th>Jam Kehadiran Rata-Rata</th> --}}
@@ -48,7 +48,7 @@
                       <tr>
                         <td>{{ $u->no_identitas}}</td>
                         <td><img src="{{ asset('foto/'.$u->foto) }}" width="100px" alt=""></td>
-                        <td>{{ $u->name}}</td>
+                        <td><a href="{{ url('/direktur/user/read/'.$u->id) }}">{{ $u->name}}</a></td>
                         {{-- <td>{{ $u->password }}</td> --}}
                         <td>{{ $u->email }}</td>
                         <td>{{ $u->jabatan }}</td>
@@ -60,7 +60,7 @@
                         {{-- <td>{{ $u->status }}</td> --}}
                         {{-- <td>{{ $u->no_backup }}</td> --}}
                         {{-- <td>12 menit</td> --}}
-                        <td><a href="/direktur/user/read/{{$u->id}}" class="btn btn-info">Read</a><td>
+                        {{-- <td><a href="/direktur/user/read/{{$u->id}}" class="btn btn-info">Read</a><td> --}}
                       </tr>
                 @endforeach
             </table>
